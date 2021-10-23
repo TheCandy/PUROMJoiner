@@ -1,0 +1,203 @@
+#content {
+    display: flex;
+    flex-direction: row;
+    height: 97vh;
+}
+
+.contextMergeMenu {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+#diagramSpace {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 90%;
+}
+
+#editor {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+    /* flex-grow: 1; */
+}
+
+#mergeWizard {
+    position: relative;
+    display: none;
+    flex-direction: row;
+    height: 100%;
+    width: 0%;
+}
+
+#mergeDivs {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    
+    /* flex-grow: 1; */
+    /* display: none; */
+}
+
+.editorWindow {
+    position: absolute;
+    background-color: #DAE4E4;
+}
+
+.composer {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.editorWindow2 {
+    position: relative;
+    width: 50%;
+    background-color: #e4d7b3;
+    /* padding: 50px; */
+    border: 1px black solid;
+}
+
+.palette {
+    background-color: #f3f3f3;
+    z-index: 1;
+    opacity: 0.9;
+    float: right;
+    margin: 10px;
+    width: 150px;
+    /* height: 250px; */
+    height: fit-content;
+    filter: drop-shadow(-5px 5px 2px #727272);
+    outline: none;
+    display: flex;
+    flex-direction: column;
+}
+
+#myPaletteDiv canvas, #myDiagramDiv canvas, #mergeDiagramDiv canvas, #mergeDiagramDiv2 canvas {
+    outline: none;
+}
+
+#myPaletteDiv {
+    width: 150px;
+    height: 200px;
+}
+
+#elementList {
+    list-style-type: none;
+    padding: 0;
+    /* Remove padding */
+    margin: 0px;
+    /* Remove margins */
+}
+
+#elementList li {
+    margin: 1px;
+    font-size: 10px;
+    /* Remove margins */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid;
+    padding: 3px;
+}
+
+#elementList li:hover {
+    background-color: yellow;
+}
+
+#searchDiv {
+    overflow-y: auto;
+}
+
+#mergeSelectionDiv {
+    overflow-y: auto;
+}
+
+summary {
+    border: 4px solid transparent;
+    outline: none;
+    padding: 1rem;
+    display: block;
+    background: #444;
+    color: white;
+    padding-left: 2.2rem;
+    position: relative;
+    cursor: pointer;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details[open]>summary:before {
+    transform: rotate(90deg);
+}
+
+summary:before {
+    content: '';
+    border-width: .4rem;
+    border-style: solid;
+    border-color: transparent transparent transparent #fff;
+    position: absolute;
+    top: 1.3rem;
+    left: 1rem;
+    transform: rotate(0);
+    transform-origin: .2rem 50%;
+    transition: .25s transform ease;
+}
+
+/* 
+.content {
+    border-top: none;
+    padding: 10px;
+    border: 2px solid #888;
+    border-top: none;
+} */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+}
+
+.menu {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* height: 2%; */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.menuTitle {
+    border: 4px solid transparent;
+    outline: none;
+    padding: 1rem;
+    display: block;
+    background: #444;
+    color: white;
+    padding-left: 2.2rem;
+    position: relative;
+    cursor: pointer;
+}
