@@ -396,8 +396,6 @@ function findConnectedSubentitiesRealnodes(node) {
     return clusterArray;
 }
 
-
-
 function convertToPUROM() {
     var sublist = [];
     var completeList = {};
@@ -408,7 +406,6 @@ function convertToPUROM() {
         obj["name"] = n.data.category;
         obj["start"] = makeExportObjNode(n.part.fromNode);
         obj["end"] = makeExportObjNode(n.part.toNode);
-        // obj["id"] = linksIncrement;
         sublist.push(obj);
         ++linksIncrement;
     });

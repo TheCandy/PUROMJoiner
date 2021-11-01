@@ -1,18 +1,8 @@
-function visToggle(el) {
-
-    el.style.display = "none";
-    el.style.width = "0%";
-}
-
 function startMerge(text) {
 
-    document.getElementById("editor").style.display = "none";
-    document.getElementById("editor").style.width = "0%";
-    document.getElementById("menuId").style.display = "none";
-    document.getElementById("menuId").style.width = "0%";
-    document.getElementById("mergeWizard").style.display = "flex";
-    document.getElementById("mergeWizard").style.width = "100%";
-
+    jQuery("#editor").toggle();
+    jQuery("#menuId").toggle();
+    jQuery("#mergeWizard").toggle();
 
     var obj = JSON.parse(text);
     var origNodesArray = [];
@@ -230,14 +220,9 @@ function finalMerge() {
 
     diagram.commitTransaction("add merge nodes");
 
-
-
-    document.getElementById("editor").style.display = "flex";
-    document.getElementById("editor").style.width = "100%";
-    document.getElementById("menuId").style.display = "flex";
-    document.getElementById("menuId").style.width = "10%";
-    document.getElementById("mergeWizard").style.display = "none";
-    document.getElementById("mergeWizard").style.width = "0%";
+    jQuery("#editor").toggle();
+    jQuery("#menuId").toggle();
+    jQuery("#mergeWizard").toggle();
 }
 
 function makeUL2(array) {

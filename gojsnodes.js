@@ -3,6 +3,8 @@ var $ = go.GraphObject.make;
 var linksSelectionNodeFrom;
 var linksSelectionNodeTo;
 
+jQuery("#mergeWizard").hide();
+
 var diagram = $(editorSubClass, "myDiagramDiv");
 
 diagram.addDiagramListener("LinkDrawn", function (e) { newLinkStyle(e) });

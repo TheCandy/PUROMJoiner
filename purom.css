@@ -29,10 +29,10 @@
 
 #mergeWizard {
     position: relative;
-    display: none;
+    display: flex;
     flex-direction: row;
     height: 100%;
-    width: 0%;
+    width: 100%;
 }
 
 #mergeDivs {
