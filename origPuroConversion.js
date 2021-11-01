@@ -405,20 +405,10 @@ function convertToPUROM() {
 
     diagram.links.each(function (n) {
         var obj = {};
-        obj["type"] = "link";
         obj["name"] = n.data.category;
         obj["start"] = makeExportObjNode(n.part.fromNode);
         obj["end"] = makeExportObjNode(n.part.toNode);
-        obj["source"] = makeExportObjNode(n.part.fromNode);
-        obj["target"] = makeExportObjNode(n.part.toNode);
-        obj["right"] = true;
-        obj["left"] = false;
         // obj["id"] = linksIncrement;
-        obj["errors"] = { "errors": [] };
-        obj["startX"] = n.part.fromNode.data.loc.x;
-        obj["startY"] = n.part.fromNode.data.loc.y;
-        obj["endX"] = n.part.toNode.data.loc.x;
-        obj["endY"] = n.part.toNode.data.loc.y;
         sublist.push(obj);
         ++linksIncrement;
     });
@@ -429,16 +419,7 @@ function convertToPUROM() {
     diagram.nodes.each(function (n) { sublist.push(makeExportObjNode(n)); });
 
     completeList["nodes"] = sublist;
-    completeList["idcounter"] = 500;
     completeList["name"] = "Unnamed PURO Model";
-    completeList["oldId"] = "c0f9a538c2e913032c5cef8ab90060a0";
-    completeList["vocabs"] = [];
-    completeList["created"] = 1633557738625;
-    completeList["saved"] = true;
-    completeList["ttl"] = 100;
-    completeList["inStore"] = true;
-    completeList["_rev"] = "1-2f08f9d15869256b077eb9bc63f81c8f";
-    completeList["lastModified"] = "2020-07-20T09:54:49.525Z";
 
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([JSON.stringify(completeList, null, 2)], {
@@ -453,38 +434,11 @@ function convertToPUROM() {
 
 function makeExportObjNode(n) {
     var obj = {};
-    obj["selected"] = false;
     obj["name"] = n.data.text;
     obj["id"] = Math.abs(n.data.key);
-    obj["inVocabs"] = [];
-    obj["modelingStyle"] = {
-        "id": 2,
-        "name": "objectPropSubclass",
-        "label": "Object-prop and subclassing style",
-        "checked": false
-    };
-    obj["perdurant"] = false;
-    obj["mappingNode"] = null;
-    obj["errors"] = { "errors": [] };
-    obj["mappings"] = [{
-        "uri": "none",
-        "name": "none",
-        "prefix": "_",
-        "namespace": "none",
-        "selected": true,
-        "id": "none"
-    }];
     obj["type"] = n.data.entity.substr(0, 1).toUpperCase() + n.data.entity.substr(1);
-    obj["puroTerm"] = (n.data.entity.substr(0, 3).toUpperCase() + n.data.entity.substr(3)).replace("-", "");
-    if (n.data.level != undefined) {
-        obj["level"] = n.data.level;
-    }
     obj["x"] = n.data.loc.x;
     obj["y"] = n.data.loc.y;
-    obj["px"] = false;
-    obj["py"] = false;
-    obj["width"] = n.elt(0).width;
-    obj["height"] = n.elt(0).height;
     return obj;
 }
 
