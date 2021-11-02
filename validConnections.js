@@ -2,8 +2,8 @@ function completeLink(category) {
     diagram.model.commit(function (d) {
         var newlink = { from: linksSelectionNodeFrom.key, to: linksSelectionNodeTo.key, category: category };
         if (category === "B-instanceOf" || category === "B-subtypeOf") {
-            var levelInt = solveLevels(linksSelectionNodeFrom, linksSelectionNodeTo, category);            
-            d.set(linksSelectionNodeTo.data, "level", levelInt);       
+            var levelInt = solveLevels(linksSelectionNodeFrom, linksSelectionNodeTo, category);
+            d.set(linksSelectionNodeTo.data, "level", levelInt);
         }
         d.addLinkData(newlink);
     }, "Add link based on context menu");
@@ -15,6 +15,8 @@ function validConnection(fromnode, fromport, tonode, toport) {
 }
 
 function newLinkStyle(e) {
+    console.log("bla")
+
     var node = e.subject.part.toNode;
 
     var menu = combinationSolver(e.subject.part.fromNode.data.entity, e.subject.part.toNode.data.entity)[2]
@@ -31,7 +33,7 @@ function newLinkStyle(e) {
 }
 
 function solveLevels(from, to, category) {
-    if (category === "B-instanceOf") {        
+    if (category === "B-instanceOf") {
         // to.elt(4).text = parseInt(from.elt(4).text) + 1;
         return parseInt(from.data.level) + 1;
     } else {

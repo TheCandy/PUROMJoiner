@@ -2,14 +2,7 @@ class nodeTemplateStyle {
     constructor(diagramType) {
         this.nodeStyle = $(nodeSubClass, "Spot",
             new go.Binding("location", "loc").makeTwoWay(),  // get the Node.location from the data.loc value
-            $(go.Shape,
-                { width: 80, height: 50, margin: 4, fill: "transparent" },  // default Shape.fill value            
-                new go.Binding("figure", "entity", function (t) { return nodeVisuals(t)[1]; }),
-                new go.Binding("stroke", "strokeColor"),
-                new go.Binding("strokeWidth", "isHighlighted", function (h) { return h ? 10.0 : 0.0; }).ofObject()
-            )
         )
-
         if (diagramType == "editor") {
             this.nodeStyle.add($(go.Shape,
                 { width: 80, height: 50, margin: 4, portId: "", cursor: "pointer", name: "SHAPE", strokeWidth: 1 },  // default Shape.fill value
@@ -18,7 +11,7 @@ class nodeTemplateStyle {
                 new go.Binding("fromLinkable", "entity", function (t) { return nodeVisuals(t)[2]; }),
                 new go.Binding("toLinkable", "entity", function (t) { return nodeVisuals(t)[3]; }),
             ));
-            this.nodeStyle.click = function (e, node) { console.log(node.getDetails2()); findConnectedSubentitiesRealnodes(node); }
+            this.nodeStyle.click = function (e, node) { console.log(node); findConnectedSubentitiesRealnodes(node); }
         } else if (diagramType == "merge") {
             this.nodeStyle.add($(go.Shape,
                 { width: 80, height: 50, margin: 4, portId: "", cursor: "pointer", name: "SHAPE", strokeWidth: 1 },  // default Shape.fill value
@@ -26,7 +19,7 @@ class nodeTemplateStyle {
                 new go.Binding("figure", "entity", function (t) { return nodeVisuals(t)[1]; })
             ));
             this.nodeStyle.contextMenu = $(go.HTMLInfo, { show: this.showContextMenu, hide: this.hideContextMenu })
-            this.nodeStyle.click = function (e, node) { console.log(node.getDetails()); findConnectedSubentitiesRealnodes(node); }
+            // this.nodeStyle.click = function (e, node) { console.log(node.getDetails()); findConnectedSubentitiesRealnodes(node); }
         }
         this.nodeStyle.add($(go.TextBlock,
             {
@@ -47,10 +40,12 @@ class nodeTemplateStyle {
                 alignment: go.Spot.TopRight,
             },
             new go.Binding("text", "level").makeTwoWay()))
+        this.nodeStyle.add($(go.TextBlock,
+            new go.Binding("text", "eqvi").makeTwoWay()))
 
         this.customSelectBox = document.createElement("div");
     }
-    
+
     showContextMenu(textBlock, diagram, tool) {
         // Create an HTMLInfo and dynamically create some HTML to show/hide    
 

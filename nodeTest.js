@@ -1,15 +1,23 @@
 class nodeSubClass extends go.Node {
     constructor() {
-        //super keyword to for calling above class constructor
         super();
+        this.click = function (e, node) { console.log(node) }
     }
-    getDetails() {
-        return this.equivalent;
+
+    findPair() {
+        var equivalentArray = [];
+
+        var me = this
+
+        diagram.nodes.each(function (n) {
+            if (n != me) {
+                equivalentArray.push(n)
+            }
+        });
+
+        this.hahahahahahah = equivalentArray;
     }
-    getDetails2() {
-        return this.diagramType;
-    }
-    addEquivalent(add){
-        this.equivalent = add;
+    setEquivalent(array) {
+        this.equivalent = array
     }
 };

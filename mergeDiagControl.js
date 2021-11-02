@@ -52,13 +52,14 @@ function populateSelection(origNodesArray2, origNodesArray) {
 
             foundKeyFrom.forEach(element => {
                 testArray.push([origNodesArray[element], origNodesArray2[i]]);
-                equivalentArray.push(origNodesArray[element].data)
+                equivalentArray.push([origNodesArray[element].data,lenght = "haah"])
 
             });
 
             origNodesArray2[i].data.selectedMerge = origNodesArray2[i].data.key;
             origNodesArray2[i].data.equivalent = equivalentArray;
-            origNodesArray2[i].addEquivalent(equivalentArray);
+            // origNodesArray2[i].addEquivalent(equivalentArray);
+            origNodesArray2[i].setEquivalent(equivalentArray);            
         }
     }
 
