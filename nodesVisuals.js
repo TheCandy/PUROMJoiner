@@ -40,9 +40,7 @@ class nodeTemplateStyle {
                 alignment: go.Spot.TopRight,
             },
             new go.Binding("text", "level").makeTwoWay()))
-        this.nodeStyle.add($(go.TextBlock,
-            new go.Binding("text", "eqvi").makeTwoWay()))
-
+        
         this.customSelectBox = document.createElement("div");
     }
 
