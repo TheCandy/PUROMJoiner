@@ -10,8 +10,6 @@ function getClusters() {
     });
 
     while (origNodesArray.length > 0) {
-
-
         var searchResult;
         var nodesCount = 0;
 
@@ -68,6 +66,4 @@ function getClusters() {
         origNodesArray = difference;
         tempClusterArray = [];
     }
-
-    // console.log(allClustersArray);
 }
