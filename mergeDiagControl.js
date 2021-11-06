@@ -42,31 +42,34 @@ function populateSelection(origNodesArray2, origNodesArray) {
 
     for (let i = 0; i < origNodesArray2.length; i++) {
 
-        // stringSimilarity.compareTwoStrings('healed', 'sealed');
-
         if (origNodesArray2[i].data.entity == "b-type" || origNodesArray2[i].data.entity == "b-object") {
             var equivalentArray = [];
-            // var foundKeyFrom = findIndices(origNodesArray, element => element.data.text === origNodesArray2[i].data.text);
 
-            var foundKeyFrom = findIndices(origNodesArray, element => stringSimilarity.compareTwoStrings(element.data.text.toLowerCase().replace(/\s+/g, ''), origNodesArray2[i].data.text.toLowerCase().replace(/\s+/g, '')) > 0.5);
+            var similarity = 0
 
-            foundKeyFrom.forEach(element => {
-                testArray.push([origNodesArray[element], origNodesArray2[i]]);
-                equivalentArray.push([origNodesArray[element].data,lenght = "haah"])
+            origNodesArray.forEach(node => {
 
-            });
+                similarity = stringSimilarity.compareTwoStrings(node.data.text.toLowerCase().replace(/\s+/g, ''), origNodesArray2[i].data.text.toLowerCase().replace(/\s+/g, ''))
 
+                if (similarity > 0.5) {
+                    equivalentArray.push([node.data, similarity])
+                    testArray.push([node, origNodesArray2[i]]);
+                }
+            })
+
+            
             origNodesArray2[i].data.selectedMerge = origNodesArray2[i].data.key;
-            origNodesArray2[i].data.equivalent = equivalentArray;
+            // origNodesArray2[i].data.equivalent = equivalentArray;
             // origNodesArray2[i].addEquivalent(equivalentArray);
-            origNodesArray2[i].setEquivalent(equivalentArray);            
+            origNodesArray2[i].setEquivalent(equivalentArray);
         }
     }
-
+    
     const parent = document.getElementById("mergeSelectionDiv")
     while (parent.firstChild) {
         parent.firstChild.remove()
     }
+    console.log(testArray)
     document.getElementById("mergeSelectionDiv").appendChild(makeUL2(testArray));
 
 }
@@ -254,11 +257,13 @@ function makeUL2(array) {
         item.storedNode = array[i][0];
         item.storedNode2 = array[i][1];
 
+
+
         item.onclick = function () {
-            mergeDiagram.select(this.storedNode);
-            mergeDiagram.centerRect(this.storedNode.actualBounds);
             mergeDiagram2.select(this.storedNode2);
             mergeDiagram2.centerRect(this.storedNode2.actualBounds);
+            mergeDiagram.select(this.storedNode);
+            mergeDiagram.centerRect(this.storedNode.actualBounds);
         };
 
         // Add it to the list:

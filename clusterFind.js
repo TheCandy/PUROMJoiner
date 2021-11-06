@@ -46,7 +46,7 @@ function getClusters() {
         // diagram.commitTransaction("make new group");
 
         jQuery.each(tempClusterArray, function (index, value) {
-            // console.log(value.data.text);
+            console.log(value.data.text);
 
             diagram.model.commit(function (m) {
                 // var data = m.nodeDataArray[0];  // get the first node data
@@ -61,9 +61,29 @@ function getClusters() {
 
         allClustersArray.push(tempClusterArray);
 
+
         const toRemove = new Set(tempClusterArray);
         const difference = origNodesArray.filter(x => !toRemove.has(x));
         origNodesArray = difference;
         tempClusterArray = [];
     }
+
+    jQuery.ajax({
+        url: "https://thesaurus.altervista.org/thesaurus/v1?word=person&language=en_US&output=json&key=ELY8Sv7F8qwz0dgoWy9z",
+        success: function (data) {
+            if (data.length != 0) {
+                // output = "";
+                for (key in data.response) {
+                    // output += data.response[key].list.synonyms + "<br>";
+                    console.log(data.response[key])
+                }
+                // jQuery("#div1").html(output);
+            }
+        },
+        error: function (xhr, status, error) {
+            // jQuery("#div1").html("An error occured: " + status + " " + error);
+        }
+    });
+
+
 }

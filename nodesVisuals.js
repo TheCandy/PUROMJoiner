@@ -2,6 +2,12 @@ class nodeTemplateStyle {
     constructor(diagramType) {
         this.nodeStyle = $(nodeSubClass, "Spot",
             new go.Binding("location", "loc").makeTwoWay(),  // get the Node.location from the data.loc value
+            $(go.Shape,
+                { width: 80, height: 50, margin: 4, fill: "transparent" },  // default Shape.fill value            
+                new go.Binding("figure", "entity", function (t) { return nodeVisuals(t)[1]; }),
+                new go.Binding("stroke", "strokeColor"),
+                new go.Binding("strokeWidth", "isHighlighted", function (h) { return h ? 10.0 : 0.0; }).ofObject()
+            )
         )
         if (diagramType == "editor") {
             this.nodeStyle.add($(go.Shape,
@@ -40,7 +46,7 @@ class nodeTemplateStyle {
                 alignment: go.Spot.TopRight,
             },
             new go.Binding("text", "level").makeTwoWay()))
-        
+
         this.customSelectBox = document.createElement("div");
     }
 
@@ -61,13 +67,17 @@ class nodeTemplateStyle {
 
         this.customSelectBox.appendChild(customSelectBox2);
 
+
         // this sample assumes textBlock.choices is not null
-        var list = textBlock.part.data.equivalent;
+        var list = textBlock.part.equivalent;
         for (var i = 0; i < list.length; i++) {
             var op = document.createElement("option");
-            op.text = list[i].text + " id: " + list[i].key;
-            op.value = list[i].key;
+            op.text = list[i][0].text + " id: " + list[i][0].key + " simi: " + list[i][1];
+            op.value = list[i][0].key;
             customSelectBox2.add(op, null);
+            jQuery(op).hover(function(){
+                console.log("bla")
+           });
         }
 
         var op = document.createElement("option");
@@ -78,7 +88,7 @@ class nodeTemplateStyle {
         // After the list is populated, set the value:
         customSelectBox2.value = textBlock.part.data.selectedMerge;
 
-        customSelectBox2.addEventListener("change", function (e) {
+        customSelectBox2.addEventListener("click", function (e) {
             textBlock.part.data.selectedMerge = parseInt(customSelectBox2.value);
         });
 
@@ -149,6 +159,11 @@ function makeULMerge(array) {
 
         item.onclick = function () {
             this.storedNode2.data.selectedMerge = this.storedNode.data.key;
+        };
+
+        item.onmouseenter = function () {
+            mergeDiagram.select(this.storedNode);
+            mergeDiagram.centerRect(this.storedNode.actualBounds);
         };
 
         // Add it to the list:
