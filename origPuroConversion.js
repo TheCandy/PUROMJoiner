@@ -3,36 +3,28 @@ function importJsonPURO(text) {
     var linkDataArray = [];
 
     JSON.parse(text).nodes.forEach(element => {
-        nodeDataArray.push({ key: element.id, entity: element.type.toLowerCase(), text: element.name, category: "node", level: element.level, loc: new go.Point(element.x, element.y) });
+        nodeDataArray.push({
+            key: element.id,
+            entity: element.type.toLowerCase(),
+            text: element.name, category: "node",
+            level: element.level,
+            loc: new go.Point(element.x, element.y)
+        });
     });
 
     JSON.parse(text).links.forEach(element => {
-        var whatLink = combinationSolver(element.start.type.toLowerCase(), element.target.type.toLowerCase())[1];
+
+        var whatLink = combinationSolver(element.start.type.toLowerCase(), element.end.type.toLowerCase())[1];
 
         if (whatLink === "none") {
-            linkDataArray.push({ from: element.start.id, to: element.target.id, category: element.name });
+            linkDataArray.push({ from: element.start.id, to: element.end.id, category: element.name });
         } else {
-            linkDataArray.push({ from: element.start.id, to: element.target.id, category: whatLink });
+            linkDataArray.push({ from: element.start.id, to: element.end.id, category: whatLink });
         }
     });
 
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 }
-
-
-
-
-// function export2txt() {
-//     const a = document.createElement("a");
-//     a.href = URL.createObjectURL(new Blob([JSON.stringify(JSON.parse(diagram.model.toJson()), null, 2)], {
-//         type: "text/plain"
-//     }));
-
-//     a.setAttribute("download", "model.json");
-//     document.body.appendChild(a);
-//     a.click();
-//     document.body.removeChild(a);
-// }
 
 function export2txt() {
     const a = document.createElement("a");
@@ -44,32 +36,6 @@ function export2txt() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-}
-
-// async function handleSaveImg(event) {
-//     const image = await new Promise((res) => canvas.toBlob(res));
-//     if (window.showSaveFilePicker) {
-//         const handle = await showSaveFilePicker();
-//         const writable = await handle.createWritable();
-//         await writable.write(image);
-//         writable.close();
-//     }
-//     else {
-//         const saveImg = document.createElement("a");
-//         saveImg.href = URL.createObjectURL(image);
-//         saveImg.download = "image.png";
-//         saveImg.click();
-//         setTimeout(() => URL.revokeObjectURL(saveImg.href), 60000);
-//     }
-// }
-
-async function readText(event) {
-    const file = event.target.files.item(0)
-    const text = await file.text();
-
-    importJsonPURO(text);
-
-    event.target.value = ''
 }
 
 async function readText(event, caseStr) {
@@ -91,15 +57,6 @@ async function readText(event, caseStr) {
         default:
             break;
     }
-
-    event.target.value = ''
-}
-
-async function readTextForMerge(event) {
-    const file = event.target.files.item(0)
-    const text = await file.text();
-
-    startMerge(text);
 
     event.target.value = ''
 }
@@ -250,24 +207,22 @@ function findConnectedSubentitiesRealnodes(node) {
 function convertToPUROM() {
     var sublist = [];
     var completeList = {};
-    var linksIncrement = 100;
 
     diagram.links.each(function (n) {
         var obj = {};
-        obj["name"] = n.data.category;
-        obj["start"] = makeExportObjNode(n.part.fromNode);
-        obj["end"] = makeExportObjNode(n.part.toNode);
+        obj.name = n.data.category;
+        obj.start = makeExportObjNode(n.part.fromNode);
+        obj.end = makeExportObjNode(n.part.toNode);
         sublist.push(obj);
-        ++linksIncrement;
     });
 
-    completeList["links"] = sublist;
+    completeList.links = sublist;
 
     sublist = [];
     diagram.nodes.each(function (n) { sublist.push(makeExportObjNode(n)); });
 
-    completeList["nodes"] = sublist;
-    completeList["name"] = "Unnamed PURO Model";
+    completeList.nodes = sublist;
+    completeList.name = "Unnamed PURO Model";
 
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([JSON.stringify(completeList, null, 2)], {
@@ -282,11 +237,11 @@ function convertToPUROM() {
 
 function makeExportObjNode(n) {
     var obj = {};
-    obj["name"] = n.data.text;
-    obj["id"] = Math.abs(n.data.key);
-    obj["type"] = n.data.entity.substr(0, 1).toUpperCase() + n.data.entity.substr(1);
-    obj["x"] = n.data.loc.x;
-    obj["y"] = n.data.loc.y;
+    obj.name = n.data.text;
+    obj.id = Math.abs(n.data.key);
+    obj.type = n.data.entity.substr(0, 1).toUpperCase() + n.data.entity.substr(1);
+    obj.x = n.data.loc.x;
+    obj.y = n.data.loc.y;
     return obj;
 }
 
