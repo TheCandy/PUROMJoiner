@@ -18,9 +18,9 @@ class editorSubClass extends go.Diagram {
         this.layout =
             $(go.ForceDirectedLayout,  // automatically spread nodes apart
                 {
-                    maxIterations: 200,
-                    defaultSpringLength: 10,
-                    defaultElectricalCharge: 20
+                    maxIterations: 2000,
+                    defaultSpringLength: 100,
+                    defaultElectricalCharge: 50
                 });
 
         this.addDiagramListener("LinkDrawn", function (e) { newLinkStyle(e) });

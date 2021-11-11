@@ -16,7 +16,7 @@ function startMerge(text) {
         origLinksArray.push(n)
     });
 
-    obj = reindexObj(obj);
+    obj = reindexObj(obj, diagram);
 
     mergeDiagram.model = diagram.model;
     mergeDiagram2.model = go.Model.fromJson(obj)
@@ -35,6 +35,10 @@ function startMerge(text) {
 
 
     populateSelection(origNodesArray2, origNodesArray);
+
+    getHierarchy(mergeDiagram)
+    getHierarchy(mergeDiagram2)
+
 }
 
 function populateSelection(origNodesArray2, origNodesArray) {
@@ -51,25 +55,35 @@ function populateSelection(origNodesArray2, origNodesArray) {
 
                 similarity = stringSimilarity.compareTwoStrings(node.data.text.toLowerCase().replace(/\s+/g, ''), origNodesArray2[i].data.text.toLowerCase().replace(/\s+/g, ''))
 
-                if (similarity > 0.5) {
+                if (similarity > 0.9) {
                     equivalentArray.push([node.data, similarity])
                     testArray.push([node, origNodesArray2[i]]);
                 }
             })
 
-            
+
+
             origNodesArray2[i].data.selectedMerge = origNodesArray2[i].data.key;
+
+            if (equivalentArray.length > 0) {
+                // console.log(equivalentArray[0][0].key)
+
+                origNodesArray2[i].data.selectedMerge = equivalentArray[0][0].key
+            }
+
+            // origNodesArray2[i].data.selectedMerge = equivalentArray[0];
+
             // origNodesArray2[i].data.equivalent = equivalentArray;
             // origNodesArray2[i].addEquivalent(equivalentArray);
             origNodesArray2[i].setEquivalent(equivalentArray);
         }
     }
-    
+
     const parent = document.getElementById("mergeSelectionDiv")
     while (parent.firstChild) {
         parent.firstChild.remove()
     }
-    console.log(testArray)
+    // console.log(testArray)
     document.getElementById("mergeSelectionDiv").appendChild(makeUL2(testArray));
 
 }
@@ -100,6 +114,7 @@ function finalMerge() {
     mergeDiagram2.links.each(function (n) {
         origLinksArray2.push(n)
     });
+
 
     for (let i = 0; i < origNodesArray2.length; i++) {
         if (origNodesArray2[i].data.entity == "b-type" || origNodesArray2[i].data.entity == "b-object") {
@@ -184,6 +199,19 @@ function finalMerge() {
                                     }
                                 }
                             });
+                        } else {
+                            if (searchResult2.entity == "b-type" || searchResult2.entity == "b-object") {
+                                var foundKeyFrom = findIndices(origLinksArray2, link => link.data.from === subEntClusterJson[j].key);
+                                var foundKeyTo = findIndices(origLinksArray2, link => link.data.to === subEntClusterJson[j].key);
+
+                                foundKeyFrom.forEach(element => {
+                                    origLinksArray2[element].data.from = searchResult2.key;
+                                });
+
+                                foundKeyTo.forEach(element => {
+                                    origLinksArray2[element].data.to = searchResult2.key;
+                                });
+                            }
                         }
                     }
                 }
@@ -219,6 +247,7 @@ function finalMerge() {
         // }
     });
 
+   
     diagram.model.addNodeDataCollection(addedNodeDataArray);
     diagram.model.addLinkDataCollection(newLinkArray);
 
@@ -227,6 +256,12 @@ function finalMerge() {
     jQuery("#editor").toggle();
     jQuery("#menuId").toggle();
     jQuery("#mergeWizard").toggle();
+
+
+    getHierarchy(diagram)
+
+    solveRedundantSubLinks(diagram)
+
 }
 
 function makeUL2(array) {

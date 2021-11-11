@@ -19,12 +19,7 @@ function importJsonPURO(text) {
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 }
 
-async function readText(event) {
-    const file = event.target.files.item(0)
-    const text = await file.text();
 
-    importJsonPURO(text);
-}
 
 
 // function export2txt() {
@@ -68,11 +63,36 @@ function export2txt() {
 //     }
 // }
 
-async function readTextForImport(event) {
+async function readText(event) {
     const file = event.target.files.item(0)
     const text = await file.text();
 
-    diagram.model = go.Model.fromJson(text);
+    importJsonPURO(text);
+
+    event.target.value = ''
+}
+
+async function readText(event, caseStr) {
+    const file = event.target.files.item(0)
+    const text = await file.text();
+
+    switch (caseStr) {
+        case 'import':
+            if (JSON.parse(text).class == "GraphLinksModel") {
+                diagram.model = go.Model.fromJson(text);
+            } else {
+                importJsonPURO(text);
+            }
+            getHierarchy(diagram);
+            break;
+        case 'merge':
+            startMerge(text);
+            break;
+        default:
+            break;
+    }
+
+    event.target.value = ''
 }
 
 async function readTextForMerge(event) {
@@ -80,6 +100,8 @@ async function readTextForMerge(event) {
     const text = await file.text();
 
     startMerge(text);
+
+    event.target.value = ''
 }
 
 function findIndices(array, callback, ctx) {
@@ -90,8 +112,8 @@ function findIndices(array, callback, ctx) {
     return res;
 }
 
-function reindexObj(obj) {
-    var nextKey = getNextKey();
+function reindexObj(obj, diag) {
+    var nextKey = getNextKey(diag);
     var objReindexed = JSON.parse(JSON.stringify(obj));
 
     for (let i = 0; i < objReindexed.nodeDataArray.length; i++) {
@@ -112,7 +134,6 @@ function reindexObj(obj) {
             objReindexed.linkDataArray[i].to = searchResultTo.key;
         }
     }
-
     return objReindexed;
 }
 
@@ -270,10 +291,20 @@ function makeExportObjNode(n) {
 }
 
 
-function getNextKey() {
+function getNextKey(diag) {
     var nextKey = 0;
 
     diagram.nodes.each(function (n) {
+        if (n.data.key < nextKey) {
+            nextKey = n.data.key;
+        }
+    });
+    mergeDiagram.nodes.each(function (n) {
+        if (n.data.key < nextKey) {
+            nextKey = n.data.key;
+        }
+    });
+    mergeDiagram2.nodes.each(function (n) {
         if (n.data.key < nextKey) {
             nextKey = n.data.key;
         }

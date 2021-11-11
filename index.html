@@ -23,16 +23,17 @@
 
                 <!-- <input id="load" onclick="loadModel()" type="button" value="Load" style="margin-bottom: 10px" /> -->
                 <!-- <input id="getJson" onclick="getJson()" type="button" value="Json" style="margin-bottom: 10px" /> -->
-                <button onclick="document.getElementById('getFile').click('bla')">Import original PURO json</button>
-                <input type='file' id="getFile" onchange="readText(event)" style="display:none">
+
+                <!-- <button onclick="document.getElementById('getFile').click('bla')">Import original PURO json</button> -->
+                <!-- <input type='file' id="getFile" onchange="readText(event)" style="display:none"> -->
                 <button onclick="document.getElementById('getFileForMerge').click()">Get Json to merge</button>
-                <input type='file' id="getFileForMerge" onchange="readTextForMerge(event)" style="display:none">
+                <input type='file' id="getFileForMerge" onchange="readText(event,'merge')" style="display:none">
                 <button onclick="convertToPUROM()">Export to original PURO modeler</button>
                 <button onclick="export2txt()">Export to local json</button>
-                <button onclick="document.getElementById('importFile').click()">Import from local json</button>
+                <button onclick="document.getElementById('importFile').click()">Import from local file</button>
+                <input type='file' id="importFile" onchange="readText(event, 'import')" style="display:none">
 
                 <button onclick="getClusters()">Find separated node clusters</button>
-                <input type='file' id="importFile" onchange="readTextForImport(event)" style="display:none">
 
                 <input type="text" name="txtModel" id="txtModel" value="">
                 <div id="searchDiv">
@@ -56,7 +57,13 @@
                     <div id="mergeSelectionDiv">
                         <!-- <ul id="elementList"></ul> -->
                     </div>
-                    <button onclick="finalMerge()">Merge</button>
+                    <div style="display: flex; flex-direction: column; ">
+                        <button onclick="finalMerge()">Full merge</button>
+
+                        <button onclick="TargetMerge()">Target driven merge</button>
+                        <input type="checkbox" id="onlyShowSubsNoDelete" name="onlyShowSubsNoDelete">
+                        <label for="onlyShowSubsNoDelete">Show classes to delete without commiting merge</label><br>
+                    </div>
                 </div>
                 <div id="mergeDivs">
                     <div class="editorWindow2 composer" id="mergeDiagramDiv"></div>
@@ -65,6 +72,9 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <div id="structureList">
     </div>
 
 </body>
@@ -85,5 +95,6 @@
 <script src="clusterFind.js"></script>
 <script src="mergeDiagControl.js"></script>
 <script src="accordion.js"></script>
+<script src="hierarchyList.js"></script>
 
 </html>
