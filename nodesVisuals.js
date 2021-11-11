@@ -23,6 +23,7 @@ class nodeTemplateStyle {
             // this.nodeStyle.click = function (e, node) {console.log(node.deleteArrayScore); }
             // this.nodeStyle.click = function (e, node) { TransferDependencies(node,diagram); }
             // this.nodeStyle.click = function (e, node) {console.log(node.subNodePath); }
+            // this.nodeStyle.click = function (e, node) {ShowMenu() }
         } else if (diagramType == "merge") {
             this.nodeStyle.add($(go.Shape,
                 { width: 80, height: 50, margin: 4, portId: "", cursor: "pointer", name: "SHAPE", strokeWidth: 1 },  // default Shape.fill value

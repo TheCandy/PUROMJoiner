@@ -59,6 +59,10 @@ class editorSubClass extends go.Diagram {
             )
         );
 
+
+        this.addDiagramListener("TextEdited", function (e) { checkName(e) });
+        this.addDiagramListener("ChangedSelection", function (e) { ShowMenu(e) });
+
         var nodeStyleNode = new nodeTemplateStyle("editor");
         this.nodeTemplate = nodeStyleNode.nodeStyle;
 
@@ -82,7 +86,7 @@ class mergeDiagramSubClass extends go.Diagram {
         // enable Ctrl-Z to undo and Ctrl-Y to redo
         this.undoManager.isEnabled = true;
         this.scrollMode = go.Diagram.InfiniteScroll;
-        
+
         var nodeStyleNode = new nodeTemplateStyle("merge");
         this.nodeTemplate = nodeStyleNode.nodeStyle;
 

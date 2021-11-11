@@ -47,10 +47,20 @@
                 <!-- The DIV for a Diagram needs an explicit size or else we will not see anything.
                 In this case we also add a background color so we can see that area. -->
                 <div class="editorWindow composer" id="myDiagramDiv"></div>
-                <details class="palette">
-                    <summary class="dropdown">Palette</summary>
-                    <div class="content" id="myPaletteDiv"></div>
-                </details>
+                <div class="paletteAndContext">
+                    <details class="palette">
+                        <summary class="dropdown">Palette</summary>
+                        <div class="content" id="myPaletteDiv"></div>
+                    </details>
+                    <div class="contextMenu" id="contextMenuId">
+                        <div id="contextHeader">
+                            <p></p>
+                        </div>
+                        <div class="options">
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="visibilityToggle" id=mergeWizard>
                 <div id="mergeControls">
@@ -86,6 +96,7 @@
 <script src="linkVisuals.js"></script>
 <script src="diagramClass.js"></script>
 <script src="nodesVisuals.js"></script>
+<script src="solveNames.js"></script>
 <script src="validConnections.js"></script>
 <script src="nodeTest.js"></script>
 <script src="gojsnodes.js"></script>
@@ -94,6 +105,7 @@
 <script src="origPuroConversion.js"></script>
 <script src="clusterFind.js"></script>
 <script src="mergeDiagControl.js"></script>
+<script src="editorContextMenu.js"></script>
 <script src="accordion.js"></script>
 <script src="hierarchyList.js"></script>
 

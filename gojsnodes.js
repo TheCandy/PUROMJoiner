@@ -4,6 +4,7 @@ var linksSelectionNodeFrom;
 var linksSelectionNodeTo;
 
 jQuery("#mergeWizard").hide();
+jQuery("#contextMenuId").hide();
 
 var diagram = $(editorSubClass, "myDiagramDiv");
 
