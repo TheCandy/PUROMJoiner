@@ -260,7 +260,7 @@ function finalMerge() {
 
     getHierarchy(diagram)
 
-    solveRedundantSubLinks(diagram)
+    // solveRedundantSubLinks(diagram)
 
 }
 

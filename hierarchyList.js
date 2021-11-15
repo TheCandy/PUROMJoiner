@@ -151,7 +151,7 @@ function TransferDependencies(node, diag) {
     getHierarchy(diag);
 
     diag.commitTransaction("transfer dependencies");
-    solveRedundantSubLinks(diag)
+    // solveRedundantSubLinks(diag)
 
 }
 
