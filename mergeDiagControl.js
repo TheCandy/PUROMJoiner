@@ -10,18 +10,27 @@ function startMerge(text) {
     var origNodesArray = [];
     var origLinksArray = [];
 
-    diagram.nodes.each(function (n) {
-        origNodesArray.push(n)
-    });
+    // diagram.nodes.each(function (n) {
+    //     origNodesArray.push(n)
+    // });
 
-    diagram.links.each(function (n) {
-        origLinksArray.push(n)
-    });
+    // diagram.links.each(function (n) {
+    //     origLinksArray.push(n)
+    // });
 
     obj = reindexObj(obj, diagram);
 
     mergeDiagram.model = diagram.model;
     mergeDiagram2.model = go.Model.fromJson(obj)
+
+
+    mergeDiagram.nodes.each(function (n) {
+        origNodesArray.push(n)
+    });
+
+    mergeDiagram.links.each(function (n) {
+        origLinksArray.push(n)
+    });
 
 
     var origNodesArray2 = [];
@@ -57,20 +66,22 @@ function populateSelection(origNodesArray2, origNodesArray) {
 
                 similarity = stringSimilarity.compareTwoStrings(node.data.text.toLowerCase().replace(/\s+/g, ''), origNodesArray2[i].data.text.toLowerCase().replace(/\s+/g, ''))
 
-                if (similarity > 0.9) {
-                    equivalentArray.push([node.data, similarity])
+                if (similarity > 0.5) {
+                    equivalentArray.push([node, similarity])
                     testArray.push([node, origNodesArray2[i]]);
                 }
             })
 
 
 
-            origNodesArray2[i].data.selectedMerge = origNodesArray2[i].data.key;
+            origNodesArray2[i].selectedMerge = origNodesArray2[i];
 
             if (equivalentArray.length > 0) {
                 // console.log(equivalentArray[0][0].key)
 
-                origNodesArray2[i].data.selectedMerge = equivalentArray[0][0].key
+                // origNodesArray2[i].selectedMerge = origNodesArray2[i];
+
+                origNodesArray2[i].selectedMerge = equivalentArray[0][0];
             }
 
             // origNodesArray2[i].data.selectedMerge = equivalentArray[0];
@@ -121,29 +132,44 @@ function finalMerge() {
     for (let i = 0; i < origNodesArray2.length; i++) {
         if (origNodesArray2[i].data.entity == "b-type" || origNodesArray2[i].data.entity == "b-object") {
 
-            if (origNodesArray2[i].data.selectedMerge != undefined) {
-                var searchResult = origNodesArray.find(element => element.data.key === origNodesArray2[i].data.selectedMerge);
+            // if (origNodesArray2[i].selectedMerge != undefined) {
+            //     var searchResult = origNodesArray2[i].selectedMerge;
+            // } else {
+            //     var searchResult = origNodesArray.find(element => element.data.text === origNodesArray2[i].data.text);
+            // }            
+
+
+            if (origNodesArray2[i].selectedMerge == origNodesArray2[i]) {
+                var searchResult = undefined
             } else {
-                var searchResult = origNodesArray.find(element => element.data.text === origNodesArray2[i].data.text);
+                var searchResult = origNodesArray2[i].selectedMerge
             }
 
+            console.log(searchResult)
             // main node WASN'T found
             if (searchResult == undefined) {
                 var subEntClusterJson = findConnectedSubentities(origNodesArray2[i]);
                 for (let j = 0; j < subEntClusterJson.length; j++) {
-                    var searchResultJson = addedNodeDataArray.find(element => element.key === subEntClusterJson[j].key);
+                    var searchResultJson = addedNodeDataArray.find(element => element.key === subEntClusterJson[j].data.key);
 
                     if (searchResultJson == undefined) {
-                        addedNodeDataArray.push({ key: subEntClusterJson[j].key, entity: subEntClusterJson[j].entity, text: subEntClusterJson[j].text, category: subEntClusterJson[j].category, level: subEntClusterJson[j].level, loc: new go.Point(subEntClusterJson[j].loc.x, subEntClusterJson[j].loc.y) });
+                        addedNodeDataArray.push({
+                            key: subEntClusterJson[j].data.key,
+                            entity: subEntClusterJson[j].data.entity,
+                            text: subEntClusterJson[j].data.text,
+                            category: subEntClusterJson[j].data.category,
+                            level: subEntClusterJson[j].data.level,
+                            loc: new go.Point(subEntClusterJson[j].data.loc.x, subEntClusterJson[j].data.loc.y)
+                        });
 
-                        var foundKeyFrom = findIndices(origLinksArray2, link => link.data.from === subEntClusterJson[j].key);
-                        var foundKeyTo = findIndices(origLinksArray2, link => link.data.to === subEntClusterJson[j].key);
+                        var foundKeyFrom = findIndices(origLinksArray2, link => link.data.from === subEntClusterJson[j].data.key);
+                        var foundKeyTo = findIndices(origLinksArray2, link => link.data.to === subEntClusterJson[j].data.key);
 
                         foundKeyFrom.forEach(element => {
                             var id = origLinksArray2[element].data.to
                             var searchResultFrom = origNodesArray2.find(element => element.data.key === id);
                             if (searchResultFrom != undefined && (searchResultFrom.data.entity == "b-type" || searchResultFrom.data.entity == "b-object")) {
-                                origLinksArray2[element].data.to = searchResultFrom.data.selectedMerge;
+                                origLinksArray2[element].data.to = searchResultFrom.selectedMerge.data.key;
                             }
                         });
 
@@ -151,7 +177,7 @@ function finalMerge() {
                             var id = origLinksArray2[element].data.from
                             var searchResultFrom = origNodesArray2.find(element => element.data.key === id);
                             if (searchResultFrom != undefined && (searchResultFrom.data.entity == "b-type" || searchResultFrom.data.entity == "b-object")) {
-                                origLinksArray2[element].data.from = searchResultFrom.data.selectedMerge;
+                                origLinksArray2[element].data.from = searchResultFrom.selectedMerge.data.key;
                             }
                         });
                     }
@@ -162,27 +188,35 @@ function finalMerge() {
                 var subEntClusterJson = findConnectedSubentities(origNodesArray2[i]);
 
                 for (let j = 0; j < subEntClusterJson.length; j++) {
-                    var searchResultJson = addedNodeDataArray.find(element => element.key === subEntClusterJson[j].key);
+                    var searchResultJson = addedNodeDataArray.find(element => element.key === subEntClusterJson[j].data.key);
 
                     if (searchResultJson == undefined) {
                         if (subEntClusterJson[j].selectedMerge != undefined) {
-                            var searchResult2 = subEntClusterDiagram.find(element => element.key === subEntClusterJson[j].selectedMerge);
+                            var searchResult2 = subEntClusterDiagram.find(element => element.key === subEntClusterJson[j].selectedMerge.data.key);
                         } else {
-                            var searchResult2 = subEntClusterDiagram.find(element => element.text === subEntClusterJson[j].text);
+                            var searchResult2 = subEntClusterDiagram.find(element => element.text === subEntClusterJson[j].data.text);
                         }
 
                         if (searchResult2 == undefined) {
 
-                            addedNodeDataArray.push({ key: subEntClusterJson[j].key, group: searchResult.data.group, entity: subEntClusterJson[j].entity, text: subEntClusterJson[j].text, category: subEntClusterJson[j].category, level: subEntClusterJson[j].level, loc: new go.Point(subEntClusterJson[j].loc.x, subEntClusterJson[j].loc.y) });
+                            addedNodeDataArray.push({
+                                key: subEntClusterJson[j].data.key,
+                                group: searchResult.data.group,
+                                entity: subEntClusterJson[j].data.entity,
+                                text: subEntClusterJson[j].data.text,
+                                category: subEntClusterJson[j].data.category,
+                                level: subEntClusterJson[j].data.level,
+                                loc: new go.Point(subEntClusterJson[j].data.loc.x, subEntClusterJson[j].data.loc.y)
+                            });
 
-                            var foundKeyFrom = findIndices(origLinksArray2, link => link.data.from === subEntClusterJson[j].key);
-                            var foundKeyTo = findIndices(origLinksArray2, link => link.data.to === subEntClusterJson[j].key);
+                            var foundKeyFrom = findIndices(origLinksArray2, link => link.data.from === subEntClusterJson[j].data.key);
+                            var foundKeyTo = findIndices(origLinksArray2, link => link.data.to === subEntClusterJson[j].data.key);
 
                             foundKeyFrom.forEach(element => {
                                 var searchResult3 = origNodesArray2.find(element2 => element2.data.key === origLinksArray2[element].data.to);
                                 if (searchResult3 != undefined) {
-                                    if (searchResult3.data.selectedMerge != undefined) {
-                                        var searchResult4 = origNodesArray.find(element2 => element2.data.key === searchResult3.data.selectedMerge);
+                                    if (searchResult3.selectedMerge != undefined) {
+                                        var searchResult4 = origNodesArray.find(element2 => element2.data.key === searchResult3.selectedMerge.data.key);
                                         if (searchResult4 != undefined && (searchResult4.data.entity == "b-type" || searchResult4.data.entity == "b-object")) {
                                             origLinksArray2[element].data.to = searchResult4.data.key;
                                         }
@@ -193,8 +227,8 @@ function finalMerge() {
                             foundKeyTo.forEach(element => {
                                 var searchResult3 = origNodesArray2.find(element2 => element2.data.key === origLinksArray2[element].data.from);
                                 if (searchResult3 != undefined) {
-                                    if (searchResult3.data.selectedMerge != undefined) {
-                                        var searchResult4 = origNodesArray.find(element2 => element2.data.key === searchResult3.data.selectedMerge);
+                                    if (searchResult3.selectedMerge != undefined) {
+                                        var searchResult4 = origNodesArray.find(element2 => element2.data.key === searchResult3.selectedMerge.data.key);
                                         if (searchResult4 != undefined && (searchResult4.data.entity == "b-type" || searchResult4.data.entity == "b-object")) {
                                             origLinksArray2[element].data.from = searchResult4.data.key;
                                         }
@@ -203,8 +237,8 @@ function finalMerge() {
                             });
                         } else {
                             if (searchResult2.entity == "b-type" || searchResult2.entity == "b-object") {
-                                var foundKeyFrom = findIndices(origLinksArray2, link => link.data.from === subEntClusterJson[j].key);
-                                var foundKeyTo = findIndices(origLinksArray2, link => link.data.to === subEntClusterJson[j].key);
+                                var foundKeyFrom = findIndices(origLinksArray2, link => link.data.from === subEntClusterJson[j].data.key);
+                                var foundKeyTo = findIndices(origLinksArray2, link => link.data.to === subEntClusterJson[j].data.key);
 
                                 foundKeyFrom.forEach(element => {
                                     origLinksArray2[element].data.from = searchResult2.key;

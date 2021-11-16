@@ -24,6 +24,7 @@ class nodeTemplateStyle {
             // this.nodeStyle.click = function (e, node) { TransferDependencies(node,diagram); }
             // this.nodeStyle.click = function (e, node) {console.log(node.subNodePath); }
             // this.nodeStyle.click = function (e, node) {ShowMenu() }
+            this.nodeStyle.click = function (e, node) {console.log(node.data) }
         } else if (diagramType == "merge") {
             this.nodeStyle.add($(go.Shape,
                 { width: 80, height: 50, margin: 4, portId: "", cursor: "pointer", name: "SHAPE", strokeWidth: 1 },  // default Shape.fill value
@@ -34,7 +35,7 @@ class nodeTemplateStyle {
             // this.nodeStyle.click = function (e, node) { console.log(node.supernode); console.log(node.subnode); findConnectedSubentitiesRealnodes(node); }
             // this.nodeStyle.click = function (e, node) { console.log(node.deleteArrayScore); }
             // this.nodeStyle.click = function (e, node) { console.log(node.foundSub);console.log(node.safeToDelete); }
-            this.nodeStyle.click = function (e, node) { console.log(node.data.selectedMerge); }
+            this.nodeStyle.click = function (e, node) {console.log(node); console.log(node.foundSub); console.log(node.subsDependentOnDelete);  }
         }
         this.nodeStyle.add($(go.TextBlock,
             {
@@ -95,10 +96,11 @@ class nodeTemplateStyle {
         customSelectBox2.add(op, null);
 
         // After the list is populated, set the value:
-        customSelectBox2.value = textBlock.part.data.selectedMerge;
+        customSelectBox2.value = textBlock.part.selectedMerge.data.key;
 
         customSelectBox2.addEventListener("click", function (e) {
-            textBlock.part.data.selectedMerge = parseInt(customSelectBox2.value);
+            // textBlock.part.selectedMerge = parseInt(customSelectBox2.value);
+            // textBlock.part.selectedMerge = parseInt(customSelectBox2.value);
         });
 
         var inputBox = document.createElement("input");
@@ -167,7 +169,7 @@ function makeULMerge(array) {
         item.storedNode2 = array[i][1];
 
         item.onclick = function () {
-            this.storedNode2.data.selectedMerge = this.storedNode.data.key;
+            this.storedNode2.selectedMerge = this.storedNode;
         };
 
         item.onmouseenter = function () {

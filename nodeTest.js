@@ -9,10 +9,16 @@ class nodeSubClass extends go.Node {
 
         this.safeToDelete = false;
 
-        this.foundSub = false;
+        this.foundSub;
 
         this.deleteArrayScore = [];
+
+        this.subsDependentOnDelete = [];
+        
+
         this.selectedMergeKey;
+
+        this.selectedMerge;
     }
 
     findPair() {

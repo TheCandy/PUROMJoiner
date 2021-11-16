@@ -167,13 +167,13 @@ function findConnectedSubentities(node) {
         });
     }
 
-    jQuery.each(clusterArray, function (index, value) {
-        // if (value.data.entity != "b-type" && value.data.entity != "b-object") {
-        clusterArray2.push(value.data)
-        // }
-    });
+    // jQuery.each(clusterArray, function (index, value) {
+    //     // if (value.data.entity != "b-type" && value.data.entity != "b-object") {
+    //     clusterArray2.push(value.data)
+    //     // }
+    // });
 
-    return clusterArray2;
+    return clusterArray;
 }
 
 function findConnectedSubentitiesRealnodes(node) {

@@ -37,7 +37,7 @@
     opacity: 0.9;
     /* float: right; */
     margin: 10px;
-    width: 150px;
+    width: 200px;
     height: fit-content;
     filter: drop-shadow(-5px 5px 2px #727272);
     outline: none;
@@ -64,6 +64,7 @@
 
 #contextMenuId .options>div {
     padding: 5px;
+    border: 1px black solid
 }
 
 /* #contextMenuId .options div:hover {
@@ -161,9 +162,47 @@
     user-select: none;
     border: 1px solid;
     padding: 3px;
+    cursor: pointer;
+}
+
+.selectedNodeMergeOption{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.selectedNodeMergeOption div{
+    margin: 5px;
+}
+
+.searchBarMerge{
+
+    width: 100%;
+    box-sizing: border-box;
+    margin: 1px;
+    padding: 3px;
 }
 
 #elementList li:hover {
+    background-color: yellow;
+}
+
+.elementSelection {
+    margin: 1px;
+    font-size: 10px;
+    /* Remove margins */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.elementSelection:hover {
     background-color: yellow;
 }
 

@@ -242,6 +242,11 @@ function TargetMerge() {
 
     var nodes = [];
     var nodesTarget = [];
+
+    var minSubnodeCount = parseInt(jQuery('#txtMinSubnodes').val())
+
+
+
     mergeDiagram2.nodes.each(function (n) {
         nodes.push(n)
     });
@@ -254,98 +259,128 @@ function TargetMerge() {
             var searchResult = nodesTarget.find(node2 => node2.data.text == node.data.text);
             if (searchResult != undefined) {
                 node.foundSub = true
-                searchResult.data.selectedMerge = node.data.key
+                searchResult.selectedMerge = node;
             } else {
                 node.foundSub = false
             }
         }
     })
 
+    // nodes.forEach(node => {
+    //     if (node.subnode.length == 0) {
+    //         node.subNodePath.forEach(path => {
+    //             var shoulBeDeleted = path[0].foundSub;
+
+    //             jQuery.each(path, function (index, node2) {
+
+    //                 if (index > 0) {
+    //                     node2.deleteArrayScore.push(shoulBeDeleted)
+    //                 }
+    //                 if (shoulBeDeleted != true) {
+    //                     shoulBeDeleted = node2.foundSub;
+    //                 }
+    //             });
+
+    //         })
+    //     }
+    // })
+
+
+    // vzhledávání všech uzlů napojených na uzel, který bude smazán.
+    // cílem je dostat počet uzlů, které budou dědit po mazaném uzlu
     nodes.forEach(node => {
         if (node.subnode.length == 0) {
             node.subNodePath.forEach(path => {
-
-                // console.log(path[0].foundSub)
-                // console.log(path[0].data)
-
-                var shoulBeDeleted = path[0].foundSub;
-
-
-                jQuery.each(path, function (index, node2) {
-
-                    if (index > 0) {
-                        node2.deleteArrayScore.push(shoulBeDeleted)
-                    }
-                    // shoulBeDeleted = node2.foundSub;
-                    if (shoulBeDeleted != true) {
-                        shoulBeDeleted = node2.foundSub;
-                    }
-                });
-
-            })
-        }
-    })
-
-    nodes.forEach(node => {
-        if (node.supernode.length == 0) {
-
-            node.subnode.forEach(sbnode => {
-
-                // console.log(node.data.text)
-
-                if (sbnode.fromnode.deleteArrayScore.length == 0) {
-                    node.deleteArrayScore.push(false)
-                } else {
-
-                    // vyhodnotit score poduzlu (pokud je aspon jedno true, tak true celkove)
-
-                    var result = sbnode.fromnode.deleteArrayScore.find(element => element)
-
-                    if (result) {
-                        node.deleteArrayScore.push(true)
-                    } else {
-                        node.deleteArrayScore.push(false)
+                for (let i = path.length - 1; i >= 0; i--) {
+                    if (path[i].foundSub == false) {
+                        let uniqueNodes = new Set();
+                        path[i].subnode.forEach(pair => {
+                            if (pair.fromnode.foundSub == false) {
+                                pair.fromnode.subsDependentOnDelete.forEach(node => {
+                                    uniqueNodes.add(node)
+                                })
+                            } else {
+                                uniqueNodes.add(pair.fromnode)
+                            }
+                        })
+                        uniqueNodes = [...uniqueNodes]
+                        path[i].subsDependentOnDelete = uniqueNodes
                     }
                 }
             })
-
-            // console.log(node.data.text)
-            // console.log(node.deleteArrayScore)
         }
     })
+
 
     nodes.forEach(node => {
-        if (node.supernode.length == 0 && node.subnode.length != 0) {
-            var result = node.deleteArrayScore.find(element => element == false)
-
-            if (node.foundSub != true) {
-                if (result != false) {
-                    // console.log(node.data.text)
-                    // TransferDependencies(node)
-                    node.safeToDelete = true
-                } else {
-                    node.safeToDelete = false
-                }
-            } else {
-                node.safeToDelete = false
-            }
-        }
-
-
-
-        //DODELAT!!!!!!!!!§
-        if (node.supernode.length != 0 && node.subnode.length != 0) {
-            var result = node.deleteArrayScore.find(element => element == true)
-
-            if (result && node.foundSub == false) {
-                // console.log(node.data.text)
-                // TransferDependencies(node)
-                node.safeToDelete = true
-            } else {
-                node.safeToDelete = false
-            }
+        if (node.foundSub == false && node.subsDependentOnDelete.length < minSubnodeCount) {
+            node.safeToDelete = true
+        }else{
+            node.safeToDelete = false
         }
     })
+
+
+    // nodes.forEach(node => {
+    //     if (node.supernode.length == 0) {
+
+    //         node.subnode.forEach(sbnode => {
+
+    //             // console.log(node.data.text)
+
+    //             if (sbnode.fromnode.deleteArrayScore.length == 0) {
+    //                 node.deleteArrayScore.push(false)
+    //             } else {
+
+    //                 // vyhodnotit score poduzlu (pokud je aspon jedno true, tak true celkove)
+
+    //                 var result = sbnode.fromnode.deleteArrayScore.find(element => element)
+
+    //                 if (result) {
+    //                     node.deleteArrayScore.push(true)
+    //                 } else {
+    //                     node.deleteArrayScore.push(false)
+    //                 }
+    //             }
+    //         })
+
+    //         // console.log(node.data.text)
+    //         // console.log(node.deleteArrayScore)
+    //     }
+    // })
+
+    // nodes.forEach(node => {
+    //     if (node.supernode.length == 0 && node.subnode.length != 0) {
+    //         var result = node.deleteArrayScore.find(element => element == false)
+
+    //         if (node.foundSub != true) {
+    //             if (result != false) {
+    //                 // console.log(node.data.text)
+    //                 // TransferDependencies(node)
+    //                 node.safeToDelete = true
+    //             } else {
+    //                 node.safeToDelete = false
+    //             }
+    //         } else {
+    //             node.safeToDelete = false
+    //         }
+    //     }
+
+
+
+    //     //DODELAT!!!!!!!!!§
+    //     if (node.supernode.length != 0 && node.subnode.length != 0) {
+    //         var result = node.deleteArrayScore.find(element => element == true)
+
+    //         if (result && node.foundSub == false) {
+    //             // console.log(node.data.text)
+    //             // TransferDependencies(node)
+    //             node.safeToDelete = true
+    //         } else {
+    //             node.safeToDelete = false
+    //         }
+    //     }
+    // })
 
 
     nodes.forEach(node => {
@@ -367,6 +402,8 @@ function TargetMerge() {
             }, "highlight");
         }
     })
+
+
 
 
     if (!jQuery('#onlyShowSubsNoDelete').is(":checked")) { finalMerge() }
