@@ -151,7 +151,7 @@ function TransferDependencies(node, diag) {
     getHierarchy(diag);
 
     diag.commitTransaction("transfer dependencies");
-    // solveRedundantSubLinks(diag)
+    solveRedundantSubLinks(diag)
 
 }
 
@@ -242,10 +242,10 @@ function TargetMerge() {
 
     var nodes = [];
     var nodesTarget = [];
-    mergeDiagram.nodes.each(function (n) {
+    mergeDiagram2.nodes.each(function (n) {
         nodes.push(n)
     });
-    mergeDiagram2.nodes.each(function (n) {
+    mergeDiagram.nodes.each(function (n) {
         nodesTarget.push(n)
     });
 
@@ -352,17 +352,17 @@ function TargetMerge() {
         if (node.safeToDelete) {
 
             if (jQuery('#onlyShowSubsNoDelete').is(":checked")) {
-                mergeDiagram.model.commit(function (m) {
+                mergeDiagram2.model.commit(function (m) {
                     // var data = m.nodeDataArray[0];  // get the first node data
                     m.set(node.data, "strokeColor", "red");
                     // m.set(value.data, "group", "Omega");
                     node.isHighlighted = true;
                 }, "highlight");
             } else {
-                TransferDependencies(node, mergeDiagram)
+                TransferDependencies(node, mergeDiagram2)
             }
         } else {
-            mergeDiagram.model.commit(function (m) {
+            mergeDiagram2.model.commit(function (m) {
                 node.isHighlighted = false;
             }, "highlight");
         }
@@ -447,11 +447,11 @@ function TestPaths() {
     var links = [];
     var nodes = [];
 
-    mergeDiagram.nodes.each(function (n) {
+    mergeDiagram2.nodes.each(function (n) {
         nodes.push(n)
     });
 
-    mergeDiagram.links.each(function (n) {
+    mergeDiagram2.links.each(function (n) {
         links.push(n)
     });
 

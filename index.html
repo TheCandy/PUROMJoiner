@@ -47,19 +47,12 @@
                 <!-- The DIV for a Diagram needs an explicit size or else we will not see anything.
                 In this case we also add a background color so we can see that area. -->
                 <div class="editorWindow composer" id="myDiagramDiv"></div>
-                <div class="paletteAndContext">
+                <div class="paletteAndContext">                    
                     <details class="palette">
                         <summary class="dropdown">Palette</summary>
                         <div class="content" id="myPaletteDiv"></div>
                     </details>
-                    <div class="contextMenu" id="contextMenuId">
-                        <div id="contextHeader">
-                            <p></p>
-                        </div>
-                        <div class="options">
-                            
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="visibilityToggle" id=mergeWizard>
@@ -70,7 +63,7 @@
                     <div style="display: flex; flex-direction: column; ">
                         <button onclick="finalMerge()">Full merge</button>
 
-                        <button onclick="TargetMerge()">Target driven merge</button>
+                        <button onclick="TargetMerge()">Source driven merge</button>
                         <input type="checkbox" id="onlyShowSubsNoDelete" name="onlyShowSubsNoDelete">
                         <label for="onlyShowSubsNoDelete">Show classes to delete without commiting merge</label><br>
                     </div>
@@ -78,6 +71,14 @@
                 <div id="mergeDivs">
                     <div class="editorWindow2 composer" id="mergeDiagramDiv"></div>
                     <div class="editorWindow2 composer" id="mergeDiagramDiv2"></div>
+                </div>
+            </div>
+            <div class="contextMenu" id="contextMenuId">
+                <div id="contextHeader">
+                    <p></p>
+                </div>
+                <div class="options">
+
                 </div>
             </div>
         </div>

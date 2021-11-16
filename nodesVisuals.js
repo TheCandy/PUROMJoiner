@@ -33,7 +33,8 @@ class nodeTemplateStyle {
             this.nodeStyle.contextMenu = $(go.HTMLInfo, { show: this.showContextMenu, hide: this.hideContextMenu })
             // this.nodeStyle.click = function (e, node) { console.log(node.supernode); console.log(node.subnode); findConnectedSubentitiesRealnodes(node); }
             // this.nodeStyle.click = function (e, node) { console.log(node.deleteArrayScore); }
-            this.nodeStyle.click = function (e, node) { console.log(node.foundSub);console.log(node.safeToDelete); }
+            // this.nodeStyle.click = function (e, node) { console.log(node.foundSub);console.log(node.safeToDelete); }
+            this.nodeStyle.click = function (e, node) { console.log(node.data.selectedMerge); }
         }
         this.nodeStyle.add($(go.TextBlock,
             {

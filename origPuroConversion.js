@@ -45,6 +45,7 @@ async function readText(event, caseStr) {
     switch (caseStr) {
         case 'import':
             if (JSON.parse(text).class == "GraphLinksModel") {
+                diagram.clearSelection()
                 diagram.model = go.Model.fromJson(text);
             } else {
                 importJsonPURO(text);

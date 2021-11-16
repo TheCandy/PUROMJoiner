@@ -87,6 +87,9 @@ class mergeDiagramSubClass extends go.Diagram {
         this.undoManager.isEnabled = true;
         this.scrollMode = go.Diagram.InfiniteScroll;
 
+        this.addDiagramListener("ChangedSelection", function (e) { ShowMenu(e) });
+
+
         var nodeStyleNode = new nodeTemplateStyle("merge");
         this.nodeTemplate = nodeStyleNode.nodeStyle;
 

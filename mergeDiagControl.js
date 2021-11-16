@@ -4,6 +4,8 @@ function startMerge(text) {
     jQuery("#menuId").toggle();
     jQuery("#mergeWizard").toggle();
 
+    diagram.clearSelection()
+
     var obj = JSON.parse(text);
     var origNodesArray = [];
     var origLinksArray = [];
@@ -247,7 +249,7 @@ function finalMerge() {
         // }
     });
 
-   
+
     diagram.model.addNodeDataCollection(addedNodeDataArray);
     diagram.model.addLinkDataCollection(newLinkArray);
 
@@ -260,7 +262,7 @@ function finalMerge() {
 
     getHierarchy(diagram)
 
-    // solveRedundantSubLinks(diagram)
+    solveRedundantSubLinks(diagram)
 
 }
 
