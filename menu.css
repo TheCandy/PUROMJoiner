@@ -1,0 +1,123 @@
+
+
+/* Fixed sidenav, full height */
+.sidenav {
+    /* height: 100%; */
+    width: 200px;
+    /* max-width: 200px; */
+    
+    /* left: 500px; */
+    /* position: fixed;     */
+    z-index: 1;
+    top: 0;
+    /* left: 50px; */
+    background-color: #111;
+    /* overflow-x: hidden; */
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style the sidenav links and the dropdown button */
+
+.sidenav button, .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+
+
+/* On mouse-over */
+
+.sidenav button:hover, .dropdown-btn:hover {
+    color: #f1f1f1;
+}
+
+/* Main content */
+
+.main {
+    margin-left: 200px;
+    /* Same as the width of the sidenav */
+    font-size: 20px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+
+
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+    padding-left: 12px;
+}
+
+.dropdown-container .dropdown-container {
+    background-color: #808080;
+}
+
+.dropdown-container .dropdown-btn:hover {
+    color: black;
+}
+
+.dropdown-container .dropdown-btn {
+    background-color: #808080;
+    color: white;
+}
+
+.dropdown-container .dropdown-container button {
+    background-color: #808080;
+    color: white;
+}
+
+.dropdown-container .dropdown-container button:hover {
+    color: black;
+}
+
+.dropdown-container>div:not(:first-child) {
+    border-top: solid 3px #111;
+}
+
+/* .dropdown-container>button:not(:first-child) {
+    border-top: solid 3px #111;
+} */
+
+/* Optional: Style the caret down icon */
+
+.fa-caret-down {
+    transition-duration: 0.2s;
+    float: right;
+    padding-right: 8px;
+}
+
+.active .fa-caret-down{
+    transform: scaleY(-1);
+    /* background-color: green;
+    color: white; */
+}
+
+.sidenav button:not(.dropdown-btn) {
+    /* border: 1px ; */
+    padding: 5px;
+    margin: 5px;
+    width: 90%;
+    border-radius: 5px;
+    background-color: #464646;
+    color: white;
+ }
+
+ .sidenav button:not(.dropdown-btn):hover {
+    background-color: rgb(0, 37, 37);
+ }

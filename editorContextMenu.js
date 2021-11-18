@@ -1,7 +1,4 @@
 function ShowMenu(e) {
-
-    // console.log(e.diagram.div.id)
-
     if (e.diagram.div.id != 'mergeDiagramDiv') {
 
 
@@ -131,7 +128,7 @@ function getContextDivMerge(node, diag) {
 
 
             mergeDiagram.nodes.each(function (n) {
-                if (n.data.text.toLowerCase().includes(inputBox.value.toLowerCase()) && n.data.entity == node.data.entity) {
+                if (n.data.text.toLowerCase().includes(inputBox.value.toLowerCase()) && n.data.entity == node.data.entity && !n.data.isGroup) {
                     testArray.push([n, node])
                 }
             })
@@ -198,8 +195,6 @@ function getContextDiv(node, diag) {
     jQuery("#contextMenuId").css("border", `5px solid ${nodeVisuals(node.data.entity)[0]}`);
     jQuery("#contextHeader").css("background-color", nodeVisuals(node.data.entity)[0]);
     jQuery("#contextHeader p").text(node.data.text);
-    // jQuery("#contextHeader p").css("font-weight", "bold");
-    // jQuery("#contextHeader p").css("padding", "5px");
 
     var optionsDiv = jQuery("#contextMenuId .options")
 

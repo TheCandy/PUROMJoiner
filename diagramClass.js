@@ -23,7 +23,6 @@ class editorSubClass extends go.Diagram {
                     defaultElectricalCharge: 50
                 });
 
-        this.addDiagramListener("LinkDrawn", function (e) { newLinkStyle(e) });
 
         this.groupTemplate = $(go.Group, "Auto",
             { ungroupable: true, locationSpot: go.Spot.Center },
@@ -59,9 +58,11 @@ class editorSubClass extends go.Diagram {
             )
         );
 
-
+        this.addDiagramListener("LinkDrawn", function (e) { newLinkStyle(e) });
         this.addDiagramListener("TextEdited", function (e) { checkName(e) });
         this.addDiagramListener("ChangedSelection", function (e) { ShowMenu(e) });
+        this.addDiagramListener("SelectionDeleted", function (e) { getHierarchy(diagram) });
+        this.addDiagramListener("ClipboardPasted", function (e) { changeNameCopiedNode(e) });
 
         var nodeStyleNode = new nodeTemplateStyle("editor");
         this.nodeTemplate = nodeStyleNode.nodeStyle;

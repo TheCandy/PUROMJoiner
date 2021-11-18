@@ -31,7 +31,9 @@ diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 
 
 diagram.nodes.each(function (n) {
-    n.findPair()
+    if (!n.data.isGroup) {
+        n.findPair()
+    }
 });
 
 var mergeDiagram = $(mergeDiagramSubClass, "mergeDiagramDiv");

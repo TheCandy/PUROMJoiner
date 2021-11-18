@@ -2,6 +2,9 @@ class nodeSubClass extends go.Node {
     constructor() {
         super();
         // this.click = function (e, node) { console.log(node) }
+
+        this.instanceOfArr = [];
+
         this.subnode = [];
         this.supernode = [];
 
@@ -9,12 +12,12 @@ class nodeSubClass extends go.Node {
 
         this.safeToDelete = false;
 
-        this.foundSub;
+        this.couldDelete;
 
         this.deleteArrayScore = [];
 
         this.subsDependentOnDelete = [];
-        
+
 
         this.selectedMergeKey;
 
@@ -27,7 +30,7 @@ class nodeSubClass extends go.Node {
         var me = this
 
         diagram.nodes.each(function (n) {
-            if (n != me) {
+            if (n != me && !n.data.isGroup) {
                 equivalentArray.push(n)
             }
         });
@@ -55,7 +58,7 @@ class nodeSubClass extends go.Node {
     addToPath(path) {
         this.subNodePath.push(path)
     }
-    setSafeToDelete(bool){
+    setSafeToDelete(bool) {
         if (this.safeToDelete != false) {
             this.safeToDelete = bool
         }

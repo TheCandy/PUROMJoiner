@@ -6,7 +6,9 @@ function getClusters() {
     var tempClusterArray = [];
 
     diagram.nodes.each(function (n) {
-        origNodesArray.push(n)
+        if (!n.data.isGroup) {
+            origNodesArray.push(n)
+        }
     });
 
     while (origNodesArray.length > 0) {
@@ -41,23 +43,17 @@ function getClusters() {
         }
 
         diagram.skipsUndoManager = true;
-        // diagram.startTransaction("make new group");
-        // diagram.model.addNodeData({ key: "Omega", isGroup: true, text: "Omega" });
-        // diagram.commitTransaction("make new group");
 
         jQuery.each(tempClusterArray, function (index, value) {
             console.log(value.data.text);
 
             diagram.model.commit(function (m) {
-                // var data = m.nodeDataArray[0];  // get the first node data
                 m.set(value.data, "strokeColor", randColor);
-                // m.set(value.data, "group", "Omega");
                 value.isHighlighted = true;
             }, "highlight");
         });
         diagram.skipsUndoManager = false;
-        // console.log(origNodesArray);
-        // console.log(tempClusterArray);
+        console.log(tempClusterArray);
 
         allClustersArray.push(tempClusterArray);
 

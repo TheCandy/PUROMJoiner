@@ -3,15 +3,35 @@ function getHierarchy(diag) {
     var nodes = [];
 
     diag.nodes.each(function (n) {
-        nodes.push(n)
-        n.subnode = []
-        n.supernode = []
-        n.subNodePath = []
+        if (n.data != null && !n.data.isGroup) {
+            nodes.push(n)
+            n.subnode = []
+            n.supernode = []
+            n.subNodePath = []
+            n.instanceOfArr = []
+        }
     });
 
     diag.links.each(function (n) {
-        links.push(n)
+        if (n.data != null) {
+            links.push(n)
+        }
     });
+
+    nodes.forEach(node => {
+        var linksFrom = findIndices(links, link => link.data.from === node.data.key && link.data.category == "B-instanceOf");
+
+        if (linksFrom.length > 0) {
+            linksFrom.forEach(key => {
+                var searchResult = nodes.find(node => node.data.key === links[key].data.to);
+
+                if (searchResult != undefined) {
+                    node.instanceOfArr.push(searchResult)
+                }
+            });
+        }
+    })
+
 
     nodes.forEach(node => {
         var linksFrom = findIndices(links, link => link.data.from === node.data.key && link.data.category == "B-subtypeOf");
@@ -173,9 +193,7 @@ function CopyNodeRelationships(node, diag) {
         var connNodes = findConnectedSubentitiesRealnodes(node)
         connNodes.shift()
 
-
         connLinks = new Set();
-
 
         connNodes.forEach(node2 => {
             connNodesData.push(node2.data)
@@ -204,7 +222,6 @@ function CopyNodeRelationships(node, diag) {
 
         var foundKeyFrom = findIndices(allNodesLinksObj.linkDataArray, link => link.from === node.data.key);
         var foundKeyTo = findIndices(allNodesLinksObj.linkDataArray, link => link.to === node.data.key);
-
         // console.log(subnode.fromnode.data)
         // console.log(subnode.fromnode.data.key)
 
@@ -238,53 +255,70 @@ function CopyNodeRelationships(node, diag) {
     diag.commitTransaction("transfer dependencies");
 }
 
-function TargetMerge() {
-
+function TargetMerge(realMerge) {
     var nodes = [];
     var nodesTarget = [];
 
-    var minSubnodeCount = parseInt(jQuery('#txtMinSubnodes').val())
+    var links = [];
+    mergeDiagram2.links.each(function (n) {
+        links.push(n)
+    });
 
+    var minSubnodeCount = parseInt(jQuery('#myRange').val())
 
+console.log(minSubnodeCount)
 
     mergeDiagram2.nodes.each(function (n) {
-        nodes.push(n)
+        if (!n.data.isGroup) {
+            nodes.push(n)
+        }
     });
     mergeDiagram.nodes.each(function (n) {
-        nodesTarget.push(n)
+        if (!n.data.isGroup) {
+            nodesTarget.push(n)
+        }
     });
 
     nodes.forEach(node => {
-        if (node.subnode.length != 0) {
+        // var linksFrom = findIndices(links, link => link.data.from === node.data.key && link.data.category == "B-subtypeOf");
+        var linksTo = findIndices(links, link => link.data.to === node.data.key && link.data.category == "B-instanceOf");
+
+        // znamená, že je třída instancí. Nesmí být smazána
+        var linksFrom = findIndices(links, link => link.data.from === node.data.key && link.data.category == "B-instanceOf");
+
+        // kontrolují se pouze třídy, které jsou v hierarchii tříd
+        if (node.subnode.length != 0 || node.supernode.length != 0) {
+
+
             var searchResult = nodesTarget.find(node2 => node2.data.text == node.data.text);
             if (searchResult != undefined) {
-                node.foundSub = true
+                // třída byla nalezena a nesmí být smazána
+                node.couldDelete = false
                 searchResult.selectedMerge = node;
             } else {
-                node.foundSub = false
+                // třída nebyla nalezena, a obecně může být smazána
+                node.couldDelete = true
+
+
+                if (linksTo.length > 0) {
+                    // třída má instance a nesmí být smazána
+                    node.couldDelete = false
+                } else if (linksFrom.length > 0) {
+                    // třída je instancí a nesmí být smazána
+                    node.couldDelete = false
+                } else {
+                    if (node.subnode.length == 0) {
+                        //třída je nejnižší (nemá podtřídy) a pokud se mohou smazat nejnižší třídy bez instancí, tak se smaže                     
+                        if (jQuery('#delClassNoInstance').is(":checked")) {
+                            node.couldDelete = true
+                        } else {
+                            node.couldDelete = false
+                        }
+                    }
+                }
             }
         }
     })
-
-    // nodes.forEach(node => {
-    //     if (node.subnode.length == 0) {
-    //         node.subNodePath.forEach(path => {
-    //             var shoulBeDeleted = path[0].foundSub;
-
-    //             jQuery.each(path, function (index, node2) {
-
-    //                 if (index > 0) {
-    //                     node2.deleteArrayScore.push(shoulBeDeleted)
-    //                 }
-    //                 if (shoulBeDeleted != true) {
-    //                     shoulBeDeleted = node2.foundSub;
-    //                 }
-    //             });
-
-    //         })
-    //     }
-    // })
-
 
     // vzhledávání všech uzlů napojených na uzel, který bude smazán.
     // cílem je dostat počet uzlů, které budou dědit po mazaném uzlu
@@ -292,10 +326,10 @@ function TargetMerge() {
         if (node.subnode.length == 0) {
             node.subNodePath.forEach(path => {
                 for (let i = path.length - 1; i >= 0; i--) {
-                    if (path[i].foundSub == false) {
+                    if (path[i].couldDelete == true) {
                         let uniqueNodes = new Set();
                         path[i].subnode.forEach(pair => {
-                            if (pair.fromnode.foundSub == false) {
+                            if (pair.fromnode.couldDelete == true) {
                                 pair.fromnode.subsDependentOnDelete.forEach(node => {
                                     uniqueNodes.add(node)
                                 })
@@ -313,84 +347,19 @@ function TargetMerge() {
 
 
     nodes.forEach(node => {
-        if (node.foundSub == false && node.subsDependentOnDelete.length < minSubnodeCount) {
+        if (node.couldDelete == true && node.subsDependentOnDelete.length < minSubnodeCount) {
             node.safeToDelete = true
-        }else{
+        } else {
             node.safeToDelete = false
         }
     })
 
-
-    // nodes.forEach(node => {
-    //     if (node.supernode.length == 0) {
-
-    //         node.subnode.forEach(sbnode => {
-
-    //             // console.log(node.data.text)
-
-    //             if (sbnode.fromnode.deleteArrayScore.length == 0) {
-    //                 node.deleteArrayScore.push(false)
-    //             } else {
-
-    //                 // vyhodnotit score poduzlu (pokud je aspon jedno true, tak true celkove)
-
-    //                 var result = sbnode.fromnode.deleteArrayScore.find(element => element)
-
-    //                 if (result) {
-    //                     node.deleteArrayScore.push(true)
-    //                 } else {
-    //                     node.deleteArrayScore.push(false)
-    //                 }
-    //             }
-    //         })
-
-    //         // console.log(node.data.text)
-    //         // console.log(node.deleteArrayScore)
-    //     }
-    // })
-
-    // nodes.forEach(node => {
-    //     if (node.supernode.length == 0 && node.subnode.length != 0) {
-    //         var result = node.deleteArrayScore.find(element => element == false)
-
-    //         if (node.foundSub != true) {
-    //             if (result != false) {
-    //                 // console.log(node.data.text)
-    //                 // TransferDependencies(node)
-    //                 node.safeToDelete = true
-    //             } else {
-    //                 node.safeToDelete = false
-    //             }
-    //         } else {
-    //             node.safeToDelete = false
-    //         }
-    //     }
-
-
-
-    //     //DODELAT!!!!!!!!!§
-    //     if (node.supernode.length != 0 && node.subnode.length != 0) {
-    //         var result = node.deleteArrayScore.find(element => element == true)
-
-    //         if (result && node.foundSub == false) {
-    //             // console.log(node.data.text)
-    //             // TransferDependencies(node)
-    //             node.safeToDelete = true
-    //         } else {
-    //             node.safeToDelete = false
-    //         }
-    //     }
-    // })
-
-
     nodes.forEach(node => {
         if (node.safeToDelete) {
 
-            if (jQuery('#onlyShowSubsNoDelete').is(":checked")) {
+            if (!realMerge) {
                 mergeDiagram2.model.commit(function (m) {
-                    // var data = m.nodeDataArray[0];  // get the first node data
                     m.set(node.data, "strokeColor", "red");
-                    // m.set(value.data, "group", "Omega");
                     node.isHighlighted = true;
                 }, "highlight");
             } else {
@@ -403,78 +372,77 @@ function TargetMerge() {
         }
     })
 
-
-
-
-    if (!jQuery('#onlyShowSubsNoDelete').is(":checked")) { finalMerge() }
+    if (realMerge) { finalMerge() }
 }
 
 function solveRedundantSubLinks(diag) {
 
     diag.nodes.each(function (node) {
+        if (!node.data.isGroup) {
 
+            var allPaths = []
+            var pathsToDelete = []
 
-        var allPaths = []
-        var pathsToDelete = []
+            node.subNodePath.forEach(path => {
+                allPaths.push(path)
+            })
 
-        node.subNodePath.forEach(path => {
-            allPaths.push(path)
-        })
+            while (allPaths.length != 0) {
+                var longestPath = allPaths.reduce((a, b) => (a.length > b.length ? a : b), [])
+                allPaths.splice(allPaths.indexOf(longestPath), 1);
 
-        while (allPaths.length != 0) {
-            var longestPath = allPaths.reduce((a, b) => (a.length > b.length ? a : b), [])
-            allPaths.splice(allPaths.indexOf(longestPath), 1);
+                var maybeDelete = []
 
-            var maybeDelete = []
+                maybeDelete = jQuery.extend(true, [], allPaths);
 
-            maybeDelete = jQuery.extend(true, [], allPaths);
+                for (let i = 0; i < longestPath.length; i++) {
 
-            for (let i = 0; i < longestPath.length; i++) {
+                    // console.log("iteration: " + i)
 
-                // console.log("iteration: " + i)
+                    for (let j = maybeDelete.length - 1; j >= 0; j--) {
 
-                for (let j = maybeDelete.length - 1; j >= 0; j--) {
+                        // console.log(maybeDelete[j])
 
-                    // console.log(maybeDelete[j])
+                        // console.log("length:" + maybeDelete[j].length)
 
-                    // console.log("length:" + maybeDelete[j].length)
+                        // if (maybeDelete[j].length < i + 1 || (maybeDelete[j].length == longestPath.length && maybeDelete[j][i] == longestPath[i]  )  ) {
+                        if (maybeDelete[j].length < i + 1) {
+                            allPaths.splice(allPaths.indexOf(maybeDelete[j]), 1);
+                            // console.log("put in delete")
+                            pathsToDelete.push(maybeDelete[j])
 
-                    if (maybeDelete[j].length < i + 1) {
-                        allPaths.splice(allPaths.indexOf(maybeDelete[j]), 1);
-                        // console.log("put in delete")
-                        pathsToDelete.push(maybeDelete[j])
-
-                        maybeDelete.splice(j, 1);
-                    } else {
-                        if (maybeDelete[j][i] != longestPath[i]) {
-                            // console.log("remove from delete")
                             maybeDelete.splice(j, 1);
+                        } else {
+                            if (maybeDelete[j][i] != longestPath[i]) {
+                                // console.log("remove from delete")
+                                maybeDelete.splice(j, 1);
+                            }
                         }
                     }
+
                 }
-
             }
+
+            // console.log(pathsToDelete)
+
+            var linkstodelete = []
+
+            pathsToDelete.forEach(path => {
+                var links = node.findLinksBetween(path.at(-1))
+
+                links.each(function (n) {
+                    linkstodelete.push(n);
+                });
+            })
+
+            diag.startTransaction("remove link");
+
+            linkstodelete.forEach(linkdel => {
+                diag.remove(linkdel);
+            })
+
+            diag.commitTransaction("remove link");
         }
-
-        // console.log(pathsToDelete)
-
-        var linkstodelete = []
-
-        pathsToDelete.forEach(path => {
-            var links = node.findLinksBetween(path.at(-1))
-
-            links.each(function (n) {
-                linkstodelete.push(n);
-            });
-        })
-
-        diag.startTransaction("remove link");
-
-        linkstodelete.forEach(linkdel => {
-            diag.remove(linkdel);
-        })
-
-        diag.commitTransaction("remove link");
     });
 }
 
@@ -485,7 +453,9 @@ function TestPaths() {
     var nodes = [];
 
     mergeDiagram2.nodes.each(function (n) {
-        nodes.push(n)
+        if (!n.data.isGroup) {
+            nodes.push(n)
+        }
     });
 
     mergeDiagram2.links.each(function (n) {

@@ -1,7 +1,9 @@
 #content {
     display: flex;
     flex-direction: row;
-    height: 97vh;
+    height: 100vh;
+    /* height: 100%; */
+    background-color: black;
 }
 
 .contextMergeMenu {
@@ -15,7 +17,8 @@
     display: flex;
     flex-direction: row;
     height: 100%;
-    width: 100%;
+    flex-grow: 1;
+    /* width: 100%; */
 }
 
 #mergeControls {
@@ -151,8 +154,10 @@
 }
 
 #elementList li {
+    color: black;
+    background-color: white;
     margin: 1px;
-    font-size: 10px;
+    font-size: 15px;
     /* Remove margins */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -165,18 +170,16 @@
     cursor: pointer;
 }
 
-.selectedNodeMergeOption{
-
+.selectedNodeMergeOption {
     display: flex;
     flex-direction: column;
 }
 
-.selectedNodeMergeOption div{
+.selectedNodeMergeOption div {
     margin: 5px;
 }
 
-.searchBarMerge{
-
+.searchBarMerge, #txtModel {
     width: 100%;
     box-sizing: border-box;
     margin: 1px;
@@ -208,6 +211,8 @@
 
 #searchDiv {
     overflow-y: auto;
+    /* height:100%; */
+    /* box-sizing: border-box; */
 }
 
 #mergeSelectionDiv {
@@ -262,9 +267,10 @@ summary:before {
 }
 
 .menu {
-    width: 10%;
+    /* width: 15%; */
+    /* flex-grow: 1; */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .dropdown {
@@ -279,6 +285,8 @@ summary:before {
 
 body {
     font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .menuTitle {

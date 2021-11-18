@@ -1,3 +1,12 @@
+function cancelMerge(){
+    diagram.model = mergeDiagram.model;
+
+    
+    jQuery("#editor").toggle();
+    jQuery("#menuId").toggle();
+    jQuery("#mergeWizard").toggle();    
+}
+
 function startMerge(text) {
 
     jQuery("#editor").toggle();
@@ -25,7 +34,9 @@ function startMerge(text) {
 
 
     mergeDiagram.nodes.each(function (n) {
-        origNodesArray.push(n)
+        if (!n.data.isGroup) {
+            origNodesArray.push(n)
+        }
     });
 
     mergeDiagram.links.each(function (n) {
@@ -37,7 +48,9 @@ function startMerge(text) {
     var origLinksArray2 = [];
 
     mergeDiagram2.nodes.each(function (n) {
-        origNodesArray2.push(n)
+        if (!n.data.isGroup) {
+            origNodesArray2.push(n)
+        }
     });
 
     mergeDiagram2.links.each(function (n) {
@@ -66,7 +79,7 @@ function populateSelection(origNodesArray2, origNodesArray) {
 
                 similarity = stringSimilarity.compareTwoStrings(node.data.text.toLowerCase().replace(/\s+/g, ''), origNodesArray2[i].data.text.toLowerCase().replace(/\s+/g, ''))
 
-                if (similarity > 0.5) {
+                if (similarity > 0.9) {
                     equivalentArray.push([node, similarity])
                     testArray.push([node, origNodesArray2[i]]);
                 }
@@ -110,10 +123,14 @@ function finalMerge() {
     var origNodesArray2 = [];
     var origLinksArray2 = [];
 
+    var targetGroup = [];
+
     var addedNodeDataArray = [];
 
     mergeDiagram.nodes.each(function (n) {
-        origNodesArray.push(n)
+        if (!n.data.isGroup) {
+            origNodesArray.push(n)
+        }
     });
 
     mergeDiagram.links.each(function (n) {
@@ -121,12 +138,31 @@ function finalMerge() {
     });
 
     mergeDiagram2.nodes.each(function (n) {
-        origNodesArray2.push(n)
+        if (!n.data.isGroup) {
+            origNodesArray2.push(n)
+        }
     });
+
+    mergeDiagram2.nodes.each(function (n) {
+        if (n.data.isGroup) {
+            targetGroup.push(n)
+        }
+    });
+
 
     mergeDiagram2.links.each(function (n) {
         origLinksArray2.push(n)
     });
+
+    targetGroup.forEach(group => {
+        addedNodeDataArray.push({
+            color: group.data.color,
+            key: group.data.key,
+            group: group.data.group,
+            isGroup: group.data.isGroup,
+            text: group.data.text,
+        });
+    })
 
 
     for (let i = 0; i < origNodesArray2.length; i++) {
@@ -145,7 +181,6 @@ function finalMerge() {
                 var searchResult = origNodesArray2[i].selectedMerge
             }
 
-            console.log(searchResult)
             // main node WASN'T found
             if (searchResult == undefined) {
                 var subEntClusterJson = findConnectedSubentities(origNodesArray2[i]);
@@ -155,6 +190,7 @@ function finalMerge() {
                     if (searchResultJson == undefined) {
                         addedNodeDataArray.push({
                             key: subEntClusterJson[j].data.key,
+                            group: subEntClusterJson[j].data.group,
                             entity: subEntClusterJson[j].data.entity,
                             text: subEntClusterJson[j].data.text,
                             category: subEntClusterJson[j].data.category,
@@ -192,13 +228,12 @@ function finalMerge() {
 
                     if (searchResultJson == undefined) {
                         if (subEntClusterJson[j].selectedMerge != undefined) {
-                            var searchResult2 = subEntClusterDiagram.find(element => element.key === subEntClusterJson[j].selectedMerge.data.key);
+                            var searchResult2 = subEntClusterDiagram.find(element => element.data.key === subEntClusterJson[j].selectedMerge.data.key);
                         } else {
-                            var searchResult2 = subEntClusterDiagram.find(element => element.text === subEntClusterJson[j].data.text);
+                            var searchResult2 = subEntClusterDiagram.find(element => element.data.text === subEntClusterJson[j].data.text);
                         }
 
                         if (searchResult2 == undefined) {
-
                             addedNodeDataArray.push({
                                 key: subEntClusterJson[j].data.key,
                                 group: searchResult.data.group,

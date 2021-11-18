@@ -6,18 +6,81 @@ class SearchBar {
     }
 
     onInput(e) {
-        var testArray = [];
+
+        var bTypeArray = [];
+        var bObjectArray = [];
+        var bRelationArray = [];
+        var bAttributeArray = [];
+        var bValuationArray = [];
+
+        var allObj = []
+
+        allObj.push([bTypeArray, ["searchBtype", "searchBtypeButton"]])
+        allObj.push([bObjectArray, ["searchBobject", "searchBobjectButton"]])
+        allObj.push([bRelationArray, ["searchBrelation", "searchBrelationButton"]])
+        allObj.push([bAttributeArray, ["searchBattribute", "searchBattributeButton"]])
+        allObj.push([bValuationArray, ["searchBvaluation", "searchBvaluationButton"]])
 
         diagram.nodes.each(function (n) {
-            if (n.data.text.toLowerCase().includes(document.getElementById('txtModel').value.toLowerCase())) {
-                testArray.push(n)
+            if (n.data.text.toLowerCase().includes(document.getElementById('txtModel').value.toLowerCase()) && !n.data.isGroup) {
+                switch (n.data.entity) {
+                    case "b-type":
+                        bTypeArray.push(n)
+                        break;
+                    case "b-object":
+                        bObjectArray.push(n)
+                        break;
+                    case "b-attribute":
+                        bAttributeArray.push(n)
+                        break;
+                    case "b-valuation":
+                        bValuationArray.push(n)
+                        break;
+                    case "b-relation":
+                        bRelationArray.push(n)
+                        break;
+                    default:
+                        break;
+                }
             }
         })
-        const parent = document.getElementById("searchDiv")
-        while (parent.firstChild) {
-            parent.firstChild.remove()
-        }
-        document.getElementById("searchDiv").appendChild(makeUL(testArray));
+
+        allObj.forEach(foundSet => {
+            let parent = document.getElementById(foundSet[1][0])
+            while (parent.firstChild) {
+                parent.firstChild.remove()
+            }
+
+            if (foundSet[0].length > 0) {
+                jQuery("#"+foundSet[1][1]).show();
+                document.getElementById(foundSet[1][0]).appendChild(makeUL(foundSet[0]));
+            } else {
+
+                console.log("hehe")
+                jQuery("#"+foundSet[1][0]).hide();
+                jQuery("#"+foundSet[1][1]).hide();
+            }
+        });
+
+
+
+
+        // allObj.forEach(foundSet => {
+
+        //     console.log(foundSet)
+
+        //     var string =
+        //         `<button class="dropdown-btn">${foundSet[1][1]}
+        //         <i class="fa fa-caret-down"></i>
+        //         </button>
+        //         <div class="dropdown-container" id="${foundSet[1][0]}"></div>`;
+
+        //     jQuery(parent).append(string);
+
+
+        //     document.getElementById(foundSet[1][0]).appendChild(makeUL(foundSet[0]));
+        // });
+
     }
 }
 

@@ -47,8 +47,10 @@ async function readText(event, caseStr) {
             if (JSON.parse(text).class == "GraphLinksModel") {
                 diagram.clearSelection()
                 diagram.model = go.Model.fromJson(text);
+                getHierarchy(diagram)
             } else {
                 importJsonPURO(text);
+                getHierarchy(diagram)
             }
             getHierarchy(diagram);
             break;
@@ -78,6 +80,17 @@ function reindexObj(obj, diag) {
         objReindexed.nodeDataArray[i].prevKey = objReindexed.nodeDataArray[i].key;
         objReindexed.nodeDataArray[i].key = nextKey;
         --nextKey
+
+
+
+        if (objReindexed.nodeDataArray[i].isGroup) {
+            objReindexed.nodeDataArray.forEach(node => {
+                if (node.group == objReindexed.nodeDataArray[i].prevKey) {
+                    node.group = objReindexed.nodeDataArray[i].key
+                }
+            })
+        }
+
     }
 
     for (let i = 0; i < objReindexed.linkDataArray.length; i++) {
@@ -94,53 +107,6 @@ function reindexObj(obj, diag) {
     }
     return objReindexed;
 }
-
-// function findConnectedSubentitiesJson(node, obj) {
-//     var clusterArray = [];
-//     var clusterArray2 = [];
-//     var searchResult;
-//     var nodesCount = 0;
-
-//     clusterArray.push(node)
-
-//     while (nodesCount != clusterArray.length) {
-//         nodesCount = clusterArray.length;
-//         jQuery.each(clusterArray, function (index, value) {
-//             for (let i = obj.linkDataArray.length - 1; i >= 0; i--) {
-//                 if (obj.linkDataArray[i].from == value.key) {
-//                     var foundKeyFrom = findIndices(obj.nodeDataArray, value => value.key === obj.linkDataArray[i].to);
-//                     if (foundKeyFrom.length > 0) {
-//                         if (obj.nodeDataArray[foundKeyFrom].entity != "b-type" && obj.nodeDataArray[foundKeyFrom].entity != "b-object") {
-//                             searchResult = clusterArray.find(element => element === obj.nodeDataArray[foundKeyFrom]);
-//                             if (searchResult == undefined) {
-//                                 clusterArray.push(obj.nodeDataArray[foundKeyFrom])
-//                             }
-//                         }
-//                     }
-//                 }
-//                 if (obj.linkDataArray[i].to == value.key) {
-//                     var foundKeyFrom = findIndices(obj.nodeDataArray, value => value.key === obj.linkDataArray[i].from);
-//                     if (foundKeyFrom.length > 0) {
-//                         if (obj.nodeDataArray[foundKeyFrom].entity != "b-type" && obj.nodeDataArray[foundKeyFrom].entity != "b-object") {
-//                             searchResult = clusterArray.find(element => element === obj.nodeDataArray[foundKeyFrom]);
-//                             if (searchResult == undefined) {
-//                                 clusterArray.push(obj.nodeDataArray[foundKeyFrom])
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         });
-//     }
-
-//     jQuery.each(clusterArray, function (index, value) {
-//         // if (value.entity != "b-type" && value.entity != "b-object") {
-//         clusterArray2.push(value)
-//         // }
-//     });
-
-//     return clusterArray2;
-// }
 
 function findConnectedSubentities(node) {
     var clusterArray = [];
@@ -166,13 +132,6 @@ function findConnectedSubentities(node) {
             });
         });
     }
-
-    // jQuery.each(clusterArray, function (index, value) {
-    //     // if (value.data.entity != "b-type" && value.data.entity != "b-object") {
-    //     clusterArray2.push(value.data)
-    //     // }
-    // });
-
     return clusterArray;
 }
 
@@ -209,18 +168,26 @@ function convertToPUROM() {
     var sublist = [];
     var completeList = {};
 
-    diagram.links.each(function (n) {
+    diagram.links.each(function (link) {
         var obj = {};
-        obj.name = n.data.category;
-        obj.start = makeExportObjNode(n.part.fromNode);
-        obj.end = makeExportObjNode(n.part.toNode);
+        if (link.data.category == "B-instanceOf" || link.data.category == "B-subtypeOf" || link.data.category == "disjoint") {
+            obj.name = link.data.category;
+        }else{
+            obj.name = link.data.text;
+        }
+        obj.start = makeExportObjNode(link.part.fromNode);
+        obj.end = makeExportObjNode(link.part.toNode);
         sublist.push(obj);
     });
 
     completeList.links = sublist;
 
     sublist = [];
-    diagram.nodes.each(function (n) { sublist.push(makeExportObjNode(n)); });
+    diagram.nodes.each(function (n) {
+        if (!n.data.isGroup) {
+            sublist.push(makeExportObjNode(n));
+        }
+    });
 
     completeList.nodes = sublist;
     completeList.name = "Unnamed PURO Model";
@@ -239,7 +206,8 @@ function convertToPUROM() {
 function makeExportObjNode(n) {
     var obj = {};
     obj.name = n.data.text;
-    obj.id = Math.abs(n.data.key);
+    // obj.id = Math.abs(n.data.key);
+    obj.id = n.data.key;
     obj.type = n.data.entity.substr(0, 1).toUpperCase() + n.data.entity.substr(1);
     obj.x = n.data.loc.x;
     obj.y = n.data.loc.y;

@@ -1,0 +1,55 @@
+.sidenav2 {
+    background-color: #111;
+    /* position: absolute; */
+    width: 50px;
+    min-width: 50px;
+}
+
+.sidenav2 .fa {
+    /* transition-duration: 0.2s; */
+    float: right;
+    padding-right: 2px;
+}
+
+/* Style the links inside the sidenav */
+
+.sidenav2 div {
+    position: absolute;
+    /* Position them relative to the browser window */
+    /* left: -80px; */
+    /* --width: 100px; */
+    left: calc(20px - var(--width));
+    /* Position them outside of the screen */
+    transition: 0.3s;
+    /* Add transition on hover */
+    padding: 15px;
+    /* 15px padding */
+    width: var(--width);
+    /* Set a specific width */
+    text-decoration: none;
+    /* Remove underline */
+    font-size: 20px;
+    /* Increase font size */
+    color: white;
+    /* White text color */
+    border-radius: 0 5px 5px 0;
+    /* Rounded corners on the top right and bottom right side */
+    z-index: 5;
+    /* background-color: black; */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* background-color: #555 */
+}
+
+.sidenav2 div:hover {
+    left: 0;
+    background-color: #04AA6D;
+}
+
+.colouredSelection {
+    background-color: #04AA6D;
+}

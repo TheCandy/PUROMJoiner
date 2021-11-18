@@ -7,6 +7,7 @@ function completeLink(category) {
         }
         d.addLinkData(newlink);
     }, "Add link based on context menu");
+    getHierarchy(diagram)
 };
 
 
@@ -29,10 +30,13 @@ function newLinkStyle(e) {
         menu.adornedObject = node;
         node.addAdornment("mouseHover", menu);
         diagram.rollbackTransaction();
+    }else{
+        getHierarchy(diagram)
     }
 }
 
 function solveLevels(from, to, category) {
+    
     if (category === "B-instanceOf") {
         // to.elt(4).text = parseInt(from.elt(4).text) + 1;
         return parseInt(from.data.level) + 1;
