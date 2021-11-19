@@ -1,10 +1,13 @@
 function cancelMerge(){
     diagram.model = mergeDiagram.model;
-
     
     jQuery("#editor").toggle();
     jQuery("#menuId").toggle();
     jQuery("#mergeWizard").toggle();    
+    jQuery(".sidenavMain").hide()
+    jQuery(".sidenav2>div").removeClass("colouredSelection");
+    mergeDiagram.clearSelection()
+    mergeDiagram2.clearSelection()
 }
 
 function startMerge(text) {
@@ -12,6 +15,8 @@ function startMerge(text) {
     jQuery("#editor").toggle();
     jQuery("#menuId").toggle();
     jQuery("#mergeWizard").toggle();
+    jQuery(".sidenavMain").hide()
+    jQuery(".sidenav2>div").removeClass("colouredSelection");
 
     diagram.clearSelection()
 
@@ -327,7 +332,8 @@ function finalMerge() {
     jQuery("#editor").toggle();
     jQuery("#menuId").toggle();
     jQuery("#mergeWizard").toggle();
-
+    jQuery(".sidenavMain").hide()
+    jQuery(".sidenav2>div").removeClass("colouredSelection");
 
     getHierarchy(diagram)
 

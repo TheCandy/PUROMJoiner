@@ -67,7 +67,7 @@ function getContextDivMerge(node, diag) {
     deleteSelected.appendChild(document.createTextNode("clear"))
     deleteSelected.onclick = function () {
         node.selectedMerge = node;
-        whatSelectedNode.textContent = "None";        
+        whatSelectedNode.textContent = "None";
     };
     selectionInnerDiv.appendChild(deleteSelected)
 
@@ -200,14 +200,79 @@ function getContextDiv(node, diag) {
 
     optionsDiv.empty()
 
-    var option = document.createElement("div");
-    jQuery(option).addClass("optionButton");
-    option.appendChild(document.createTextNode("Delete"))
-    option.onclick = function () {
-        // alert("Handler for .click() called.");
-        diag.remove(node);
-    };
 
-    jQuery("#contextMenuId .options").append(option)
+
+
+    switch (node.data.entity) {
+        case "b-type":
+            var option = document.createElement("div");
+            jQuery(option).addClass("optionButton");
+            option.appendChild(document.createTextNode("Delete"))
+            option.onclick = function () {
+                // alert("Handler for .click() called.");
+
+                diag.startTransaction("delete node");
+
+
+                diag.remove(node);
+                jQuery("#contextMenuId").hide();
+
+                diag.commitTransaction("delete node");
+            };
+
+            jQuery("#contextMenuId .options").append(option)
+
+
+            var option = document.createElement("div");
+            jQuery(option).addClass("optionButton");
+            option.appendChild(document.createTextNode("Hide/Unhide"))
+            option.onclick = function () {
+                diagram.model.commit(function (m) {
+                    if (node.visible) {
+                        node.visible = false;
+                    } else {
+                        node.visible = true;
+                    }
+                }, "highlight");
+            };
+
+            jQuery("#contextMenuId .options").append(option)
+
+
+            break;
+        case "b-object":
+            var possibleSelection = document.createElement("div");
+            var possibleSelectionText = document.createElement("div");
+            possibleSelectionText.appendChild(document.createTextNode("Instance of:"));
+
+            possibleSelectionText.onclick = function () {
+                jQuery.each(possibleSelection.children, function (id, child) {
+                    if (id > 0) {
+                        jQuery(child).slideToggle(1000);
+                    }
+                })
+            };
+            possibleSelection.appendChild(possibleSelectionText);
+            
+            node.instanceOfArr.forEach(node2 => {
+                console.log(node2)
+                var possibleSelectionOption = document.createElement("div");
+                possibleSelectionOption.appendChild(document.createTextNode(node2.data.text + ` id:${node2.data.key}`));
+                possibleSelectionOption.onclick = function () {
+                    diag.select(node2);
+                    diag.centerRect(node2.actualBounds);
+                };               
+                possibleSelectionOption.setAttribute("class", "elementSelection");
+                possibleSelection.appendChild(possibleSelectionOption);
+            })
+            jQuery("#contextMenuId .options").append(possibleSelection)
+            
+            break;
+        default:
+            break;
+    }
+
+
+
 
 }

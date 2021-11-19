@@ -1,11 +1,9 @@
-
-
 /* Fixed sidenav, full height */
+
 .sidenav {
     /* height: 100%; */
     width: 200px;
     /* max-width: 200px; */
-    
     /* left: 500px; */
     /* position: fixed;     */
     z-index: 1;
@@ -16,6 +14,30 @@
     padding-top: 15px;
     display: flex;
     flex-direction: column;
+
+    /* align-items: flex-end; */
+}
+
+.sidenavMain {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidenavMain>button {
+    text-decoration: none;
+    background-color: #111;
+    display: block;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 40px;
+    color: #818181;
+    transition: 0.5s;
+}
+
+.sidenavMain>button:hover {
+    background-color: #818181;
+    color: white;
 }
 
 /* Style the sidenav links and the dropdown button */
@@ -34,8 +56,6 @@
     outline: none;
 }
 
-
-
 /* On mouse-over */
 
 .sidenav button:hover, .dropdown-btn:hover {
@@ -53,8 +73,6 @@
 }
 
 /* Add an active class to the active dropdown button */
-
-
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 
@@ -102,7 +120,7 @@
     padding-right: 8px;
 }
 
-.active .fa-caret-down{
+.active .fa-caret-down {
     transform: scaleY(-1);
     /* background-color: green;
     color: white; */
@@ -116,8 +134,17 @@
     border-radius: 5px;
     background-color: #464646;
     color: white;
- }
+}
 
- .sidenav button:not(.dropdown-btn):hover {
+.sidenav button:not(.dropdown-btn):hover {
     background-color: rgb(0, 37, 37);
- }
+}
+
+.sidenav>button:last-child {
+    /* background-color: red; */
+    width: fit-content;
+    margin-right: 16px;
+
+    align-self: flex-end;
+    margin-top: 100%;
+}

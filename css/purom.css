@@ -2,27 +2,14 @@
     display: flex;
     flex-direction: row;
     height: 100vh;
-    /* height: 100%; */
     background-color: black;
-}
-
-.contextMergeMenu {
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
 }
 
 #diagramSpace {
     position: relative;
     display: flex;
     flex-direction: row;
-    height: 100%;
     flex-grow: 1;
-    /* width: 100%; */
-}
-
-#mergeControls {
-    width: 10%;
 }
 
 #editor {
@@ -31,14 +18,12 @@
     justify-content: flex-end;
     height: 100%;
     width: 100%;
-    /* flex-grow: 1; */
 }
 
 #contextMenuId {
     background-color: #f3f3f3;
     z-index: 1;
     opacity: 0.9;
-    /* float: right; */
     margin: 10px;
     width: 200px;
     height: fit-content;
@@ -70,18 +55,9 @@
     border: 1px black solid
 }
 
-/* #contextMenuId .options div:hover {
-    background-color: lightgray;
-} */
-
 #contextHeader p {
     font-weight: bold;
     padding: 5px;
-}
-
-.paletteAndContext {
-    display: flex;
-    flex-direction: column;
 }
 
 #mergeWizard {
@@ -92,15 +68,6 @@
     width: 100%;
 }
 
-#mergeDivs {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
-    /* flex-grow: 1; */
-    /* display: none; */
-}
 
 .editorWindow {
     position: absolute;
@@ -115,9 +82,8 @@
 
 .editorWindow2 {
     position: relative;
-    width: 50%;
+    height: auto;
     background-color: #e4d7b3;
-    /* padding: 50px; */
     border: 1px black solid;
 }
 
@@ -128,7 +94,6 @@
     float: right;
     margin: 10px;
     width: 150px;
-    /* height: 250px; */
     height: fit-content;
     filter: drop-shadow(-5px 5px 2px #727272);
     outline: none;
@@ -148,9 +113,7 @@
 #elementList {
     list-style-type: none;
     padding: 0;
-    /* Remove padding */
     margin: 0px;
-    /* Remove margins */
 }
 
 #elementList li {
@@ -158,7 +121,6 @@
     background-color: white;
     margin: 1px;
     font-size: 15px;
-    /* Remove margins */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -193,7 +155,6 @@
 .elementSelection {
     margin: 1px;
     font-size: 10px;
-    /* Remove margins */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -211,8 +172,6 @@
 
 #searchDiv {
     overflow-y: auto;
-    /* height:100%; */
-    /* box-sizing: border-box; */
 }
 
 #mergeSelectionDiv {
@@ -252,14 +211,6 @@ summary:before {
     transition: .25s transform ease;
 }
 
-/* 
-.content {
-    border-top: none;
-    padding: 10px;
-    border: 2px solid #888;
-    border-top: none;
-} */
-
 .content {
     display: flex;
     flex-direction: column;
@@ -267,11 +218,14 @@ summary:before {
 }
 
 .menu {
-    /* width: 15%; */
-    /* flex-grow: 1; */
     display: flex;
     flex-direction: row;
 }
+/* 
+.menuId {
+    display: flex;
+    flex-direction: row;
+} */
 
 .dropdown {
     -webkit-touch-callout: none;
@@ -280,7 +234,6 @@ summary:before {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    /* height: 2%; */
 }
 
 body {

@@ -23,8 +23,8 @@ class nodeTemplateStyle {
                 { width: 80, height: 50, margin: 4, portId: "", cursor: "pointer", name: "SHAPE", strokeWidth: 1 },  // default Shape.fill value
                 new go.Binding("fill", "entity", function (t) { return nodeVisuals(t)[0]; }),
                 new go.Binding("figure", "entity", function (t) { return nodeVisuals(t)[1]; })
-            ));            
-            this.nodeStyle.click = function (e, node) { console.log(node.selectedMerge.data);  }
+            ));
+            this.nodeStyle.click = function (e, node) { console.log(node.selectedMerge.data); }
         }
         this.nodeStyle.add($(go.TextBlock,
             {
@@ -46,12 +46,30 @@ class nodeTemplateStyle {
             },
             new go.Binding("text", "level").makeTwoWay()))
 
+        this.nodeStyle.add($(go.Shape, "Rectangle",
+            {
+                alignment: go.Spot.TopRight,
+                fill: "white",
+                width: 70,
+                height: 20,
+                visible: false
+            },
+            new go.Binding("visible", "", hasHiddenType)))
+        this.nodeStyle.add($(go.TextBlock,
+            {
+                alignment: go.Spot.TopRight,
+                text: "type hidden",
+                visible: false
+
+            },
+            new go.Binding("visible", "", hasHiddenType)))
+        // new go.Binding("text", "typeHidden").makeTwoWay()))
+
         this.customSelectBox = document.createElement("div");
     }
 }
 
 function nodeVisuals(entity) {
-
     switch (entity) {
         case "b-type":
             return ["#1992FC", "bType", true, true, "b-type"];
@@ -66,4 +84,42 @@ function nodeVisuals(entity) {
         default:
             return ["red", "StopSign", false, false, "error"];
     }
+}
+
+
+
+// DODELAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function hasHiddenType(data, text) {
+
+    // console.log(data.numOfInst)
+    // console.log(text)
+
+    // console.log(diagram.findNodeForKey(data.key).instanceOfArr)
+
+    var trueNode = diagram.findNodeForKey(data.key)
+
+    var hidden = false;
+
+    if (trueNode.instanceOfArr.length > 0) {
+        trueNode.instanceOfArr.forEach(node => {
+
+            console.log(node.visible)
+
+            if (!node.visible) {
+                console.log(node)
+                hidden = true
+            }
+        })
+
+        if (hidden) {
+            return true            
+        } else {
+            return false
+        }
+
+    } else {
+        return false
+    }
+
 }

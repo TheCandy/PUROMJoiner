@@ -23,7 +23,16 @@ slider.oninput = function () {
   output.innerHTML = this.value;
 }
 
-jQuery(".sidenav > div").hide();
+jQuery(".sidenavMain").hide()
+
+jQuery(".sidenavMain >button:last-child").click(function () {
+  jQuery(this).parent().hide()
+  jQuery(".sidenav2>div").removeClass("colouredSelection");
+});
+
+
+
+// jQuery(".sidenavMain > div").hide();
 
 
 var menuRoll = jQuery("#mySidenav").children().toArray()
@@ -34,7 +43,10 @@ menuRoll.forEach(element => {
   jQuery("#" + element.id).css("--width", "100px");
 
   element.addEventListener("click", function () {
-    jQuery(".sidenav > div").hide();
+    jQuery("#diagSidenav > div").hide();
+    jQuery(".sidenavMain").show()
+    // jQuery("#diagSidenav").show();    
+    // jQuery("#diagSidenav").show();    
     jQuery("#mySidenav > div").removeClass("colouredSelection");
     jQuery("#" + element.id).addClass("colouredSelection");
     jQuery("#" + element.id + "Container").show();
@@ -51,7 +63,10 @@ menuRoll.forEach(element => {
   jQuery("#" + element.id).css("--width", "180px");
 
   element.addEventListener("click", function () {
-    jQuery(".sidenav > div").hide();
+    jQuery("#mergeSidenav > div").hide();
+    jQuery(".sidenavMain").show()
+    // jQuery(".sidenavMain > div").hide();
+    // jQuery("#mergeSidenav").show();
     jQuery("#mySidenav2 > div").removeClass("colouredSelection");
     jQuery("#" + element.id).addClass("colouredSelection");
     jQuery("#" + element.id + "Container").show();

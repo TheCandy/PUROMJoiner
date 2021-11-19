@@ -30,6 +30,11 @@ function getHierarchy(diag) {
                 }
             });
         }
+        // node.data.numOfInst = node.instanceOfArr.length;
+
+        diagram.model.commit(function (d) {           
+                d.set(node.data, "numOfInst", node.instanceOfArr.length);
+        }, "Add number of instances to node");
     })
 
 
@@ -266,7 +271,6 @@ function TargetMerge(realMerge) {
 
     var minSubnodeCount = parseInt(jQuery('#myRange').val())
 
-console.log(minSubnodeCount)
 
     mergeDiagram2.nodes.each(function (n) {
         if (!n.data.isGroup) {
@@ -280,7 +284,6 @@ console.log(minSubnodeCount)
     });
 
     nodes.forEach(node => {
-        // var linksFrom = findIndices(links, link => link.data.from === node.data.key && link.data.category == "B-subtypeOf");
         var linksTo = findIndices(links, link => link.data.to === node.data.key && link.data.category == "B-instanceOf");
 
         // znamená, že je třída instancí. Nesmí být smazána
