@@ -41,6 +41,9 @@ class linkSubStyle extends linkTemplateStyle {
                 this.linkStyle.insertAt(1, $(go.Shape, { isPanelMain: true, stroke: "grey", strokeWidth: 2 }));
                 this.linkStyle.insertAt(2, $(go.Shape, { toArrow: "OpenTriangle", stroke: "grey", strokeWidth: 2 }));
                 this.linkStyle.elt(3).text = "B-instanceOf";
+                this.linkStyle.add($(go.Shape,
+                    { fromArrow: "Circle", visible:false, fill: "#1992FC", scale: 3, stroke: "black", strokeWidth: 0.3 }
+                ));
                 return (this.linkStyle);
             case "dashedArrow":
                 this.linkStyle.insertAt(1, $(go.Shape, { isPanelMain: true, stroke: "grey", strokeWidth: 2, strokeDashArray: [5, 5] }));

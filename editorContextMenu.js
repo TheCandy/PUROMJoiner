@@ -225,19 +225,38 @@ function getContextDiv(node, diag) {
 
             var option = document.createElement("div");
             jQuery(option).addClass("optionButton");
-            option.appendChild(document.createTextNode("Hide/Unhide"))
+            option.appendChild(document.createTextNode("Hide instance links"))
             option.onclick = function () {
                 diagram.model.commit(function (m) {
-                    if (node.visible) {
-                        node.visible = false;
-                    } else {
-                        node.visible = true;
-                    }
+                    node.linksConnected.each(function (link) {
+                        if (link.category == "B-instanceOf") {
+                                link.elt(1).visible = false;
+                                link.elt(3).visible = false;
+                                link.elt(4).visible = true;
+                        }
+                    });
                 }, "highlight");
             };
 
             jQuery("#contextMenuId .options").append(option)
 
+
+            var option = document.createElement("div");
+            jQuery(option).addClass("optionButton");
+            option.appendChild(document.createTextNode("Show instance links"))
+            option.onclick = function () {
+                diagram.model.commit(function (m) {
+                    node.linksConnected.each(function (link) {
+                        if (link.category == "B-instanceOf") {
+                                link.elt(1).visible = true;
+                                link.elt(3).visible = true;
+                                link.elt(4).visible = false;
+                        }
+                    });
+                }, "highlight");
+            };
+
+            jQuery("#contextMenuId .options").append(option)
 
             break;
         case "b-object":
@@ -253,7 +272,7 @@ function getContextDiv(node, diag) {
                 })
             };
             possibleSelection.appendChild(possibleSelectionText);
-            
+
             node.instanceOfArr.forEach(node2 => {
                 console.log(node2)
                 var possibleSelectionOption = document.createElement("div");
@@ -261,12 +280,12 @@ function getContextDiv(node, diag) {
                 possibleSelectionOption.onclick = function () {
                     diag.select(node2);
                     diag.centerRect(node2.actualBounds);
-                };               
+                };
                 possibleSelectionOption.setAttribute("class", "elementSelection");
                 possibleSelection.appendChild(possibleSelectionOption);
             })
             jQuery("#contextMenuId .options").append(possibleSelection)
-            
+
             break;
         default:
             break;

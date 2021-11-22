@@ -46,23 +46,23 @@ class nodeTemplateStyle {
             },
             new go.Binding("text", "level").makeTwoWay()))
 
-        this.nodeStyle.add($(go.Shape, "Rectangle",
-            {
-                alignment: go.Spot.TopRight,
-                fill: "white",
-                width: 70,
-                height: 20,
-                visible: false
-            },
-            new go.Binding("visible", "", hasHiddenType)))
-        this.nodeStyle.add($(go.TextBlock,
-            {
-                alignment: go.Spot.TopRight,
-                text: "type hidden",
-                visible: false
+        // this.nodeStyle.add($(go.Shape, "Rectangle",
+        //     {
+        //         alignment: go.Spot.TopRight,
+        //         fill: "white",
+        //         width: 70,
+        //         height: 20,
+        //         visible: false
+        //     },
+        //     new go.Binding("visible", "", hasHiddenType)))
+        // this.nodeStyle.add($(go.TextBlock,
+        //     {
+        //         alignment: go.Spot.TopRight,
+        //         text: "type hidden",
+        //         visible: false
 
-            },
-            new go.Binding("visible", "", hasHiddenType)))
+        //     },
+        //     new go.Binding("visible", "", hasHiddenType)))
         // new go.Binding("text", "typeHidden").makeTwoWay()))
 
         this.customSelectBox = document.createElement("div");
@@ -90,36 +90,36 @@ function nodeVisuals(entity) {
 
 // DODELAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function hasHiddenType(data, text) {
+// function hasHiddenType(data, text) {
 
-    // console.log(data.numOfInst)
-    // console.log(text)
+//     // console.log(data.numOfInst)
+//     console.log(text)
 
-    // console.log(diagram.findNodeForKey(data.key).instanceOfArr)
+//     // console.log(diagram.findNodeForKey(data.key).instanceOfArr)
 
-    var trueNode = diagram.findNodeForKey(data.key)
+//     var trueNode = diagram.findNodeForKey(data.key)
 
-    var hidden = false;
+//     var hidden = false;
 
-    if (trueNode.instanceOfArr.length > 0) {
-        trueNode.instanceOfArr.forEach(node => {
+//     if (trueNode.instanceOfArr.length > 0) {
+//         trueNode.instanceOfArr.forEach(node => {
 
-            console.log(node.visible)
+//             console.log(node.visible)
 
-            if (!node.visible) {
-                console.log(node)
-                hidden = true
-            }
-        })
+//             if (!node.visible) {
+//                 console.log(node)
+//                 hidden = true
+//             }
+//         })
 
-        if (hidden) {
-            return true            
-        } else {
-            return false
-        }
+//         if (hidden) {
+//             return true            
+//         } else {
+//             return false
+//         }
 
-    } else {
-        return false
-    }
+//     } else {
+//         return false
+//     }
 
-}
+// }
