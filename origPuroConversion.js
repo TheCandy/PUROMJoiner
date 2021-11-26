@@ -47,12 +47,12 @@ async function readText(event, caseStr) {
             if (JSON.parse(text).class == "GraphLinksModel") {
                 diagram.clearSelection()
                 diagram.model = go.Model.fromJson(text);
-                getHierarchy(diagram)
+                // getHierarchy(diagram)
             } else {
                 importJsonPURO(text);
-                getHierarchy(diagram)
+                // getHierarchy(diagram)
             }
-            getHierarchy(diagram);
+            // getHierarchy(diagram);
             break;
         case 'merge':
             startMerge(text);

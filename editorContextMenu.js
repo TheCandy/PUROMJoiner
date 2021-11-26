@@ -12,6 +12,9 @@ function ShowMenu(e) {
                         jQuery("#contextMenuId").show();
                         getContextDiv(node, e.diagram)
                     }
+                } else if (node.data.isGroup == true) {
+                    jQuery("#contextMenuId").show();
+                    getContextDivGroup(node, e.diagram)
                 } else {
                     jQuery("#contextMenuId").hide();
                 }
@@ -21,6 +24,34 @@ function ShowMenu(e) {
             return false;
         }
     }
+}
+
+function getContextDivGroup(node, diag) {
+    jQuery("#contextMenuId").css("border", "5px solid lightgray");
+    jQuery("#contextHeader").css("background-color", "lightgray");
+    jQuery("#contextHeader p").text("Group: " + node.data.text);
+
+    var optionsDiv = jQuery("#contextMenuId .options")
+
+    optionsDiv.empty()
+
+
+    var string =
+        `<div>
+        <input type="color" id="groupColor" name="groupColor"
+               value="#e66400">
+        <label for="groupColor">Color</label>
+    </div>`;
+
+    jQuery("#contextMenuId .options").append(string)
+
+    jQuery('#groupColor').val(node.data.color);
+
+    jQuery('#groupColor').change(function () {    
+        diagram.model.commit(function (d) {
+            d.set(node.data, "color", jQuery('#groupColor').val());
+        }, "Edit color");
+    });
 }
 
 function getContextDivMerge(node, diag) {
@@ -230,9 +261,9 @@ function getContextDiv(node, diag) {
                 diagram.model.commit(function (m) {
                     node.linksConnected.each(function (link) {
                         if (link.category == "B-instanceOf") {
-                                link.elt(1).visible = false;
-                                link.elt(3).visible = false;
-                                link.elt(4).visible = true;
+                            link.elt(1).visible = false;
+                            link.elt(3).visible = false;
+                            link.elt(4).visible = true;
                         }
                     });
                 }, "highlight");
@@ -248,9 +279,9 @@ function getContextDiv(node, diag) {
                 diagram.model.commit(function (m) {
                     node.linksConnected.each(function (link) {
                         if (link.category == "B-instanceOf") {
-                                link.elt(1).visible = true;
-                                link.elt(3).visible = true;
-                                link.elt(4).visible = false;
+                            link.elt(1).visible = true;
+                            link.elt(3).visible = true;
+                            link.elt(4).visible = false;
                         }
                     });
                 }, "highlight");

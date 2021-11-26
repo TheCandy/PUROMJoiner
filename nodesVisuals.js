@@ -24,7 +24,7 @@ class nodeTemplateStyle {
                 new go.Binding("fill", "entity", function (t) { return nodeVisuals(t)[0]; }),
                 new go.Binding("figure", "entity", function (t) { return nodeVisuals(t)[1]; })
             ));
-            this.nodeStyle.click = function (e, node) { console.log(node.selectedMerge.data); }
+            this.nodeStyle.click = function (e, node) { console.log(node.equivalentArray); }
         }
         this.nodeStyle.add($(go.TextBlock,
             {

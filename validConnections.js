@@ -7,7 +7,7 @@ function completeLink(category) {
         }
         d.addLinkData(newlink);
     }, "Add link based on context menu");
-    getHierarchy(diagram)
+    // getHierarchy(diagram)
 };
 
 
@@ -30,17 +30,21 @@ function newLinkStyle(e) {
         menu.adornedObject = node;
         node.addAdornment("mouseHover", menu);
         diagram.rollbackTransaction();
-    }else{
-        getHierarchy(diagram)
+    } else {
+        // getHierarchy(diagram)
     }
 }
 
 function solveLevels(from, to, category) {
-    
-    if (category === "B-instanceOf") {
-        // to.elt(4).text = parseInt(from.elt(4).text) + 1;
-        return parseInt(from.data.level) + 1;
-    } else {
+    if (from.data.entity == "b-type") {
+        if (category === "B-instanceOf") {
+            // to.elt(4).text = parseInt(from.elt(4).text) + 1;
+            return parseInt(from.data.level) + 1;
+        } else if (category === "B-subtypeOf") {
+            return parseInt(from.data.level);
+        }
+    } else if (from.data.entity == "b-relation") {
+        return "R";
     }
 }
 

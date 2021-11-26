@@ -32,9 +32,9 @@ function getHierarchy(diag) {
         }
         // node.data.numOfInst = node.instanceOfArr.length;
 
-        diagram.model.commit(function (d) {           
-                d.set(node.data, "numOfInst", node.instanceOfArr.length);
-        }, "Add number of instances to node");
+        // diagram.model.commit(function (d) {           
+        //         d.set(node.data, "numOfInst", node.instanceOfArr.length);
+        // }, "Add number of instances to node");
     })
 
 

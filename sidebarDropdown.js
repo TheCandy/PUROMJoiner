@@ -23,6 +23,19 @@ slider.oninput = function () {
   output.innerHTML = this.value;
 }
 
+var slider2 = document.getElementById("myRange2");
+var output2 = document.getElementById("demo2");
+output2.innerHTML = slider2.value / 100; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider2.oninput = function () {
+  output2.innerHTML = this.value / 100;
+}
+
+slider2.onchange = function () {
+  populateSelection()
+}
+
 jQuery(".sidenavMain").hide()
 
 jQuery(".sidenavMain >button:last-child").click(function () {

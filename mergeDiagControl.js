@@ -1,9 +1,9 @@
-function cancelMerge(){
+function cancelMerge() {
     diagram.model = mergeDiagram.model;
-    
+
     jQuery("#editor").toggle();
     jQuery("#menuId").toggle();
-    jQuery("#mergeWizard").toggle();    
+    jQuery("#mergeWizard").toggle();
     jQuery(".sidenavMain").hide()
     jQuery(".sidenav2>div").removeClass("colouredSelection");
     mergeDiagram.clearSelection()
@@ -63,49 +63,65 @@ function startMerge(text) {
     });
 
 
-    populateSelection(origNodesArray2, origNodesArray);
+    populateSelection();
 
     getHierarchy(mergeDiagram)
     getHierarchy(mergeDiagram2)
 
 }
 
-function populateSelection(origNodesArray2, origNodesArray) {
+function populateSelection() {
     var testArray = [];
 
-    for (let i = 0; i < origNodesArray2.length; i++) {
+    var origNodesArray = [];
+    var origNodesArray2 = [];
 
+    mergeDiagram.nodes.each(function (n) {
+        if (!n.data.isGroup) {
+            origNodesArray.push(n)
+        }
+    });
+
+    mergeDiagram2.nodes.each(function (n) {
+        if (!n.data.isGroup) {
+            origNodesArray2.push(n)
+        }
+    });
+
+    console.log(document.getElementById("myRange2").value)
+
+    for (let i = 0; i < origNodesArray2.length; i++) {
         if (origNodesArray2[i].data.entity == "b-type" || origNodesArray2[i].data.entity == "b-object") {
             var equivalentArray = [];
-
             var similarity = 0
 
             origNodesArray.forEach(node => {
-
-                similarity = stringSimilarity.compareTwoStrings(node.data.text.toLowerCase().replace(/\s+/g, ''), origNodesArray2[i].data.text.toLowerCase().replace(/\s+/g, ''))
-
-                if (similarity > 0.9) {
+                similarity = stringSimilarity.compareTwoStrings(node.data.text, origNodesArray2[i].data.text)
+                if (similarity > document.getElementById("myRange2").value / 100) {
                     equivalentArray.push([node, similarity])
                     testArray.push([node, origNodesArray2[i]]);
                 }
             })
 
-
+            equivalentArray.sort(function (a, b) {
+                var nameA = a[1]; // ignore upper and lowercase
+                var nameB = b[1]; // ignore upper and lowercase
+                if (nameA > nameB) {
+                    return -1;
+                }
+                if (nameA < nameB) {
+                    return 1;
+                }
+                // names must be equal
+                return 0;
+            });
 
             origNodesArray2[i].selectedMerge = origNodesArray2[i];
 
             if (equivalentArray.length > 0) {
-                // console.log(equivalentArray[0][0].key)
-
-                // origNodesArray2[i].selectedMerge = origNodesArray2[i];
-
                 origNodesArray2[i].selectedMerge = equivalentArray[0][0];
             }
 
-            // origNodesArray2[i].data.selectedMerge = equivalentArray[0];
-
-            // origNodesArray2[i].data.equivalent = equivalentArray;
-            // origNodesArray2[i].addEquivalent(equivalentArray);
             origNodesArray2[i].setEquivalent(equivalentArray);
         }
     }
@@ -114,9 +130,7 @@ function populateSelection(origNodesArray2, origNodesArray) {
     while (parent.firstChild) {
         parent.firstChild.remove()
     }
-    // console.log(testArray)
     document.getElementById("mergeSelectionDiv").appendChild(makeUL2(testArray));
-
 }
 
 function finalMerge() {

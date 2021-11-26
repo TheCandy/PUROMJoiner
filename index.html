@@ -9,6 +9,7 @@
     <!-- <link rel="stylesheet" href="../assets/css/style.css"/>  -->
     <!-- Copyright 1998-2021 by Northwoods Software Corporation. -->
     <title>PURO Joiner</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/purom.css">
     <link rel="stylesheet" href="css/menu.css">
@@ -120,6 +121,9 @@
                     <div id="equiMenuButton">Equivalents
                         <i class="fa fa-search"></i>
                     </div>
+                    <div id="settingMenuButton">Settings
+                        <i class="fa fa-cog"></i>
+                    </div>
                 </div>
 
                 <div class="sidenavMain">
@@ -164,6 +168,15 @@
                             <div id="mergeSelectionDiv"></div>
                         </div>
 
+                        <div id="settingMenuButtonContainer">
+                            <div class="slidecontainer tooltip">
+                                <input type="range" min="0" max="100" value="50" class="slider" id="myRange2">
+                                <p>Min similarity: <span id="demo2"></span></p>
+                                <span class="tooltiptext">Similarity treshold in order to consider pair for merging</span>
+                            </div>
+                        </div>
+
+
                     </div>
                     <button><i class="fa fa-ellipsis-v"></i></button>
                     <!-- <button><i class="fa fa-toggle-left"></i></button> -->
@@ -191,6 +204,8 @@
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
 <script src="sidebarDropdown.js"></script>
 <script src="Figures.js"></script>
+<script src="origPuroConversion.js"></script>
+<script src="hierarchyList.js"></script>
 <script src="searchBar.js"></script>
 <script src="linkVisuals.js"></script>
 <script src="diagramClass.js"></script>
@@ -201,12 +216,10 @@
 <script src="gojsnodes.js"></script>
 <script src="linkingContextMenu.js"></script>
 <script src="palette.js"></script>
-<script src="origPuroConversion.js"></script>
 <script src="clusterFind.js"></script>
 <script src="mergeDiagControl.js"></script>
 <script src="editorContextMenu.js"></script>
 <script src="accordion.js"></script>
-<script src="hierarchyList.js"></script>
 <script src="instanceMerge.js"></script>
 
 </html>

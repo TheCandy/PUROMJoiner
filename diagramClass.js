@@ -3,6 +3,8 @@ class editorSubClass extends go.Diagram {
         //super keyword to for calling above class constructor
         super();
 
+        this.separateClusterGroups = []
+
         // have mouse wheel events zoom in and out instead of scroll up and down
         this.toolManager.mouseWheelBehavior = go.ToolManager.WheelZoom;
         // enable Ctrl-Z to undo and Ctrl-Y to redo
@@ -10,7 +12,7 @@ class editorSubClass extends go.Diagram {
         this.scrollMode = go.Diagram.InfiniteScroll;
 
         // allow Ctrl-G to call groupSelection()
-        this.commandHandler.archetypeGroupData = { text: "Group", isGroup: true, color: "blue" };
+        this.commandHandler.archetypeGroupData = { text: "Group", isGroup: true, color: "#005511" };
         this.toolManager.linkingTool.direction = go.LinkingTool.ForwardsOnly;
         this.toolManager.linkingTool.portGravity = 1;
         this.toolManager.linkingTool.linkValidation = validConnection;
@@ -26,10 +28,12 @@ class editorSubClass extends go.Diagram {
 
         this.groupTemplate = $(go.Group, "Auto",
             { ungroupable: true, locationSpot: go.Spot.Center },
-            $(go.Shape, { fill: "white", strokeWidth: 0 }),
+            $(go.Shape, { fill: "white", strokeWidth: 3 },
+                new go.Binding("stroke", "", function (s) { return s.color }).makeTwoWay()),
             $(go.Panel, "Table",
                 $(go.Shape,
-                    { fill: "orange", strokeWidth: 0, width: 20, stretch: go.GraphObject.Vertical }),
+                    { fill: "orange", strokeWidth: 0, width: 20, stretch: go.GraphObject.Vertical },
+                    new go.Binding("fill", "", function (s) { return s.color }).makeTwoWay()),
                 $(go.Panel, "Vertical",
                     { column: 1 },
                     $(go.TextBlock,
@@ -61,8 +65,16 @@ class editorSubClass extends go.Diagram {
         this.addDiagramListener("LinkDrawn", function (e) { newLinkStyle(e) });
         this.addDiagramListener("TextEdited", function (e) { checkName(e) });
         this.addDiagramListener("ChangedSelection", function (e) { ShowMenu(e) });
-        this.addDiagramListener("SelectionDeleted", function (e) { getHierarchy(diagram) });
+        // this.addDiagramListener("SelectionDeleted", function (e) { getHierarchy(diagram) });
         this.addDiagramListener("ClipboardPasted", function (e) { changeNameCopiedNode(e) });
+
+
+        this.addModelChangedListener(function (evt) {
+            if (evt.isTransactionFinished) {
+                getHierarchy(diagram);
+            };
+        });
+
 
         var nodeStyleNode = new nodeTemplateStyle("editor");
         this.nodeTemplate = nodeStyleNode.nodeStyle;
