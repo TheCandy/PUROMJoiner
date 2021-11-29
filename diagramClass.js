@@ -37,7 +37,7 @@ class editorSubClass extends go.Diagram {
                 $(go.Panel, "Vertical",
                     { column: 1 },
                     $(go.TextBlock,
-                        { margin: 5, minSize: new go.Size(200, NaN), editable: true, isMultiline: false },
+                        { margin: 5, minSize: new go.Size(200, NaN), scale: 2, editable: true, isMultiline: false },
                         new go.Binding("text").makeTwoWay()),
                     $(go.Placeholder, { padding: 5, minSize: new go.Size(200, NaN) }),
                     $(go.TextBlock,
