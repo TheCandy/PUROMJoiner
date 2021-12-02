@@ -1,0 +1,912 @@
+{
+  "class": "GraphLinksModel",
+  "nodeDataArray": [
+    {
+      "entity": "b-type",
+      "text": "Agent",
+      "category": "node",
+      "level": 1,
+      "key": -1,
+      "loc": {
+        "class": "go.Point",
+        "x": -556.9599045107911,
+        "y": -245.5879399539626
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Person",
+      "category": "node",
+      "level": 1,
+      "key": -2,
+      "loc": {
+        "class": "go.Point",
+        "x": 9.116264849430237,
+        "y": -2.1791292405177103
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-object",
+      "text": "Jan",
+      "category": "node",
+      "key": -3,
+      "loc": {
+        "class": "go.Point",
+        "x": 202.90145382488402,
+        "y": 338.71611622022584
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-attribute",
+      "text": "title",
+      "category": "node",
+      "key": -4,
+      "loc": {
+        "class": "go.Point",
+        "x": 357.92539305943865,
+        "y": 361.78946422308496
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-valuation",
+      "text": "Mr",
+      "category": "node",
+      "key": -5,
+      "loc": {
+        "class": "go.Point",
+        "x": 520.4165848996482,
+        "y": 404.6525523458542
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-type",
+      "text": "Image",
+      "category": "node",
+      "level": 1,
+      "key": -6,
+      "loc": {
+        "class": "go.Point",
+        "x": -1299.8185317964865,
+        "y": -376.882479448976
+      },
+      "group": -53
+    },
+    {
+      "entity": "b-type",
+      "text": "Document",
+      "category": "node",
+      "level": 1,
+      "key": -7,
+      "loc": {
+        "class": "go.Point",
+        "x": -1164.104139740212,
+        "y": -664.8955606724296
+      },
+      "group": -53
+    },
+    {
+      "entity": "b-object",
+      "text": "www.example.com/jan.jpg",
+      "category": "node",
+      "key": -8,
+      "loc": {
+        "class": "go.Point",
+        "x": -917.130702209522,
+        "y": -293.63530687732015
+      },
+      "group": -53
+    },
+    {
+      "entity": "b-relation",
+      "text": "img",
+      "category": "node",
+      "key": -9,
+      "loc": {
+        "class": "go.Point",
+        "x": -288.77486236835557,
+        "y": 47.89181178825555
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-attribute",
+      "text": "givenName",
+      "category": "node",
+      "key": -10,
+      "loc": {
+        "class": "go.Point",
+        "x": 242.82534341583448,
+        "y": 431.3324024949168
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-attribute",
+      "text": "familyName",
+      "category": "node",
+      "key": -11,
+      "loc": {
+        "class": "go.Point",
+        "x": 365.86501592472587,
+        "y": 430.2448691345512
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-valuation",
+      "text": "Novak",
+      "category": "node",
+      "key": -12,
+      "loc": {
+        "class": "go.Point",
+        "x": 386.09954136473016,
+        "y": 583.1436691069443
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-valuation",
+      "text": "Jan",
+      "category": "node",
+      "key": -13,
+      "loc": {
+        "class": "go.Point",
+        "x": 260.1439784563303,
+        "y": 562.5071308787715
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-object",
+      "text": "Pavel",
+      "category": "node",
+      "key": -14,
+      "loc": {
+        "class": "go.Point",
+        "x": 224.124141466271,
+        "y": 132.9775506739565
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-relation",
+      "text": "knows",
+      "category": "node",
+      "key": -15,
+      "loc": {
+        "class": "go.Point",
+        "x": 185.49107206011024,
+        "y": 206.06805621915203
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-attribute",
+      "text": "age",
+      "category": "node",
+      "key": -16,
+      "loc": {
+        "class": "go.Point",
+        "x": 341.26267724094396,
+        "y": 143.97234476481577
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-valuation",
+      "text": "30",
+      "category": "node",
+      "key": -17,
+      "loc": {
+        "class": "go.Point",
+        "x": 467.6862261035909,
+        "y": 197.5765305525976
+      },
+      "group": -49
+    },
+    {
+      "entity": "b-type",
+      "text": "Thing",
+      "category": "node",
+      "level": 1,
+      "key": -18,
+      "loc": {
+        "class": "go.Point",
+        "x": -417.33652354906735,
+        "y": -938.3788750253824
+      }
+    },
+    {
+      "key": -20,
+      "group": -52,
+      "entity": "b-type",
+      "text": "Organization",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": -1091.6505350279037,
+        "y": 166.12372967238474
+      }
+    },
+    {
+      "key": -24,
+      "group": -53,
+      "entity": "b-object",
+      "text": "example.com/vse_budova.jpg",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1346.7387343266275,
+        "y": -180.7625678319895
+      }
+    },
+    {
+      "key": -23,
+      "group": -52,
+      "entity": "b-relation",
+      "text": "depiction",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1429.2492651416103,
+        "y": 473.2227115601686
+      }
+    },
+    {
+      "key": -27,
+      "group": -52,
+      "entity": "b-object",
+      "text": "VŠE",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1324.8094593096134,
+        "y": 519.6811336485496
+      }
+    },
+    {
+      "key": -21,
+      "group": -52,
+      "entity": "b-attribute",
+      "text": "name",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1315.099739408599,
+        "y": 644.1543923827414
+      }
+    },
+    {
+      "key": -29,
+      "group": -52,
+      "entity": "b-relation",
+      "text": "based_near",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1139.3338101311867,
+        "y": 569.7331772933812
+      }
+    },
+    {
+      "key": -31,
+      "group": -52,
+      "entity": "b-relation",
+      "text": "homepage",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1349.6530815786743,
+        "y": 382.8255552460987
+      }
+    },
+    {
+      "key": -22,
+      "group": -52,
+      "entity": "b-valuation",
+      "text": "Prague University of Economics and Business",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1424.479387510003,
+        "y": 731.0362199563972
+      }
+    },
+    {
+      "key": -28,
+      "group": -52,
+      "entity": "b-object",
+      "text": "ABC Co.",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1096.1929205180609,
+        "y": 410.30852260093343
+      }
+    },
+    {
+      "key": -33,
+      "group": -52,
+      "entity": "b-relation",
+      "text": "homepage",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1199.6835920250596,
+        "y": 469.46971146217766
+      }
+    },
+    {
+      "key": -34,
+      "group": -52,
+      "entity": "b-attribute",
+      "text": "name",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1035.0529972321574,
+        "y": 499.95381423717913
+      }
+    },
+    {
+      "key": -35,
+      "group": -52,
+      "entity": "b-valuation",
+      "text": "ABC company Ltd.",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -977.6249251437116,
+        "y": 614.7382120272248
+      }
+    },
+    {
+      "key": -30,
+      "group": -53,
+      "entity": "b-object",
+      "text": "www.vse.cz",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1145.9346347575151,
+        "y": -122.65035842840962
+      }
+    },
+    {
+      "key": -32,
+      "group": -53,
+      "entity": "b-object",
+      "text": "abccomp.com",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -952.4685431714643,
+        "y": -174.0877758483208
+      }
+    },
+    {
+      "key": -36,
+      "group": -52,
+      "entity": "b-type",
+      "text": "Group",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": -849.9183243077998,
+        "y": 114.61822754664968
+      }
+    },
+    {
+      "key": -37,
+      "group": -52,
+      "entity": "b-object",
+      "text": "Hobby modelers",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -855.9581021999397,
+        "y": 270.4549908648021
+      }
+    },
+    {
+      "key": -38,
+      "group": -52,
+      "entity": "b-attribute",
+      "text": "name",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -852.5340370359411,
+        "y": 390.94496823898476
+      }
+    },
+    {
+      "key": -39,
+      "group": -52,
+      "entity": "b-valuation",
+      "text": "Prague hobby modelers",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -875.9362911337682,
+        "y": 509.53168891233963
+      }
+    },
+    {
+      "key": -41,
+      "group": -57,
+      "entity": "b-type",
+      "text": "Project",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": -51.41389089121309,
+        "y": -570.703835837448
+      }
+    },
+    {
+      "key": -42,
+      "group": -57,
+      "entity": "b-object",
+      "text": "Diploma thesis",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -40.376123899164654,
+        "y": -404.22229354662676
+      }
+    },
+    {
+      "key": -45,
+      "group": -49,
+      "entity": "b-relation",
+      "text": "currentProject",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -284.58659305967365,
+        "y": 275.01371180959285
+      }
+    },
+    {
+      "key": -46,
+      "group": -57,
+      "entity": "b-relation",
+      "text": "hasDocument",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -164.82247232817502,
+        "y": -399.73373973880683
+      }
+    },
+    {
+      "key": -44,
+      "group": -49,
+      "entity": "b-object",
+      "text": "Daniel",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -127.50747409017848,
+        "y": 427.298409220298
+      }
+    },
+    {
+      "key": -54,
+      "group": -49,
+      "entity": "b-relation",
+      "text": "schoolHomepage",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -295.6694496194197,
+        "y": 354.56641839473934
+      }
+    },
+    {
+      "key": -55,
+      "group": -49,
+      "entity": "b-relation",
+      "text": "workplaceHomepage",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -304.8962962599426,
+        "y": 454.1744835708944
+      }
+    },
+    {
+      "key": -56,
+      "group": -49,
+      "entity": "b-relation",
+      "text": "made",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -282.16030384745505,
+        "y": 177.23700127340675
+      }
+    },
+    {
+      "key": -58,
+      "group": -52,
+      "entity": "b-relation",
+      "text": "member",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -619.4803567171602,
+        "y": 267.55920289622924
+      }
+    },
+    {
+      "key": -47,
+      "group": -53,
+      "entity": "b-object",
+      "text": "Slučování modelů PURO pro tvorbu ontologií v OWL",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -1052.1847287785426,
+        "y": -519.2664922388494
+      }
+    },
+    {
+      "key": -51,
+      "group": -53,
+      "entity": "b-relation",
+      "text": "primaryTopic",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -878.3562436621149,
+        "y": -665.7451364109029
+      }
+    },
+    {
+      "key": -50,
+      "entity": "b-object",
+      "text": "PURO Merging",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": -580.8521341383989,
+        "y": -734.7967442410365
+      }
+    },
+    {
+      "text": "Person",
+      "isGroup": true,
+      "color": "#ff600a",
+      "key": -49
+    },
+    {
+      "text": "Org. and group",
+      "isGroup": true,
+      "color": "#008a1c",
+      "key": -52
+    },
+    {
+      "text": "Document",
+      "isGroup": true,
+      "color": "#1100ff",
+      "key": -53
+    },
+    {
+      "text": "Project",
+      "isGroup": true,
+      "color": "#ffdd00",
+      "key": -57
+    }
+  ],
+  "linkDataArray": [
+    {
+      "from": -2,
+      "to": -1,
+      "category": "B-subtypeOf"
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -3,
+      "to": -2
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -4
+    },
+    {
+      "category": "dashedArrow",
+      "from": -4,
+      "to": -5
+    },
+    {
+      "from": -6,
+      "to": -7,
+      "category": "B-subtypeOf"
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -9
+    },
+    {
+      "category": "dashedArrow",
+      "from": -9,
+      "to": -8
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -8,
+      "to": -6
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -11
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -10
+    },
+    {
+      "category": "dashedArrow",
+      "from": -11,
+      "to": -12
+    },
+    {
+      "category": "dashedArrow",
+      "from": -10,
+      "to": -13
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -14,
+      "to": -2
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -15
+    },
+    {
+      "category": "dashedArrow",
+      "from": -15,
+      "to": -14
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -14,
+      "to": -16
+    },
+    {
+      "category": "dashedArrow",
+      "from": -16,
+      "to": -17
+    },
+    {
+      "from": -7,
+      "to": -18,
+      "category": "B-subtypeOf"
+    },
+    {
+      "from": -1,
+      "to": -18,
+      "category": "B-subtypeOf"
+    },
+    {
+      "from": -20,
+      "to": -1,
+      "category": "B-subtypeOf"
+    },
+    {
+      "category": "dashedArrow",
+      "from": -21,
+      "to": -22
+    },
+    {
+      "category": "dashedArrow",
+      "from": -23,
+      "to": -24
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -24,
+      "to": -6
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -27,
+      "to": -20
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -27,
+      "to": -21
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -27,
+      "to": -23
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -28,
+      "to": -20
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -28,
+      "to": -29
+    },
+    {
+      "category": "dashedArrow",
+      "from": -29,
+      "to": -27
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -30,
+      "to": -7
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -27,
+      "to": -31
+    },
+    {
+      "category": "dashedArrow",
+      "from": -31,
+      "to": -30
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -32,
+      "to": -7
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -28,
+      "to": -33
+    },
+    {
+      "category": "dashedArrow",
+      "from": -33,
+      "to": -32
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -28,
+      "to": -34
+    },
+    {
+      "category": "dashedArrow",
+      "from": -34,
+      "to": -35
+    },
+    {
+      "from": -36,
+      "to": -1,
+      "category": "B-subtypeOf"
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -37,
+      "to": -36
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -37,
+      "to": -38
+    },
+    {
+      "category": "dashedArrow",
+      "from": -38,
+      "to": -39
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -42,
+      "to": -41
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -44,
+      "to": -2
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -44,
+      "to": -45
+    },
+    {
+      "category": "dashedArrow",
+      "from": -45,
+      "to": -42
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -42,
+      "to": -46
+    },
+    {
+      "category": "dashedArrow",
+      "from": -46,
+      "to": -47
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -47,
+      "to": -7
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -50,
+      "to": -18
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -47,
+      "to": -51
+    },
+    {
+      "category": "dashedArrow",
+      "from": -51,
+      "to": -50
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -44,
+      "to": -54
+    },
+    {
+      "category": "dashedArrow",
+      "from": -54,
+      "to": -30
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -44,
+      "to": -55
+    },
+    {
+      "category": "dashedArrow",
+      "from": -55,
+      "to": -32
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -44,
+      "to": -56
+    },
+    {
+      "category": "dashedArrow",
+      "from": -56,
+      "to": -47
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -37,
+      "to": -58
+    },
+    {
+      "category": "dashedArrow",
+      "from": -58,
+      "to": -44
+    },
+    {
+      "from": -41,
+      "to": -18,
+      "category": "B-subtypeOf"
+    }
+  ]
+}

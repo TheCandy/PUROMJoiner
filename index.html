@@ -136,14 +136,14 @@
                         </div>
 
                         <div id="sourceMergeMenuButtonContainer">
-                            <button onclick="TargetMerge(true)">Source merge</button>
+                            <button onclick="SourceMerge(true)">Source merge</button>
                             <button onclick="cancelMerge()">Cancel merge</button>
 
                             <button class="dropdown-btn">Settings
                                 <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-container">
-                                <button onclick="TargetMerge(false)">Show classes to delete</button>
+                                <button onclick="SourceMerge(false)">Show classes to delete</button>
                                 <div>
                                     <label class="container tooltip">Del if no instance
                                         <input type="checkbox" id="delClassNoInstance" name="delClassNoInstance"
@@ -202,24 +202,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//unpkg.com/string-similarity/umd/string-similarity.min.js"></script>
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
-<script src="sidebarDropdown.js"></script>
-<script src="Figures.js"></script>
-<script src="origPuroConversion.js"></script>
+<script src="menus/sidebarDropdown.js"></script>
+<script src="visuals/Figures.js"></script>
+<script src="importExport/origPuroConversion.js"></script>
 <script src="hierarchyList.js"></script>
-<script src="searchBar.js"></script>
-<script src="linkVisuals.js"></script>
-<script src="diagramClass.js"></script>
-<script src="nodesVisuals.js"></script>
+<script src="merging/sourceMerge.js"></script>
+<script src="redundantSublinks.js"></script>
+<script src="dependenciesTransfer.js"></script>
+<script src="menus/searchBar.js"></script>
+<script src="GoJSsetup/linkVisuals.js"></script>
+<script src="GoJSsetup/diagramClass.js"></script>
+<script src="GoJSsetup/nodesVisuals.js"></script>
 <script src="solveNames.js"></script>
-<script src="validConnections.js"></script>
-<script src="nodeTest.js"></script>
+<script src="connectionValidation.js"></script>
+<script src="GoJSsetup/nodeSubClass.js"></script>
 <script src="gojsnodes.js"></script>
-<script src="linkingContextMenu.js"></script>
-<script src="palette.js"></script>
-<script src="clusterFind.js"></script>
-<script src="mergeDiagControl.js"></script>
+<script src="GoJSsetup/linkingContextMenu.js"></script>
+<script src="GoJSsetup/palette.js"></script>
+<script src="menus/clusterFind.js"></script>
+<script src="merging/symmetricMerging.js"></script>
 <script src="editorContextMenu.js"></script>
-<script src="accordion.js"></script>
-<script src="instanceMerge.js"></script>
+<script src="visuals/accordion.js"></script>
+<script src="merging/instanceMerge.js"></script>
 
 </html>

@@ -122,7 +122,6 @@ function getContextDivMerge(node, diag) {
     possibleSelection.appendChild(possibleSelectionText);
 
     node.equivalent.forEach(node2 => {
-        // console.log(node2)
         var possibleSelectionOption = document.createElement("div");
         possibleSelectionOption.appendChild(document.createTextNode(node2[0].data.text + ` id:${node2[0].data.key} similarity:${Math.round((node2[1] + Number.EPSILON) * 100) / 100}`));
         possibleSelectionOption.onmouseenter = function () {
@@ -153,7 +152,6 @@ function getContextDivMerge(node, diag) {
 
     inputBox.addEventListener('input', function () {
         var testArray = [];
-        console.log(inputBox.value.length)
 
         if (inputBox.value.length > 0) {
 
@@ -305,7 +303,6 @@ function getContextDiv(node, diag) {
             possibleSelection.appendChild(possibleSelectionText);
 
             node.instanceOfArr.forEach(node2 => {
-                console.log(node2)
                 var possibleSelectionOption = document.createElement("div");
                 possibleSelectionOption.appendChild(document.createTextNode(node2.data.text + ` id:${node2.data.key}`));
                 possibleSelectionOption.onclick = function () {

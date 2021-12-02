@@ -1,0 +1,305 @@
+{
+  "class": "GraphLinksModel",
+  "nodeDataArray": [
+    {
+      "entity": "b-type",
+      "text": "Agent",
+      "category": "node",
+      "level": 1,
+      "key": -1,
+      "loc": {
+        "class": "go.Point",
+        "x": 209.24841384017293,
+        "y": -378.45652774264505
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Person",
+      "category": "node",
+      "level": 1,
+      "key": -2,
+      "loc": {
+        "class": "go.Point",
+        "x": 129.09087948934175,
+        "y": -236.51771958916868
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "Jan",
+      "category": "node",
+      "key": -3,
+      "loc": {
+        "class": "go.Point",
+        "x": 27.03718271172645,
+        "y": -108.98376316625344
+      }
+    },
+    {
+      "entity": "b-attribute",
+      "text": "title",
+      "category": "node",
+      "key": -4,
+      "loc": {
+        "class": "go.Point",
+        "x": 136.9258872296224,
+        "y": 11.551386835502115
+      }
+    },
+    {
+      "entity": "b-valuation",
+      "text": "Mr",
+      "category": "node",
+      "key": -5,
+      "loc": {
+        "class": "go.Point",
+        "x": 137.44670251580698,
+        "y": 111.74134160721195
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Image",
+      "category": "node",
+      "level": 1,
+      "key": -6,
+      "loc": {
+        "class": "go.Point",
+        "x": -173.87553628936394,
+        "y": -242.39394478634432
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Document",
+      "category": "node",
+      "level": 1,
+      "key": -7,
+      "loc": {
+        "class": "go.Point",
+        "x": -169.27711141420377,
+        "y": -396.20264969765975
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "www.example.com/jan.jpg",
+      "category": "node",
+      "key": -8,
+      "loc": {
+        "class": "go.Point",
+        "x": -309.4793388690083,
+        "y": -91.34631894562244
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "img",
+      "category": "node",
+      "key": -9,
+      "loc": {
+        "class": "go.Point",
+        "x": -139.82787899431074,
+        "y": -44.54921567819771
+      }
+    },
+    {
+      "entity": "b-attribute",
+      "text": "givenName",
+      "category": "node",
+      "key": -10,
+      "loc": {
+        "class": "go.Point",
+        "x": -39.896284050130674,
+        "y": 10.820209883379562
+      }
+    },
+    {
+      "entity": "b-attribute",
+      "text": "familyName",
+      "category": "node",
+      "key": -11,
+      "loc": {
+        "class": "go.Point",
+        "x": 50.82993160978839,
+        "y": 9.471949021411149
+      }
+    },
+    {
+      "entity": "b-valuation",
+      "text": "Novak",
+      "category": "node",
+      "key": -12,
+      "loc": {
+        "class": "go.Point",
+        "x": 41.08694096996277,
+        "y": 113.83180679000861
+      }
+    },
+    {
+      "entity": "b-valuation",
+      "text": "Jan",
+      "category": "node",
+      "key": -13,
+      "loc": {
+        "class": "go.Point",
+        "x": -52.78539227875092,
+        "y": 111.12216954172055
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "Pavel",
+      "category": "node",
+      "key": -14,
+      "loc": {
+        "class": "go.Point",
+        "x": 336.31164837429054,
+        "y": -187.29527738691604
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "knows",
+      "category": "node",
+      "key": -15,
+      "loc": {
+        "class": "go.Point",
+        "x": 199.90058522797682,
+        "y": -110.17357488415729
+      }
+    },
+    {
+      "entity": "b-attribute",
+      "text": "age",
+      "category": "node",
+      "key": -16,
+      "loc": {
+        "class": "go.Point",
+        "x": 440.12161904640664,
+        "y": -56.718720165275144
+      }
+    },
+    {
+      "entity": "b-valuation",
+      "text": "30",
+      "category": "node",
+      "key": -17,
+      "loc": {
+        "class": "go.Point",
+        "x": 453.845349237729,
+        "y": 42.2897638954386
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Thing",
+      "category": "node",
+      "level": 1,
+      "key": -18,
+      "loc": {
+        "class": "go.Point",
+        "x": 24.57548774704926,
+        "y": -473.6602018931182
+      }
+    }
+  ],
+  "linkDataArray": [
+    {
+      "from": -2,
+      "to": -1,
+      "category": "B-subtypeOf"
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -3,
+      "to": -2
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -4
+    },
+    {
+      "category": "dashedArrow",
+      "from": -4,
+      "to": -5
+    },
+    {
+      "from": -6,
+      "to": -7,
+      "category": "B-subtypeOf"
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -9
+    },
+    {
+      "category": "dashedArrow",
+      "from": -9,
+      "to": -8
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -8,
+      "to": -6
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -11
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -10
+    },
+    {
+      "category": "dashedArrow",
+      "from": -11,
+      "to": -12
+    },
+    {
+      "category": "dashedArrow",
+      "from": -10,
+      "to": -13
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -14,
+      "to": -2
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -3,
+      "to": -15
+    },
+    {
+      "category": "dashedArrow",
+      "from": -15,
+      "to": -14
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -14,
+      "to": -16
+    },
+    {
+      "category": "dashedArrow",
+      "from": -16,
+      "to": -17
+    },
+    {
+      "from": -7,
+      "to": -18,
+      "category": "B-subtypeOf"
+    },
+    {
+      "from": -1,
+      "to": -18,
+      "category": "B-subtypeOf"
+    }
+  ]
+}

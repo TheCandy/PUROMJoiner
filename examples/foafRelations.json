@@ -1,0 +1,346 @@
+{
+  "class": "GraphLinksModel",
+  "nodeDataArray": [
+    {
+      "entity": "b-type",
+      "text": "Project",
+      "category": "node",
+      "level": 1,
+      "key": -1,
+      "loc": {
+        "class": "go.Point",
+        "x": 64.59856645588664,
+        "y": -315.3514568211624
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "Diploma thesis",
+      "category": "node",
+      "key": -2,
+      "loc": {
+        "class": "go.Point",
+        "x": -112.8667842341701,
+        "y": -12.197786677793388
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Person",
+      "category": "node",
+      "level": 1,
+      "key": -3,
+      "loc": {
+        "class": "go.Point",
+        "x": 264.8643578206944,
+        "y": -296.56767707447466
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "Daniel",
+      "category": "node",
+      "key": -4,
+      "loc": {
+        "class": "go.Point",
+        "x": 256.5100652833212,
+        "y": -174.6428015741382
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "currentProject",
+      "category": "node",
+      "key": -5,
+      "loc": {
+        "class": "go.Point",
+        "x": 156.3489908705856,
+        "y": -29.843012054064047
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "hasDocument",
+      "category": "node",
+      "key": -6,
+      "loc": {
+        "class": "go.Point",
+        "x": 327.93507302930425,
+        "y": 266.01235591620383
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "Slučování modelů PURO pro tvorbu ontologií v OWL",
+      "category": "node",
+      "key": -7,
+      "loc": {
+        "class": "go.Point",
+        "x": 746.2419270265565,
+        "y": 9.136459558618526
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Document",
+      "category": "node",
+      "level": 1,
+      "key": -8,
+      "loc": {
+        "class": "go.Point",
+        "x": 551.3737514134481,
+        "y": -330.0135033176548
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Thing",
+      "category": "node",
+      "level": 1,
+      "key": -9,
+      "loc": {
+        "class": "go.Point",
+        "x": 293.5256484766675,
+        "y": -569.7379675020054
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "PURO Merging",
+      "category": "node",
+      "key": -10,
+      "loc": {
+        "class": "go.Point",
+        "x": 781.286046361,
+        "y": -308.1697272199641
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "primaryTopic",
+      "category": "node",
+      "key": -11,
+      "loc": {
+        "class": "go.Point",
+        "x": 885.6151339765103,
+        "y": -164.57095271126627
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "www.vse.cz",
+      "category": "node",
+      "key": -12,
+      "loc": {
+        "class": "go.Point",
+        "x": 414.20039779127427,
+        "y": -224.12776264098062
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "abccomp.com",
+      "category": "node",
+      "key": -13,
+      "loc": {
+        "class": "go.Point",
+        "x": 555.2467704703793,
+        "y": -23.439989340654677
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "schoolHomepage",
+      "category": "node",
+      "key": -14,
+      "loc": {
+        "class": "go.Point",
+        "x": 403.94376132322617,
+        "y": -96.57883663646707
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "workplaceHomepage",
+      "category": "node",
+      "key": -15,
+      "loc": {
+        "class": "go.Point",
+        "x": 400.91894179621437,
+        "y": 61.40299834277373
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "made",
+      "category": "node",
+      "key": -16,
+      "loc": {
+        "class": "go.Point",
+        "x": 301.38942067392634,
+        "y": 147.23793475249443
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Group",
+      "category": "node",
+      "level": 1,
+      "key": -17,
+      "loc": {
+        "class": "go.Point",
+        "x": 173.92737526843956,
+        "y": -314.5381865263727
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "member",
+      "category": "node",
+      "key": -18,
+      "loc": {
+        "class": "go.Point",
+        "x": 82.37866011982815,
+        "y": -86.09468517133405
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "Hobby modelers",
+      "category": "node",
+      "key": -19,
+      "loc": {
+        "class": "go.Point",
+        "x": 58.6494953450929,
+        "y": -185.65139987503943
+      }
+    }
+  ],
+  "linkDataArray": [
+    {
+      "category": "B-instanceOf",
+      "from": -2,
+      "to": -1
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -4,
+      "to": -3
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -4,
+      "to": -5
+    },
+    {
+      "category": "dashedArrow",
+      "from": -5,
+      "to": -2
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -2,
+      "to": -6
+    },
+    {
+      "category": "dashedArrow",
+      "from": -6,
+      "to": -7
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -7,
+      "to": -8
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -10,
+      "to": -9
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -7,
+      "to": -11
+    },
+    {
+      "category": "dashedArrow",
+      "from": -11,
+      "to": -10
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -12,
+      "to": -8
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -13,
+      "to": -8
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -4,
+      "to": -14
+    },
+    {
+      "category": "dashedArrow",
+      "from": -14,
+      "to": -12
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -4,
+      "to": -15
+    },
+    {
+      "category": "dashedArrow",
+      "from": -15,
+      "to": -13
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -4,
+      "to": -16
+    },
+    {
+      "category": "dashedArrow",
+      "from": -16,
+      "to": -7
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -19,
+      "to": -17
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -19,
+      "to": -18
+    },
+    {
+      "category": "dashedArrow",
+      "from": -18,
+      "to": -4
+    },
+    {
+      "from": -3,
+      "to": -9,
+      "category": "B-subtypeOf"
+    },
+    {
+      "from": -8,
+      "to": -9,
+      "category": "B-subtypeOf"
+    },
+    {
+      "from": -17,
+      "to": -9,
+      "category": "B-subtypeOf"
+    },
+    {
+      "from": -1,
+      "to": -9,
+      "category": "B-subtypeOf"
+    }
+  ]
+}

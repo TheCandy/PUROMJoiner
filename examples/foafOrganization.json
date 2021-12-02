@@ -1,0 +1,380 @@
+{
+  "class": "GraphLinksModel",
+  "nodeDataArray": [
+    {
+      "entity": "b-type",
+      "text": "Agent",
+      "category": "node",
+      "level": 1,
+      "key": -1,
+      "loc": {
+        "class": "go.Point",
+        "x": 4.983830631876343,
+        "y": -536.4029735945784
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Organization",
+      "category": "node",
+      "level": 1,
+      "key": -2,
+      "loc": {
+        "class": "go.Point",
+        "x": -35.69793356333579,
+        "y": -364.21207721175153
+      }
+    },
+    {
+      "entity": "b-attribute",
+      "text": "name",
+      "category": "node",
+      "key": -3,
+      "loc": {
+        "class": "go.Point",
+        "x": -26.239146273629164,
+        "y": 106.06086126411553
+      }
+    },
+    {
+      "entity": "b-valuation",
+      "text": "Prague University of Economics and Business",
+      "category": "node",
+      "key": -4,
+      "loc": {
+        "class": "go.Point",
+        "x": 4.531884547213025,
+        "y": 171.96802530608522
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "depiction",
+      "category": "node",
+      "key": -5,
+      "loc": {
+        "class": "go.Point",
+        "x": -397.50407280917324,
+        "y": 83.99587606568345
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "example.com/vse_budova.jpg",
+      "category": "node",
+      "key": -6,
+      "loc": {
+        "class": "go.Point",
+        "x": -576.8299237621823,
+        "y": -113.0919872345664
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Image",
+      "category": "node",
+      "level": 1,
+      "key": -7,
+      "loc": {
+        "class": "go.Point",
+        "x": -490.48008723540846,
+        "y": -368.64470756117464
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Document",
+      "category": "node",
+      "level": 1,
+      "key": -8,
+      "loc": {
+        "class": "go.Point",
+        "x": -287.8892329729982,
+        "y": -527.3147941321428
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "VŠE",
+      "category": "node",
+      "key": -9,
+      "loc": {
+        "class": "go.Point",
+        "x": -115.20074187492024,
+        "y": -10.370956643201453
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "ABC Co.",
+      "category": "node",
+      "key": -10,
+      "loc": {
+        "class": "go.Point",
+        "x": 95.83828925395397,
+        "y": -144.78370821107765
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "based_near",
+      "category": "node",
+      "key": -11,
+      "loc": {
+        "class": "go.Point",
+        "x": -9.714784860118428,
+        "y": -36.363811392076734
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "www.vse.cz",
+      "category": "node",
+      "key": -12,
+      "loc": {
+        "class": "go.Point",
+        "x": -331.45278071599853,
+        "y": -215.85776725181876
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "homepage",
+      "category": "node",
+      "key": -13,
+      "loc": {
+        "class": "go.Point",
+        "x": -237.46483210907877,
+        "y": -51.05957860655211
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "abccomp.com",
+      "category": "node",
+      "key": -14,
+      "loc": {
+        "class": "go.Point",
+        "x": -230.94003274192852,
+        "y": -325.20979291983946
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "homepage",
+      "category": "node",
+      "key": -15,
+      "loc": {
+        "class": "go.Point",
+        "x": -154.50534659822094,
+        "y": -200.49034208810338
+      }
+    },
+    {
+      "entity": "b-attribute",
+      "text": "name",
+      "category": "node",
+      "key": -16,
+      "loc": {
+        "class": "go.Point",
+        "x": 232.03393904378962,
+        "y": -31.05144176139694
+      }
+    },
+    {
+      "entity": "b-valuation",
+      "text": "ABC company Ltd.",
+      "category": "node",
+      "key": -17,
+      "loc": {
+        "class": "go.Point",
+        "x": 367.61519894803956,
+        "y": 120.32191032303392
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Group",
+      "category": "node",
+      "level": 1,
+      "key": -19,
+      "loc": {
+        "class": "go.Point",
+        "x": 154.49092784432685,
+        "y": -378.82327005373645
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "Hobby modelers",
+      "category": "node",
+      "key": -20,
+      "loc": {
+        "class": "go.Point",
+        "x": 327.26275125889805,
+        "y": -284.68688681897936
+      }
+    },
+    {
+      "entity": "b-attribute",
+      "text": "name",
+      "category": "node",
+      "key": -21,
+      "loc": {
+        "class": "go.Point",
+        "x": 440.2435033921694,
+        "y": -142.2969602936884
+      }
+    },
+    {
+      "entity": "b-valuation",
+      "text": "Prague hobby modelers",
+      "category": "node",
+      "key": -22,
+      "loc": {
+        "class": "go.Point",
+        "x": 596.0016591234696,
+        "y": -14.516648490994562
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Thing",
+      "category": "node",
+      "level": 1,
+      "key": -23,
+      "loc": {
+        "class": "go.Point",
+        "x": -139.4789945194626,
+        "y": -703.8945619347932
+      }
+    }
+  ],
+  "linkDataArray": [
+    {
+      "from": -2,
+      "to": -1,
+      "category": "B-subtypeOf"
+    },
+    {
+      "category": "dashedArrow",
+      "from": -3,
+      "to": -4
+    },
+    {
+      "category": "dashedArrow",
+      "from": -5,
+      "to": -6
+    },
+    {
+      "from": -7,
+      "to": -8,
+      "category": "B-subtypeOf"
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -6,
+      "to": -7
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -9,
+      "to": -2
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -9,
+      "to": -3
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -9,
+      "to": -5
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -10,
+      "to": -2
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -10,
+      "to": -11
+    },
+    {
+      "category": "dashedArrow",
+      "from": -11,
+      "to": -9
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -12,
+      "to": -8
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -9,
+      "to": -13
+    },
+    {
+      "category": "dashedArrow",
+      "from": -13,
+      "to": -12
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -14,
+      "to": -8
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -10,
+      "to": -15
+    },
+    {
+      "category": "dashedArrow",
+      "from": -15,
+      "to": -14
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -10,
+      "to": -16
+    },
+    {
+      "category": "dashedArrow",
+      "from": -16,
+      "to": -17
+    },
+    {
+      "from": -19,
+      "to": -1,
+      "category": "B-subtypeOf"
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -20,
+      "to": -19
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -20,
+      "to": -21
+    },
+    {
+      "category": "dashedArrow",
+      "from": -21,
+      "to": -22
+    },
+    {
+      "from": -1,
+      "to": -23,
+      "category": "B-subtypeOf"
+    },
+    {
+      "from": -8,
+      "to": -23,
+      "category": "B-subtypeOf"
+    }
+  ]
+}
