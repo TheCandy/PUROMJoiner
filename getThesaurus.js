@@ -26,7 +26,7 @@
 // Title to copyright in this software, database and any associated documentation shall at all times remain with Princeton University and LICENSEE agrees to preserve same.
 
 async function GetThesaurus() {
-    let response = await fetch("/en_thesaurus.json");
+    let response = await fetch("files/en_thesaurus.json");
     if (response.status != 200) {
         throw new Error("Server Error");
     }
