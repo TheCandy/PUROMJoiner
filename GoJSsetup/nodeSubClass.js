@@ -11,6 +11,7 @@ class nodeSubClass extends go.Node {
         this.subsDependentOnDelete = [];
         this.selectedMergeKey;
         this.selectedMerge;
+        this.nodeSynonyms = []
     }
 
     setEquivalent(array) {

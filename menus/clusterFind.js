@@ -136,23 +136,4 @@ function getClusters() {
 
 
     diagram.commitTransaction("transfer dependencies");
-
-    // jQuery.ajax({
-    //     url: "https://thesaurus.altervista.org/thesaurus/v1?word=person&language=en_US&output=json&key=ELY8Sv7F8qwz0dgoWy9z",
-    //     success: function (data) {
-    //         if (data.length != 0) {
-    //             // output = "";
-    //             for (key in data.response) {
-    //                 // output += data.response[key].list.synonyms + "<br>";
-    //                 console.log(data.response[key])
-    //             }
-    //             // jQuery("#div1").html(output);
-    //         }
-    //     },
-    //     error: function (xhr, status, error) {
-    //         // jQuery("#div1").html("An error occured: " + status + " " + error);
-    //     }
-    // });
-
-
 }

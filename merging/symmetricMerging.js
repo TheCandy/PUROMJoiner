@@ -26,7 +26,9 @@ function startMerge(text) {
     obj = reindexObj(obj, diagram);
 
     mergeDiagram.model = diagram.model;
+    GetSynonyms(mergeDiagram)
     mergeDiagram2.model = go.Model.fromJson(obj)
+    GetSynonyms(mergeDiagram2)
 
 
     mergeDiagram.nodes.each(function (n) {
@@ -82,13 +84,25 @@ function populateSelection() {
     for (let i = 0; i < origNodesArray2.length; i++) {
         if (origNodesArray2[i].data.entity == "b-type" || origNodesArray2[i].data.entity == "b-object") {
             var equivalentArray = [];
-            var similarity = 0
 
             origNodesArray.forEach(node => {
-                similarity = stringSimilarity.compareTwoStrings(node.data.text, origNodesArray2[i].data.text)
-                if (similarity > document.getElementById("myRange2").value / 100) {
-                    equivalentArray.push([node, similarity])
-                    testArray.push([node, origNodesArray2[i]]);
+                if (node.data.entity == origNodesArray2[i].data.entity) {
+                    var similarity = 0;
+                    var synonymFound = false;
+
+                    similarity = stringSimilarity.compareTwoStrings(node.data.text, origNodesArray2[i].data.text)
+
+                    if (node.nodeSynonyms.length > 0 && origNodesArray2[i].nodeSynonyms.length > 0) {
+                        synonymFound = node.nodeSynonyms.some(r => origNodesArray2[i].nodeSynonyms.includes(r))
+                    }
+
+                    if (synonymFound) {
+                        equivalentArray.push([node, similarity, "synonym"])
+                        testArray.push([node, origNodesArray2[i]]);
+                    } else if (similarity > document.getElementById("myRange2").value / 100) {
+                        equivalentArray.push([node, similarity])
+                        testArray.push([node, origNodesArray2[i]]);
+                    }
                 }
             })
 

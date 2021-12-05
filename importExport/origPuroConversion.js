@@ -7,12 +7,11 @@ async function readText(event, caseStr) {
             if (JSON.parse(text).class == "GraphLinksModel") {
                 diagram.clearSelection()
                 diagram.model = go.Model.fromJson(text);
-                // getHierarchy(diagram)
+
+                GetSynonyms(diagram)
             } else {
                 importJsonPURO(text);
-                // getHierarchy(diagram)
             }
-            // getHierarchy(diagram);
             break;
         case 'merge':
             startMerge(text);
@@ -50,6 +49,7 @@ function importJsonPURO(text) {
     });
 
     diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+    GetSynonyms(diagram)
 }
 
 function export2txt() {
@@ -82,8 +82,6 @@ function reindexObj(obj, diag) {
         objReindexed.nodeDataArray[i].key = nextKey;
         --nextKey
 
-
-
         if (objReindexed.nodeDataArray[i].isGroup) {
             objReindexed.nodeDataArray.forEach(node => {
                 if (node.group == objReindexed.nodeDataArray[i].prevKey) {
@@ -91,7 +89,6 @@ function reindexObj(obj, diag) {
                 }
             })
         }
-
     }
 
     for (let i = 0; i < objReindexed.linkDataArray.length; i++) {
@@ -173,7 +170,7 @@ function convertToPUROM() {
         var obj = {};
         if (link.data.category == "B-instanceOf" || link.data.category == "B-subtypeOf" || link.data.category == "disjoint") {
             obj.name = link.data.category;
-        }else{
+        } else {
             obj.name = link.data.text;
         }
         obj.start = makeExportObjNode(link.part.fromNode);

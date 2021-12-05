@@ -19,6 +19,7 @@ class nodeTemplateStyle {
                 new go.Binding("toLinkable", "entity", function (t) { return nodeVisuals(t)[3]; }),
             ));
             this.nodeStyle.click = function (e, node) {
+                console.log(node.nodeSynonyms)
                 node.findNodesConnected().each(function (n) {
                     //    n.isHighlighted = true
                     diagram.startTransaction("transfer dependencies");
@@ -32,7 +33,7 @@ class nodeTemplateStyle {
                 new go.Binding("fill", "entity", function (t) { return nodeVisuals(t)[0]; }),
                 new go.Binding("figure", "entity", function (t) { return nodeVisuals(t)[1]; })
             ));
-            this.nodeStyle.click = function (e, node) { console.log(node.equivalentArray); }
+            this.nodeStyle.click = function (e, node) { console.log(node.selectedMerge); console.log(node.equivalent) }
         };
         this.nodeStyle.add($(go.Shape,
             { width: 70, height: 40, fill: "transparent", stroke: "rgba(255, 0, 0, 0.80)" },  // default Shape.fill value

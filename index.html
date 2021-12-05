@@ -5,11 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
     <meta name="description"
-        content="An almost minimal diagram using a very simple node template and the default link template." />
-    <!-- <link rel="stylesheet" href="../assets/css/style.css"/>  -->
-    <!-- Copyright 1998-2021 by Northwoods Software Corporation. -->
+        content="Aplication demonstrating merging of PURO models." />
     <title>PURO Joiner</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="visuals/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/purom.css">
     <link rel="stylesheet" href="css/menu.css">
@@ -62,6 +60,7 @@
                         <div id="miscMenuButtonContainer">
                             <button onclick="getClusters()">Find separated node clusters</button>
                             <button onclick="mergeInstances(diagram)">Merge instances</button>
+                            <button onclick="GetSynonyms()">Synonyms</button>
                         </div>
 
                         <div id="searchMenuButtonContainer">
@@ -113,10 +112,10 @@
             <div class="menu visibilityToggle" id="menuId2">
                 <div id="mySidenav2" class="sidenav2">
                     <div id="fullMergeMenuButton">Full merge
-                        <i class="fa fa-upload"></i>
+                        <i class="fa fa-circle"></i>
                     </div>
                     <div id="sourceMergeMenuButton">Source merge
-                        <i class="fa fa-download"></i>
+                        <i class="fa fa-circle-o-notch"></i>
                     </div>
                     <div id="equiMenuButton">Equivalents
                         <i class="fa fa-search"></i>
@@ -128,7 +127,6 @@
 
                 <div class="sidenavMain">
                     <div class="sidenav" id="mergeSidenav">
-                        <!-- <div class="sidenav" id="mergeSidenav"> -->
 
                         <div id="fullMergeMenuButtonContainer">
                             <button onclick="finalMerge()">Full merge</button>
@@ -179,7 +177,6 @@
 
                     </div>
                     <button><i class="fa fa-ellipsis-v"></i></button>
-                    <!-- <button><i class="fa fa-toggle-left"></i></button> -->
                 </div>
             </div>
             <div class="editorWindow2 composer" id="mergeDiagramDiv"></div>
@@ -200,6 +197,29 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- License for string similarity -->
+<!-- MIT License
+
+Copyright (c) 2018 Akash Kurdekar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE. -->
 <script src="//unpkg.com/string-similarity/umd/string-similarity.min.js"></script>
 <script src="https://unpkg.com/gojs/release/go-debug.js"></script>
 <script src="menus/sidebarDropdown.js"></script>
@@ -216,6 +236,7 @@
 <script src="solveNames.js"></script>
 <script src="connectionValidation.js"></script>
 <script src="GoJSsetup/nodeSubClass.js"></script>
+<script src="getThesaurus.js"></script>
 <script src="gojsnodes.js"></script>
 <script src="GoJSsetup/linkingContextMenu.js"></script>
 <script src="GoJSsetup/palette.js"></script>

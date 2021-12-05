@@ -16,6 +16,8 @@ function checkName(e) {
             }
         }
     });
+
+    getNodeSynonyms(e.subject.part);
 }
 
 function changeNameCopiedNode(e) {

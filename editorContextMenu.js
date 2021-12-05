@@ -5,9 +5,11 @@ function ShowMenu(e) {
         if (e.subject.size == 1) {
             e.subject.each(function (node) {
                 if (node.category == "node") {
-                    if (e.diagram.div.id == 'mergeDiagramDiv2') {
+                    if (e.diagram.div.id == 'mergeDiagramDiv2' && (node.data.entity == "b-object" || node.data.entity == "b-type")) {
                         jQuery("#contextMenuId").show();
                         getContextDivMerge(node, e.diagram)
+                    } else if (e.diagram.div.id == 'mergeDiagramDiv2' && (node.data.entity != "b-object" || node.data.entity != "b-type")) {
+                        jQuery("#contextMenuId").hide();                        
                     } else {
                         jQuery("#contextMenuId").show();
                         getContextDiv(node, e.diagram)
@@ -47,7 +49,7 @@ function getContextDivGroup(node, diag) {
 
     jQuery('#groupColor').val(node.data.color);
 
-    jQuery('#groupColor').change(function () {    
+    jQuery('#groupColor').change(function () {
         diagram.model.commit(function (d) {
             d.set(node.data, "color", jQuery('#groupColor').val());
         }, "Edit color");
@@ -55,6 +57,7 @@ function getContextDivGroup(node, diag) {
 }
 
 function getContextDivMerge(node, diag) {
+
 
     jQuery("#contextMenuId").css("border", `5px solid ${nodeVisuals(node.data.entity)[0]}`);
     jQuery("#contextHeader").css("background-color", nodeVisuals(node.data.entity)[0]);
@@ -82,15 +85,11 @@ function getContextDivMerge(node, diag) {
     if (node == node.selectedMerge) {
         whatSelectedNode.appendChild(document.createTextNode("None"))
     } else {
-
-
-
         whatSelectedNode.appendChild(document.createTextNode(node.selectedMerge.data.text + ` id: ${node.selectedMerge.data.key}`))
         whatSelectedNode.onmouseenter = function () {
             mergeDiagram.select(node.selectedMerge);
             mergeDiagram.centerRect(node.selectedMerge.actualBounds);
         };
-
     }
     selectionInnerDiv.appendChild(whatSelectedNode)
 
@@ -123,7 +122,11 @@ function getContextDivMerge(node, diag) {
 
     node.equivalent.forEach(node2 => {
         var possibleSelectionOption = document.createElement("div");
-        possibleSelectionOption.appendChild(document.createTextNode(node2[0].data.text + ` id:${node2[0].data.key} similarity:${Math.round((node2[1] + Number.EPSILON) * 100) / 100}`));
+        if (node2.length == 2) {
+            possibleSelectionOption.appendChild(document.createTextNode(node2[0].data.text + ` id:${node2[0].data.key} similarity:${Math.round((node2[1] + Number.EPSILON) * 100) / 100}`));
+        } else {
+            possibleSelectionOption.appendChild(document.createTextNode(node2[0].data.text + ` id:${node2[0].data.key} similarity:${Math.round((node2[1] + Number.EPSILON) * 100) / 100}` + " (synonym)"));
+        }
         possibleSelectionOption.onmouseenter = function () {
             mergeDiagram.select(node2[0]);
             mergeDiagram.centerRect(node2[0].actualBounds);
@@ -170,9 +173,8 @@ function getContextDivMerge(node, diag) {
         }
         inputBoxDiv.appendChild(makeULMergeTest(testArray, whatSelectedNode));
     });
-
-
 }
+
 function makeULMergeTest(array, whatSelectedNode) {
     // Create the list element:
     var list = document.createElement("UL");
