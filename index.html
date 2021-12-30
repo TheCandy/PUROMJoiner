@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
-    <meta name="description"
-        content="Aplication demonstrating merging of PURO models." />
+    <meta name="description" content="Aplication demonstrating merging of PURO models." />
     <title>PURO Joiner</title>
     <link rel="icon" type="image/x-icon" href="visuals/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -35,6 +34,9 @@
                     <div id="searchMenuButton">Search
                         <i class="fa fa-search"></i>
                     </div>
+                    <div id="exampleMenuButton">Models
+                        <i class="fa fa-clone"></i>
+                    </div>
                 </div>
 
                 <div class="sidenavMain">
@@ -60,7 +62,6 @@
                         <div id="miscMenuButtonContainer">
                             <button onclick="getClusters()">Find separated node clusters</button>
                             <button onclick="mergeInstances(diagram)">Merge instances</button>
-                            <button onclick="GetSynonyms()">Synonyms</button>
                         </div>
 
                         <div id="searchMenuButtonContainer">
@@ -91,6 +92,12 @@
                                 </button>
                                 <div class="dropdown-container" id="searchBvaluation"></div>
                             </div>
+                        </div>
+                        <div id="exampleMenuButtonContainer">
+                            <button onclick="loadFile('examples/foafPerson.json')">FOAF Person</button>
+                            <button onclick="loadFile('examples/foafRelations.json')">FOAF Relations</button>
+                            <button onclick="loadFile('examples/foafOrganization.json')">FOAF Organization</button>
+                            <button onclick="loadFile('examples/foafMergedModel.json')">FOAF Merged</button>
                         </div>
                     </div>
                     <button><i class="fa fa-ellipsis-v"></i></button>
@@ -170,7 +177,8 @@
                             <div class="slidecontainer tooltip">
                                 <input type="range" min="0" max="100" value="50" class="slider" id="myRange2">
                                 <p>Min similarity: <span id="demo2"></span></p>
-                                <span class="tooltiptext">Similarity treshold in order to consider pair for merging</span>
+                                <span class="tooltiptext">Similarity treshold in order to consider pair for
+                                    merging</span>
                             </div>
                         </div>
 
@@ -245,5 +253,8 @@ SOFTWARE. -->
 <script src="editorContextMenu.js"></script>
 <script src="visuals/accordion.js"></script>
 <script src="merging/instanceMerge.js"></script>
+<script src="examples/exampleLoad.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </html>
