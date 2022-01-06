@@ -1,0 +1,279 @@
+{
+  "class": "GraphLinksModel",
+  "nodeDataArray": [
+    {
+      "key": 10,
+      "entity": "b-type",
+      "text": "Seller",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": 480.3982278993315,
+        "y": 238.19811621482285
+      }
+    },
+    {
+      "key": 12,
+      "entity": "b-relation",
+      "text": "offer",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 665.2919624167081,
+        "y": 314.4272618326394
+      }
+    },
+    {
+      "key": 13,
+      "entity": "b-type",
+      "text": "Lenovo Thinkpad X123",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": 825.4833905836838,
+        "y": 299.9007107692222
+      }
+    },
+    {
+      "key": 14,
+      "entity": "b-type",
+      "text": "Laptop Model",
+      "category": "node",
+      "level": 2,
+      "loc": {
+        "class": "go.Point",
+        "x": 831.0419512983618,
+        "y": 177.0787569555915
+      }
+    },
+    {
+      "key": 17,
+      "entity": "b-relation",
+      "text": "has CPU type",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 1006.3285047996642,
+        "y": 278.50673942016607
+      }
+    },
+    {
+      "key": 18,
+      "entity": "b-relation",
+      "text": "has HDD type",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 1031.0626861471978,
+        "y": 440.29447554980413
+      }
+    },
+    {
+      "key": 19,
+      "entity": "b-type",
+      "text": "HDD Type",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": 1316.2546993534106,
+        "y": 322.52264271626933
+      }
+    },
+    {
+      "key": 21,
+      "entity": "b-attribute",
+      "text": "RAM size",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 811.0416391014304,
+        "y": 414.1325200163377
+      }
+    },
+    {
+      "key": 22,
+      "entity": "b-valuation",
+      "text": "8 GB",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 792.0251877665896,
+        "y": 564.1741548605702
+      }
+    },
+    {
+      "key": 23,
+      "entity": "b-attribute",
+      "text": "price",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 665.7542003019506,
+        "y": 435.2110903282908
+      }
+    },
+    {
+      "key": 24,
+      "entity": "b-valuation",
+      "text": "1234 USD",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 645.1621083005042,
+        "y": 553.0825560371612
+      }
+    },
+    {
+      "key": 38,
+      "entity": "b-type",
+      "text": "CPU Model",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": 1186.6312729088988,
+        "y": 160.1393363717904
+      }
+    },
+    {
+      "key": 48,
+      "entity": "b-object",
+      "text": "iCore 7 1234",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 1177.4000567338983,
+        "y": 262.17155728537597
+      }
+    },
+    {
+      "key": 52,
+      "entity": "b-object",
+      "text": "SSD",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 1213.4760131396663,
+        "y": 470.7271321011504
+      }
+    },
+    {
+      "key": 55,
+      "entity": "b-object",
+      "text": "BetterBuy Inc",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 498.7931557665639,
+        "y": 379.0515261152854
+      }
+    },
+    {
+      "entity": "b-attribute",
+      "text": "weight",
+      "category": "node",
+      "key": -3,
+      "loc": {
+        "class": "go.Point",
+        "x": 919.2214886001696,
+        "y": 527.4990642043044
+      }
+    },
+    {
+      "entity": "b-valuation",
+      "text": "2kg",
+      "category": "node",
+      "key": -4,
+      "loc": {
+        "class": "go.Point",
+        "x": 972.9508062955895,
+        "y": 639.7926512132319
+      }
+    }
+  ],
+  "linkDataArray": [
+    {
+      "from": 23,
+      "to": 24,
+      "category": "dashedArrow"
+    },
+    {
+      "from": 12,
+      "to": 23,
+      "category": "dashedNoArrow"
+    },
+    {
+      "from": 12,
+      "to": 13,
+      "category": "dashedArrow"
+    },
+    {
+      "from": 13,
+      "to": 21,
+      "category": "dashedNoArrow"
+    },
+    {
+      "from": 21,
+      "to": 22,
+      "category": "dashedArrow"
+    },
+    {
+      "from": 13,
+      "to": 17,
+      "category": "dashedNoArrow"
+    },
+    {
+      "from": 13,
+      "to": 14,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": 17,
+      "to": 48,
+      "category": "dashedArrow"
+    },
+    {
+      "from": 48,
+      "to": 38,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": 13,
+      "to": 18,
+      "category": "dashedNoArrow"
+    },
+    {
+      "from": 18,
+      "to": 52,
+      "category": "dashedArrow"
+    },
+    {
+      "from": 52,
+      "to": 19,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": 55,
+      "to": 10,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": 55,
+      "to": 12,
+      "category": "dashedNoArrow"
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": 13,
+      "to": -3
+    },
+    {
+      "category": "dashedArrow",
+      "from": -3,
+      "to": -4
+    }
+  ]
+}

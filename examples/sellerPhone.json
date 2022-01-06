@@ -1,0 +1,230 @@
+{
+  "class": "GraphLinksModel",
+  "nodeDataArray": [
+    {
+      "key": 10,
+      "entity": "b-type",
+      "text": "Seller",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": 491.1058627973608,
+        "y": -277.6342791453414
+      }
+    },
+    {
+      "key": 55,
+      "entity": "b-object",
+      "text": "BetterBuy Inc",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 481.01105685293066,
+        "y": -106.0120178576019
+      }
+    },
+    {
+      "key": -22,
+      "entity": "b-object",
+      "text": "A15 Bionic",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 1108.0850081173305,
+        "y": -160.64182460391189
+      }
+    },
+    {
+      "key": -23,
+      "entity": "b-type",
+      "text": "CPU Model",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": 1139.3144352704558,
+        "y": -277.4150735251281
+      }
+    },
+    {
+      "key": -24,
+      "entity": "b-valuation",
+      "text": "1234 USD",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 674.327856659811,
+        "y": 117.90425140624049
+      }
+    },
+    {
+      "key": -25,
+      "entity": "b-attribute",
+      "text": "price",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 670.826407104044,
+        "y": -26.0189217014728
+      }
+    },
+    {
+      "key": -26,
+      "entity": "b-valuation",
+      "text": "8 GB",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 799.2514314857482,
+        "y": 31.272990068450248
+      }
+    },
+    {
+      "key": -27,
+      "entity": "b-attribute",
+      "text": "capacity",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 788.1146569713478,
+        "y": -55.45985003683933
+      }
+    },
+    {
+      "key": -30,
+      "entity": "b-relation",
+      "text": "has CPU type",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 971.5715178123316,
+        "y": -156.5364091825524
+      }
+    },
+    {
+      "key": -31,
+      "entity": "b-type",
+      "text": "Phone",
+      "category": "node",
+      "level": 2,
+      "loc": {
+        "class": "go.Point",
+        "x": 792.7560744925274,
+        "y": -269.8353008052569
+      }
+    },
+    {
+      "key": -32,
+      "entity": "b-type",
+      "text": "Iphone 13",
+      "category": "node",
+      "level": 1,
+      "loc": {
+        "class": "go.Point",
+        "x": 794.7166208324257,
+        "y": -142.9209898600032
+      }
+    },
+    {
+      "key": -33,
+      "entity": "b-relation",
+      "text": "offer",
+      "category": "node",
+      "loc": {
+        "class": "go.Point",
+        "x": 637.9893484096607,
+        "y": -120.5799643613678
+      }
+    },
+    {
+      "entity": "b-attribute",
+      "text": "core number",
+      "category": "node",
+      "key": -3,
+      "loc": {
+        "class": "go.Point",
+        "x": 1308.3299542127106,
+        "y": -231.17556513332187
+      }
+    },
+    {
+      "entity": "b-valuation",
+      "text": "6",
+      "category": "node",
+      "key": -4,
+      "loc": {
+        "class": "go.Point",
+        "x": 1422.7917507152154,
+        "y": -117.71713535419015
+      }
+    }
+  ],
+  "linkDataArray": [
+    {
+      "from": 55,
+      "to": 10,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": -22,
+      "to": -23,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": -30,
+      "to": -22,
+      "category": "dashedArrow"
+    },
+    {
+      "from": -32,
+      "to": -31,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": -32,
+      "to": -30,
+      "category": "dashedNoArrow"
+    },
+    {
+      "from": -27,
+      "to": -26,
+      "category": "dashedArrow"
+    },
+    {
+      "from": -32,
+      "to": -27,
+      "category": "dashedNoArrow"
+    },
+    {
+      "from": -33,
+      "to": -32,
+      "category": "dashedArrow"
+    },
+    {
+      "from": -33,
+      "to": -25,
+      "category": "dashedNoArrow"
+    },
+    {
+      "from": -25,
+      "to": -24,
+      "category": "dashedArrow"
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -22,
+      "to": -3
+    },
+    {
+      "category": "dashedArrow",
+      "from": -3,
+      "to": -4
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": 55,
+      "to": -33
+    }
+  ]
+}

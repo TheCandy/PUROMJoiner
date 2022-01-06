@@ -1,0 +1,344 @@
+{
+  "class": "GraphLinksModel",
+  "nodeDataArray": [
+    {
+      "entity": "b-type",
+      "text": "person",
+      "category": "node",
+      "level": 1,
+      "key": -1,
+      "loc": {
+        "class": "go.Point",
+        "x": -455.06702079815096,
+        "y": -283.0351301327635
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "Daniel Bedrnicek",
+      "category": "node",
+      "key": -2,
+      "loc": {
+        "class": "go.Point",
+        "x": -313.34374584422187,
+        "y": -53.71179244090569
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "studies",
+      "category": "node",
+      "key": -5,
+      "loc": {
+        "class": "go.Point",
+        "x": -188.69149776138892,
+        "y": 201.5644188070379
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "VŠE",
+      "category": "node",
+      "key": -4,
+      "loc": {
+        "class": "go.Point",
+        "x": 315.20459932110685,
+        "y": -99.8066229889597
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "university",
+      "category": "node",
+      "level": 1,
+      "key": -6,
+      "loc": {
+        "class": "go.Point",
+        "x": 505.1232624613866,
+        "y": -233.16272579172409
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "FIS",
+      "category": "node",
+      "key": -7,
+      "loc": {
+        "class": "go.Point",
+        "x": 75.21404476041928,
+        "y": 200.07964443998162
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "faculty",
+      "category": "node",
+      "level": 1,
+      "key": -8,
+      "loc": {
+        "class": "go.Point",
+        "x": 429.9928901453927,
+        "y": 206.5498382462046
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "partOf",
+      "category": "node",
+      "key": -9,
+      "loc": {
+        "class": "go.Point",
+        "x": 353.65999915200416,
+        "y": 42.90149495104633
+      }
+    },
+    {
+      "entity": "b-object",
+      "text": "prof. Ing. Jakub Fischer, Ph.D.",
+      "category": "node",
+      "key": -10,
+      "loc": {
+        "class": "go.Point",
+        "x": 12.960272671311433,
+        "y": -140.14827198957968
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "works",
+      "category": "node",
+      "key": -11,
+      "loc": {
+        "class": "go.Point",
+        "x": 179.98034385896315,
+        "y": -28.918692273494635
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "dean",
+      "category": "node",
+      "level": 1,
+      "key": -12,
+      "loc": {
+        "class": "go.Point",
+        "x": 188.71536215460162,
+        "y": -264.39160140000536
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "position",
+      "category": "node",
+      "level": "2",
+      "key": -13,
+      "loc": {
+        "class": "go.Point",
+        "x": 193.72747437909646,
+        "y": -387.00529124127155
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "hasTitle",
+      "category": "node",
+      "key": -14,
+      "loc": {
+        "class": "go.Point",
+        "x": 21.911652984097294,
+        "y": -261.3387692687324
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Bc.",
+      "category": "node",
+      "level": 1,
+      "key": -15,
+      "loc": {
+        "class": "go.Point",
+        "x": -195.6322240074251,
+        "y": -516.939772852471
+      }
+    },
+    {
+      "entity": "b-relation",
+      "text": "hasTitle",
+      "category": "node",
+      "key": -16,
+      "loc": {
+        "class": "go.Point",
+        "x": -231.84163054336622,
+        "y": -367.34502953487186
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Ing.",
+      "category": "node",
+      "level": 1,
+      "key": -17,
+      "loc": {
+        "class": "go.Point",
+        "x": 200.4969469205014,
+        "y": -557.3007231306767
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "Ph.D.",
+      "category": "node",
+      "level": 1,
+      "key": -18,
+      "loc": {
+        "class": "go.Point",
+        "x": -63.94404301667437,
+        "y": -574.9668899362398
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "prof.",
+      "category": "node",
+      "level": 1,
+      "key": -19,
+      "loc": {
+        "class": "go.Point",
+        "x": 65.48475883398282,
+        "y": -545.6596709757976
+      }
+    },
+    {
+      "entity": "b-type",
+      "text": "title",
+      "category": "node",
+      "level": 2,
+      "key": -20,
+      "loc": {
+        "class": "go.Point",
+        "x": 25.139504961370317,
+        "y": -824.9242230225254
+      }
+    }
+  ],
+  "linkDataArray": [
+    {
+      "category": "B-instanceOf",
+      "from": -2,
+      "to": -1
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -2,
+      "to": -5
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -4,
+      "to": -6
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -7,
+      "to": -8
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -7,
+      "to": -9
+    },
+    {
+      "category": "dashedArrow",
+      "from": -9,
+      "to": -4
+    },
+    {
+      "category": "dashedArrow",
+      "from": -5,
+      "to": -7
+    },
+    {
+      "category": "B-instanceOf",
+      "from": -10,
+      "to": -1
+    },
+    {
+      "category": "dashedArrow",
+      "from": -11,
+      "to": -7,
+      "text": "worksAt"
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -10,
+      "to": -11
+    },
+    {
+      "from": -11,
+      "to": -12,
+      "category": "dashedArrow",
+      "text": "position"
+    },
+    {
+      "from": -12,
+      "to": -13,
+      "category": "B-instanceOf"
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -10,
+      "to": -14
+    },
+    {
+      "category": "dashedNoArrow",
+      "from": -2,
+      "to": -16
+    },
+    {
+      "from": -16,
+      "to": -15,
+      "category": "dashedArrow"
+    },
+    {
+      "from": -14,
+      "to": -18,
+      "category": "dashedArrow"
+    },
+    {
+      "from": -14,
+      "to": -19,
+      "category": "dashedArrow"
+    },
+    {
+      "from": -14,
+      "to": -17,
+      "category": "dashedArrow"
+    },
+    {
+      "from": -15,
+      "to": -20,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": -18,
+      "to": -20,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": -19,
+      "to": -20,
+      "category": "B-instanceOf"
+    },
+    {
+      "from": -17,
+      "to": -20,
+      "category": "B-instanceOf"
+    },
+    {
+      "category": "dashedArrow",
+      "from": -16,
+      "to": -7,
+      "text": "from"
+    }
+  ]
+}
