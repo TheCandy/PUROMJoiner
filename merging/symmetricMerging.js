@@ -23,13 +23,16 @@ function startMerge(text) {
     var origNodesArray = [];
     var origLinksArray = [];
 
-    obj = reindexObj(obj, diagram);
+    if (obj.class == "GraphLinksModel") {
+        obj = reindexObj(obj, diagram);
+    } else {
+        obj = reindexObj(JSON.parse(importJsonPURO(text)), diagram);
+    }
 
     mergeDiagram.model = diagram.model;
     GetSynonyms(mergeDiagram)
     mergeDiagram2.model = go.Model.fromJson(obj)
     GetSynonyms(mergeDiagram2)
-
 
     mergeDiagram.nodes.each(function (n) {
         if (!n.data.isGroup) {
@@ -91,7 +94,7 @@ function populateSelection() {
                     var synonymFound = false;
 
                     similarity = stringSimilarity.compareTwoStrings(node.data.text, origNodesArray2[i].data.text)
-
+                    
                     if (node.nodeSynonyms.length > 0 && origNodesArray2[i].nodeSynonyms.length > 0) {
                         synonymFound = node.nodeSynonyms.some(r => origNodesArray2[i].nodeSynonyms.includes(r))
                     }

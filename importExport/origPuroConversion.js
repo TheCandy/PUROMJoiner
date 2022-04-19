@@ -4,13 +4,11 @@ async function readText(event, caseStr) {
 
     switch (caseStr) {
         case 'import':
+            diagram.clearSelection()
             if (JSON.parse(text).class == "GraphLinksModel") {
-                diagram.clearSelection()
                 diagram.model = go.Model.fromJson(text);
-
-                GetSynonyms(diagram)
             } else {
-                importJsonPURO(text);
+                diagram.model = go.Model.fromJson(importJsonPURO(text));
             }
             break;
         case 'merge':
@@ -33,12 +31,11 @@ function importJsonPURO(text) {
             entity: element.type.toLowerCase(),
             text: element.name, category: "node",
             level: element.level,
-            loc: new go.Point(element.x, element.y)
+            loc: { class: "go.Point", x: element.x, y: element.y }
         });
     });
 
     JSON.parse(text).links.forEach(element => {
-
         var whatLink = combinationSolver(element.start.type.toLowerCase(), element.end.type.toLowerCase())[1];
 
         if (whatLink === "none") {
@@ -48,8 +45,7 @@ function importJsonPURO(text) {
         }
     });
 
-    diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
-    GetSynonyms(diagram)
+    return JSON.stringify({ nodeDataArray: nodeDataArray, linkDataArray: linkDataArray })
 }
 
 function export2txt() {
@@ -63,7 +59,6 @@ function export2txt() {
     a.click();
     document.body.removeChild(a);
 }
-
 
 function findIndices(array, callback, ctx) {
     const res = [];
